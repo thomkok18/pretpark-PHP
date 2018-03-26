@@ -13,7 +13,7 @@ include("layout/header.php");
     <div class="container">
         <div class="page-header">
             <h1>Attractie</h1>
-            <p><a href="formReactie.php?id<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a></p>
+            <p><a href="formReactie.php?id=<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a></p>
         </div>
 
         <div class="row">
