@@ -17,6 +17,19 @@ class Attractie {
 
     }
 
+    public function insertAttractie() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "INSERT INTO attractie (idgebruiker, titel, omschrijving, urlfoto) "
+            ."VALUES (:idgebruiker, :titel, :omschrijving, :urlfoto)";
+        $sth = $conn->prepare($query);
+        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
+        $sth->bindParam(':titel',$this->titel, PDO::PARAM_STR);
+        $sth->bindParam(':omschrijving',$this->omschrijving, PDO::PARAM_STR);
+        $sth->bindParam(':urlfoto',$this->urlfoto, PDO::PARAM_STR);
+        return $sth->execute();
+    }
+
     /**
      * @return mixed
      */

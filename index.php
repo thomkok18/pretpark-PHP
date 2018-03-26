@@ -1,9 +1,10 @@
 <?php
-include("layout/header.php");
+include_once('lib/config.php');
 include_once("lib/AttractieLijst.php");
 $attractieLijst = new AttractieLijst();
 $attractieLijst->selectAttracties();
 
+include("layout/header.php");
 ?>
 
     <div class="container">

@@ -1,5 +1,5 @@
 <?php
-include("layout/header.php");
+include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 
 if (isset($_POST['login'])) {
@@ -12,11 +12,13 @@ if (isset($_POST['login'])) {
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
 
     if ($gebruiker->insertGebruiker()) {
-        echo "Gebruiker is succesvol toegevoegd!";
+        $message[] = "Gebruiker is succesvol toegevoegd!";
     } else {
-        echo "Gebruiker is niet toegevoegd. ";
+        $message[] = "Gebruiker is niet toegevoegd.";
     }
 }
+
+include("layout/header.php");
 ?>
 
     <div class="container">

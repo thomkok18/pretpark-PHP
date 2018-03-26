@@ -26,6 +26,10 @@ class Gebruiker {
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
         $gebruiker = $sth->fetch();
         if ($gebruiker && password_verify($orgWachtwoord, $gebruiker->getWachtwoord())) {
+            $_SESSION['login'] = array (
+                "volledige naam" => $gebruiker->getVolledigeNaam(),
+                "idgebruiker" => $gebruiker->getIdgebruiker()
+            );
             return $gebruiker;
         } else {
             return false;

@@ -1,16 +1,19 @@
 <?php
-include("layout/header.php");
+include_once('lib/config.php');
 include_once('lib/Attractie.php');
 $id = $_GET['id'];
 $attractie = new Attractie();
 $attractie = $attractie->getAttractieById($id);
 $reacties = $attractie->getReactiesByIdAttractie();
 $gebruiker = $attractie->getGebruikerById();
+
+include("layout/header.php");
 ?>
 
     <div class="container">
         <div class="page-header">
             <h1>Attractie</h1>
+            <p><a href="formReactie.php?id<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a></p>
         </div>
 
         <div class="row">
