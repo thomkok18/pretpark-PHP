@@ -5,7 +5,7 @@
       <paths name="bitfrost.mediaopl.nl">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/thomkok/public_html/pretpark-PHP" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

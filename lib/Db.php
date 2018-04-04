@@ -11,11 +11,11 @@ class Db {
             $user = 'root';
             $password = 'root';
         } else {
-            $host = 'website';
-            $port = 8889;
-            $db = 'school';
-            $user = 'root';
-            $password = 'root';
+            $host = '127.0.0.1';
+            $port = 3306;
+            $db = 'thomkok';
+            $user = 'thomkok';
+            $password = 'tki43kok';
         }
 
         try {
