@@ -25,14 +25,6 @@ class Db {
             echo 'De verbinding is niet gelukt, Connection failed: ' . $e->getMessage();
         }
 
-//        try {
-//            $this->$connectie = new PDO('mysql:host='.$host.';dbname='.$db, $user, $password);
-//            $dbh = null;
-//        } catch (PDOException $e) {
-//            print "Error!: " . $e->getMessage() . "<br/>";
-//            die();
-//        }
-
         return $this->connectie;
     }
 }
