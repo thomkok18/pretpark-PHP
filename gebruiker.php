@@ -10,6 +10,8 @@ if (isset($_POST['login'])) {
     $gebruiker->setAchternaam($achternaam);
     $gebruiker->setLogin($login);
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
+    $gebruiker->setRechten('Bezoeker');
+
 
     if ($gebruiker->insertGebruiker()) {
         $message[] = "Gebruiker is succesvol toegevoegd!";

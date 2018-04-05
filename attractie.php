@@ -32,7 +32,8 @@ include("layout/header.php");
             ?>
             <div class="row">
                 <div class="col-md-offset-3 col-md-2">
-                    <img class="img-responsive" src="img/<?php echo $gebruiker->getLogin(); ?>.png" alt="plaatje gebruiker">
+                    <img class="img-responsive" src="img/<?php echo $gebruiker->getLogin(); ?>.png"
+                         alt="plaatje gebruiker">
                 </div>
                 <div class="col-md-8">
                     <p><?php echo $reactie->getReactietekst(); ?></p>

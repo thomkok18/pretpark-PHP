@@ -8,7 +8,7 @@ class Gebruiker {
     private $achternaam;
     private $login;
     private $wachtwoord;
-    private $rechten = 'Bezoeker';
+    private $rechten;
 
     /**
      * Beheerder constructor.
@@ -28,7 +28,9 @@ class Gebruiker {
         if ($gebruiker && password_verify($orgWachtwoord, $gebruiker->getWachtwoord())) {
             $_SESSION['login'] = array (
                 "volledige naam" => $gebruiker->getVolledigeNaam(),
-                "idgebruiker" => $gebruiker->getIdgebruiker()
+                "idgebruiker" => $gebruiker->getIdgebruiker(),
+                "login" => $gebruiker->getLogin(),
+                "rechten" => $gebruiker->getRechten()
             );
             return $gebruiker;
         } else {

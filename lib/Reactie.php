@@ -29,13 +29,6 @@ class Reactie {
     /**
      * @return mixed
      */
-    public function getReactietekst() {
-        return$this->reactietekst;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getGebruikerById() {
         $db = new Db();
         $conn = $db->getConnectie();
@@ -46,24 +39,59 @@ class Reactie {
     }
 
     /**
-     * @param $tekst
+     * @return mixed
      */
-    public function setReactietekst($tekst) {
-        $this->reactietekst = $tekst;
+    public function getIdreactie() {
+        return $this->idreactie;
     }
 
     /**
-     * @param $id
+     * @param mixed $idreactie
      */
-    public function setIdGebruiker($id) {
-        $this->idgebruiker = $id;
+    public function setIdreactie($idreactie): void {
+        $this->idreactie = $idreactie;
     }
 
     /**
-     * @param $id
+     * @return mixed
      */
-    public function setIdAttractie($id) {
-        $this->idattractie = $id;
+    public function getIdattractie() {
+        return $this->idattractie;
+    }
+
+    /**
+     * @param mixed $idattractie
+     */
+    public function setIdattractie($idattractie): void {
+        $this->idattractie = $idattractie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdgebruiker() {
+        return $this->idgebruiker;
+    }
+
+    /**
+     * @param mixed $idgebruiker
+     */
+    public function setIdgebruiker($idgebruiker): void {
+        $this->idgebruiker = $idgebruiker;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReactietekst() {
+        return $this->reactietekst;
+    }
+
+    /**
+     * @param mixed $reactietekst
+     */
+    public function setReactietekst($reactietekst): void {
+        $this->reactietekst = $reactietekst;
     }
 }
 ?>

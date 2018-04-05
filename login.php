@@ -6,7 +6,7 @@ if(isset($_POST['login'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
     if($gebruiker->checkLogin($password, $login)) {
-        $messages[] = "Joepie ik ben ingelogd";
+        header('Location: index.php');
     } else {
         $messages[] = "Er is iets misgegaan met inloggen";
     }
