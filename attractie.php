@@ -9,7 +9,6 @@ $gebruiker = $attractie->getGebruikerById();
 
 include("layout/header.php");
 ?>
-
     <div class="container">
         <div class="page-header">
             <h1>Attractie</h1>

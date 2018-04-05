@@ -20,6 +20,9 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.php">Attracties</a></li>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
+                    <li><a href="beheerder.php">Beheren</a></li>
+                <?php } ?>
                 <?php if (!isset($_SESSION['login'])) { ?>
                     <li><a href="gebruiker.php">Registreren</a></li>
                 <?php } ?>

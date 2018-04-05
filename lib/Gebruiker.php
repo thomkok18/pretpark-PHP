@@ -56,6 +56,15 @@ class Gebruiker {
         return $sth->execute();
     }
 
+    public function getGebruikers() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $sth = $conn->prepare("SELECT * FROM gebruiker");
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        return $sth->fetch();
+    }
+
     /**
      * @return string
      */
