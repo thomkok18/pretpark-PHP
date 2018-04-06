@@ -1,5 +1,6 @@
 <?php
 include_once('lib/Db.php');
+include_once('lib/Rechten.php');
 
 class Gebruiker {
     private $idgebruiker;
@@ -8,7 +9,7 @@ class Gebruiker {
     private $achternaam;
     private $login;
     private $wachtwoord;
-    private $rechten;
+    private $idrechten;
 
     /**
      * Beheerder constructor.
@@ -35,7 +36,7 @@ class Gebruiker {
                 "volledige naam" => $gebruiker->getVolledigeNaam(),
                 "idgebruiker" => $gebruiker->getIdgebruiker(),
                 "login" => $gebruiker->getLogin(),
-                "rechten" => $gebruiker->getRechten()
+                "idrechten" => $gebruiker->getIdRechten()
             );
             return $gebruiker;
         } else {
@@ -49,15 +50,15 @@ class Gebruiker {
     public function insertGebruiker() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, rechten) "
-            ."VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :rechten)";
+        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten) "
+            ."VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten)";
         $sth = $conn->prepare($query);
         $sth->bindParam(':naam', $this->naam, PDO::PARAM_STR);
         $sth->bindParam(':tussenvoegsels', $this->tussenvoegsels, PDO::PARAM_STR);
         $sth->bindParam(':achternaam', $this->achternaam, PDO::PARAM_STR);
         $sth->bindParam(':login', $this->login, PDO::PARAM_STR);
         $sth->bindParam(':wachtwoord', $this->wachtwoord, PDO::PARAM_STR);
-        $sth->bindParam(':rechten', $this->rechten, PDO::PARAM_STR);
+        $sth->bindParam(':idrechten', $this->idrechten, PDO::PARAM_STR);
         return $sth->execute();
     }
 
@@ -179,14 +180,14 @@ class Gebruiker {
     /**
      * @return mixed
      */
-    public function getRechten() {
-        return $this->rechten;
+    public function getIdRechten() {
+        return $this->idrechten;
     }
 
     /**
-     * @param $rechten
+     * @param $idrechten
      */
-    public function setRechten($rechten): void {
-        $this->rechten = $rechten;
+    public function setIdRechten($idrechten): void {
+        $this->idrechten = $idrechten;
     }
 }

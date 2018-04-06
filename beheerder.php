@@ -1,6 +1,7 @@
 <?php
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
+include_once("lib/Rechten.php");
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
 
@@ -32,7 +33,7 @@ include("layout/header.php");
                 <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getWachtwoord(); ?></th>
-                <th class="tabelText"><?php echo $gebruiker->getRechten(); ?></th>
+                <th class="tabelText"><?php echo $gebruiker->getIdRechten(); ?></th>
             </tr>
             </tbody>
         <?php } ?>

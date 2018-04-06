@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $gebruiker->setAchternaam($achternaam);
     $gebruiker->setLogin($login);
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
-    $gebruiker->setRechten('Bezoeker');
+    $gebruiker->setIdRechten('1');
 
 
     if ($gebruiker->insertGebruiker()) {
@@ -21,6 +21,7 @@ if (isset($_POST['login'])) {
 }
 
 include("layout/header.php");
+print_r($message);
 ?>
 
     <div class="container">

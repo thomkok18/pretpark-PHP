@@ -22,7 +22,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.php">Attracties</a></li>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['idrechten'] == '2') { ?>
                     <li><a href="beheerder.php">Beheren</a></li>
                 <?php } ?>
                 <?php if (!isset($_SESSION['login'])) { ?>
@@ -30,7 +30,7 @@
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li><img style="width:42px;height:42px;" src="img/<?php echo $_SESSION['login']['login']; ?>.png"
+                    <li><img style="width:42px;height:42px; margin-top:4px;" src="img/<?php echo $_SESSION['login']['login']; ?>.png"
                              alt="plaatje gebruiker"></li>
                     <li><a><?php echo $_SESSION['login']['volledige naam']; ?></a></li>
                 <?php } else { ?>

@@ -11,7 +11,7 @@ include("layout/header.php");
         <div class="page-header">
             <div class="row">
                 <h1 class="col-xs-10">Attractie overzicht</h1>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['idrechten'] == '2') { ?>
                     <a role="button" style="margin-top: 20px;" class="btn btn-default col-xs-2" href="formAttractie.php">Attractie toevoegen</a>
                 <?php } ?>
             </div>
