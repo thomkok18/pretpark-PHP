@@ -11,14 +11,32 @@ include("layout/header.php");
         <h1>Beheren</h1>
     </div>
 
-    <?php foreach ($gebruikers as $gebruiker) { ?>
-        <p><?php echo "Id: ". $gebruikers->getIdgebruiker(); ?></p>
-        <p><?php echo "Naam: ".$gebruikers->getVolledigeNaam(); ?></p>
-        <p><?php echo "Login: ".$gebruikers->getLogin(); ?></p>
-        <p><?php echo "Wachtwoord: ".$gebruikers->getWachtwoord(); ?></p>
-        <p><?php echo "Rechten: ". $gebruikers->getRechten(); ?></p>
-    <?php } ?>
+    <a role="button" class="btn btn-default">Verwijder geselecteerde</a>
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Volledige naam</th>
+            <th>Login</th>
+            <th>Wachtwoord</th>
+            <th>Rechten</th>
+        </tr>
+        </thead>
+        <?php foreach ($gebruikers as $key => $gebruiker) { ?>
+            <tbody>
+            <tr>
+                <th><input class="checkbox" type="checkbox"></th>
+                <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"> <?php echo $gebruiker->getIdgebruiker(); ?></a></th>
+                <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
+                <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
+                <th class="tabelText"><?php echo $gebruiker->getWachtwoord(); ?></th>
+                <th class="tabelText"><?php echo $gebruiker->getRechten(); ?></th>
+            </tr>
+            </tbody>
+        <?php } ?>
+    </table>
 
 </div>
 <?php

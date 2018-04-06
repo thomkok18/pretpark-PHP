@@ -56,10 +56,25 @@ class Gebruiker {
         return $sth->execute();
     }
 
+    /**
+     * @return array
+     */
     public function getGebruikers() {
         $db = new Db();
         $conn = $db->getConnectie();
         $sth = $conn->prepare("SELECT * FROM gebruiker");
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_CLASS, 'Gebruiker');
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getGebruikerById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = ".$id);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
         return $sth->fetch();
