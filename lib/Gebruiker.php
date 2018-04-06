@@ -16,6 +16,11 @@ class Gebruiker {
     public function __construct() {
     }
 
+    /**
+     * @param $orgWachtwoord
+     * @param $login
+     * @return bool|mixed
+     */
     public function checkLogin($orgWachtwoord, $login) {
         $db = new Db();
         $conn = $db->getConnectie();

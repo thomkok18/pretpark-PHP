@@ -1,11 +1,11 @@
 <?php
 include_once("lib/config.php");
 include_once("lib/Gebruiker.php");
-$messages=array();
-if(isset($_POST['login'])) {
+$messages = array();
+if (isset($_POST['login'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
-    if($gebruiker->checkLogin($password, $login)) {
+    if ($gebruiker->checkLogin($password, $login)) {
         header('Location: index.php');
     } else {
         $messages[] = "Er is iets misgegaan met inloggen";
@@ -20,7 +20,7 @@ include("layout/header.php");
             <h1>Inloggen</h1>
         </div>
     </div>
-    <form class="form-horizontal" action="#" method="post" >
+    <form class="form-horizontal" action="#" method="post">
         <div class="form-group">
             <label for="login" class="col-sm-2 control-label">Login</label>
             <div class="col-sm-10">
@@ -30,7 +30,8 @@ include("layout/header.php");
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" required
+                       placeholder="Password">
             </div>
         </div>
         <div class="form-group">
