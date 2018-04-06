@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/attractie.css">
     <link rel="stylesheet" href="../css/beheerder.css">
 </head>
 <body>
@@ -21,12 +20,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Attracties</a></li>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['idrechten'] == '2') { ?>
-                    <li><a href="beheerder.php">Beheren</a></li>
+                <li <?php if ($pagina === 'attractie') { ?> class="active" <?php } ?> ><a href="index.php">Attracties</a></li>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
+                    <li <?php if ($pagina === 'beheerder') { ?> class="active" <?php } ?> ><a href="beheerder.php">Beheren</a></li>
                 <?php } ?>
                 <?php if (!isset($_SESSION['login'])) { ?>
-                    <li><a href="gebruiker.php">Registreren</a></li>
+                    <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
@@ -34,7 +33,7 @@
                              alt="plaatje gebruiker"></li>
                     <li><a><?php echo $_SESSION['login']['volledige naam']; ?></a></li>
                 <?php } else { ?>
-                    <li><a href="login.php">Inloggen</a></li>
+                    <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a></li>
                 <?php } ?>
             </ul>
 

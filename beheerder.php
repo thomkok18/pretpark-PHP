@@ -4,6 +4,8 @@ include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
+$rechten = new Rechten();
+$pagina = 'beheerder';
 
 include("layout/header.php");
 ?>
@@ -33,7 +35,7 @@ include("layout/header.php");
                 <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getWachtwoord(); ?></th>
-                <th class="tabelText"><?php echo $gebruiker->getIdRechten(); ?></th>
+                <th class="tabelText"><?php echo $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten())->getRechtomschrijving(); ?></th>
             </tr>
             </tbody>
         <?php } ?>

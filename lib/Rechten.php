@@ -3,7 +3,20 @@ include_once('lib/Db.php');
 
 class Rechten {
     private $idrechten;
-    private $rechtenomschrijving;
+    private $rechtomschrijving;
+
+    /**
+     * @param $idgebruiker
+     * @return mixed
+     */
+    public function getRechtenByIdGebruiker($idgebruiker) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $sth = $conn->prepare("SELECT * FROM rechten WHERE idrechten = ".$idgebruiker);
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS, 'Rechten');
+        return $sth->fetch();
+    }
 
     /**
      * @return mixed
@@ -22,14 +35,14 @@ class Rechten {
     /**
      * @return mixed
      */
-    public function getRechtenomschrijving() {
-        return $this->rechtenomschrijving;
+    public function getRechtomschrijving() {
+        return $this->rechtomschrijving;
     }
 
     /**
      * @param mixed $rechtenomschrijving
      */
-    public function setRechtenomschrijving($rechtenomschrijving): void {
-        $this->rechtenomschrijving = $rechtenomschrijving;
+    public function setRechtomschrijving($rechtomschrijving): void {
+        $this->rechtomschrijving = $rechtomschrijving;
     }
 }

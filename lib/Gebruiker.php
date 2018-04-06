@@ -31,12 +31,15 @@ class Gebruiker {
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
         $gebruiker = $sth->fetch();
+        $rechten = new Rechten();
         if ($gebruiker && password_verify($orgWachtwoord, $gebruiker->getWachtwoord())) {
             $_SESSION['login'] = array (
                 "volledige naam" => $gebruiker->getVolledigeNaam(),
                 "idgebruiker" => $gebruiker->getIdgebruiker(),
                 "login" => $gebruiker->getLogin(),
-                "idrechten" => $gebruiker->getIdRechten()
+                "rechten" => $rechten->getRechtenByIdGebruiker(
+                    $gebruiker->getIdrechten()
+                )->getRechtomschrijving()
             );
             return $gebruiker;
         } else {

@@ -12,6 +12,8 @@ if (isset($_POST['login'])) {
     }
 }
 
+$pagina = 'login';
+
 include("layout/header.php");
 ?>
 

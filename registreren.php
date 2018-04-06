@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $gebruiker->setAchternaam($achternaam);
     $gebruiker->setLogin($login);
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
-    $gebruiker->setIdRechten('1');
+    $gebruiker->setIdRechten('2');
 
 
     if ($gebruiker->insertGebruiker()) {
@@ -20,8 +20,13 @@ if (isset($_POST['login'])) {
     }
 }
 
+$pagina = 'registreren';
+
 include("layout/header.php");
-print_r($message);
+if (isset($_POST['registreren'])) {
+    echo $message[0];
+}
+
 ?>
 
     <div class="container">
@@ -63,7 +68,7 @@ print_r($message);
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Registreren</button>
+                    <button type="submit" class="btn btn-default" name="registreren">Registreren</button>
                 </div>
             </div>
         </form>
