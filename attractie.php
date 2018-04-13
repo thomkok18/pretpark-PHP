@@ -6,6 +6,7 @@ $attractie = new Attractie();
 $attractie = $attractie->getAttractieById($id);
 $reacties = $attractie->getReactiesByIdAttractie();
 $gebruiker = $attractie->getGebruikerById();
+$pagina = 'attractie';
 
 include("layout/header.php");
 ?>
