@@ -36,7 +36,7 @@ include("layout/header.php");
             </div>
             <div class="row">
                 <div class="offset-md-4 col-md-8">
-                    <a href="attractie.php?id=<?php echo $attractie->getIdattractie(); ?>">Reacties</a>
+                    <a role="button" style="margin-top: 20px;" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo $attractie->getIdattractie(); ?>">Reacties</a>
                 </div>
             </div>
         <?php } ?>
