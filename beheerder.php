@@ -25,13 +25,10 @@ include("layout/header.php");
             <th>Rechten</th>
         </tr>
         </thead>
-        <?php foreach ($gebruikers as $key => $gebruiker) {
-            var_dump($gebruiker['idgebruiker']);
-            echo $gebruiker['idgebruiker'];
-            ?>
+        <?php foreach ($gebruikers as $key => $gebruiker) { ?>
             <tbody>
             <tr>
-                <th><a href="beheerder.php?delete=<?php $gebruiker['idgebruiker']?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $gebruiker->getIdgebruiker(); ?>" width="20" height="20"></a>
+                <th><a href="beheerder.php?delete= <?php// $gebruiker['idgebruiker']?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $gebruiker->getIdgebruiker(); ?>" width="20" height="20"></a>
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"> <?php echo $gebruiker->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
@@ -41,7 +38,6 @@ include("layout/header.php");
             </tbody>
         <?php } ?>
     </table>
-
 </div>
 <?php
 include("layout/footer.php");
