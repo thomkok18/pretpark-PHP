@@ -24,14 +24,14 @@ include("layout/header.php");
             <th>Rechten</th>
         </tr>
         </thead>
-        <?php foreach ($gebruikers as $key => $gebruiker) { ?>
+        <?php foreach ($gebruikers as $key => $geb) { ?>
             <tbody>
             <tr>
-                <th><a href="beheerder.php?delete= <?php// $gebruiker['idgebruiker']?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $gebruiker->getIdgebruiker(); ?>" width="20" height="20"></a>
-                <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"> <?php echo $gebruiker->getIdgebruiker(); ?></a></th>
-                <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
-                <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
-                <th class="tabelText"><?php echo $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten())->getRechtomschrijving(); ?></th>
+                <th><a href="beheerder.php?delete=<?php echo $geb->idgebruiker; ?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20"></a>
+                <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $geb->getIdgebruiker(); ?>"> <?php echo $geb->getIdgebruiker(); ?></a></th>
+                <th class="tabelText"><?php echo $geb->getVolledigeNaam(); ?></th>
+                <th class="tabelText"><?php echo $geb->getLogin(); ?></th>
+                <th class="tabelText"><?php echo $rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving(); ?></th>
             </tr>
             </tbody>
         <?php } ?>
