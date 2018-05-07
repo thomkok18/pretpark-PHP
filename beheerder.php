@@ -13,6 +13,7 @@ include("layout/header.php");
     <div class="page-header">
         <h1>Beheren</h1>
     </div>
+    <h3>Gebruikers</h3>
 
     <table class="table">
         <thead>
@@ -37,6 +38,35 @@ include("layout/header.php");
             </tbody>
         <?php } ?>
     </table>
+
+    <h3>Vooraad</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>Vooraad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class="tabelText"><?php echo "1" //Id ?></th>
+            <th class="tabelText"><?php echo "Test" //Product ?></th>
+            <th class="tabelText"><?php echo "23" //Vooraad ?></th>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Bestellen</h3>
+    <div>
+        <p class="col-xs-10 col-md-11">Test</p>
+        <select class="col-xs-2 col-md-1">
+            <?php for ($i = 0; $i <= 100; $i++) { ?>
+                <option><?php echo $i; ?></option>
+            <?php } ?>
+        </select>
+    </div>
+    <button class="btn" type="submit">Winkelwagen</button>
 </div>
 <?php
 include("layout/footer.php");
