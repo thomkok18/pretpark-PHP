@@ -59,14 +59,15 @@ include("layout/header.php");
 
     <h3>Bestellen</h3>
     <div>
-        <p class="col-xs-10 col-md-11">Test</p>
-        <select class="col-xs-2 col-md-1">
+        <p class="col-xs-9 col-md-11">Test</p>
+        <select class="col-xs-1 col-md-1">
             <?php for ($i = 0; $i <= 100; $i++) { ?>
                 <option><?php echo $i; ?></option>
             <?php } ?>
         </select>
+        <button class="btn col-xs-2" type="button">Winkelwagen</button>
     </div>
-    <button class="btn" type="submit">Winkelwagen</button>
+
 </div>
 <?php
 include("layout/footer.php");
