@@ -35,7 +35,7 @@
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
-                <li><a id="shopping" href="shopping.php"><img src="img/shopping_cart.png" width="50" height="50"></a></li>
+                <li <?php if ($pagina === 'shopping') { ?> class="active" <?php } ?> ><a id="shopping" href="shopping.php"><img src="img/shopping_cart.png" width="50" height="50"></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
