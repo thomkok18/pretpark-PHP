@@ -65,6 +65,15 @@ class Gebruiker {
         return $sth->execute();
     }
 
+    public function deleteGebruiker() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "DELETE FROM gebruiker WHERE idgebruiker = :idgebruiker";
+        $sth = $conn->prepare($query);
+        $sth->bindParam(':id', $_GET['delete']);
+        return $sth->execute();
+    }
+
     /**
      * @return array
      */

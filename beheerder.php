@@ -14,8 +14,6 @@ include("layout/header.php");
         <h1>Beheren</h1>
     </div>
 
-    <a role="button" class="btn btn-default">Verwijder geselecteerde</a>
-
     <table class="table">
         <thead>
         <tr>
@@ -27,10 +25,13 @@ include("layout/header.php");
             <th>Rechten</th>
         </tr>
         </thead>
-        <?php foreach ($gebruikers as $key => $gebruiker) { ?>
+        <?php foreach ($gebruikers as $key => $gebruiker) {
+            var_dump($gebruiker['idgebruiker']);
+            echo $gebruiker['idgebruiker'];
+            ?>
             <tbody>
             <tr>
-                <th><input class="checkbox" type="checkbox"></th>
+                <th><a href="beheerder.php?delete=<?php $gebruiker['idgebruiker']?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $gebruiker->getIdgebruiker(); ?>" width="20" height="20"></a>
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"> <?php echo $gebruiker->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
