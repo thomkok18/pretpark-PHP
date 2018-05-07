@@ -27,6 +27,7 @@ include("layout/header.php");
         <?php foreach ($gebruikers as $key => $geb) { ?>
             <tbody>
             <tr>
+                <?php //TODO delete gebruiker functie laten werken. ?>
                 <th><a href="beheerder.php?delete=<?php echo $geb->idgebruiker; ?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20"></a>
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $geb->getIdgebruiker(); ?>"> <?php echo $geb->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $geb->getVolledigeNaam(); ?></th>
