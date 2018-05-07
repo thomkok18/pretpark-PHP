@@ -21,7 +21,6 @@ include("layout/header.php");
             <th>Id</th>
             <th>Volledige naam</th>
             <th>Login</th>
-            <th>Wachtwoord</th>
             <th>Rechten</th>
         </tr>
         </thead>
@@ -32,7 +31,6 @@ include("layout/header.php");
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"> <?php echo $gebruiker->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $gebruiker->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $gebruiker->getLogin(); ?></th>
-                <th class="tabelText"><?php echo $gebruiker->getWachtwoord(); ?></th>
                 <th class="tabelText"><?php echo $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten())->getRechtomschrijving(); ?></th>
             </tr>
             </tbody>
