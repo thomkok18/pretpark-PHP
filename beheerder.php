@@ -2,10 +2,17 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
+
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
 $rechten = new Rechten();
 $pagina = 'beheerder';
+
+if (isset($_GET['delete']) && !empty($_GET['delete'])) {
+    $conn = new Gebruiker();
+    $conn->deleteGebruiker();
+    header('Location: beheerder.php');
+}
 
 include("layout/header.php");
 ?>
@@ -28,8 +35,12 @@ include("layout/header.php");
         <?php foreach ($gebruikers as $key => $geb) { ?>
             <tbody>
             <tr>
-                <?php //TODO delete gebruiker functie laten werken. ?>
-                <th><a href="beheerder.php?delete=<?php echo $geb->idgebruiker; ?>"><img style="margin-top: 5px;" src="img/prullenbak.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20"></a>
+                <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
+                <th><a href="beheerder.php?delete=<?php echo $geb->idgebruiker; ?>"><img style="margin-top: 5px;" src="img/prullenbakOpen.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20"></a>
+                <?php } ?>
+                    <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
+                <th><img style="margin-top: 5px;" src="img/prullenbakDicht.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20">
+                    <?php } ?>
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $geb->getIdgebruiker(); ?>"> <?php echo $geb->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $geb->getVolledigeNaam(); ?></th>
                 <th class="tabelText"><?php echo $geb->getLogin(); ?></th>
@@ -59,13 +70,13 @@ include("layout/header.php");
 
     <h3>Bestellen</h3>
     <div>
-        <p class="col-xs-8 col-md-10">Test</p>
-        <select class="col-xs-2 col-md-2">
+        <p class="col-xs-8">Test</p>
+        <select style="padding-top: 6px; padding-bottom: 6px;" class="col-xs-2">
             <?php for ($i = 0; $i <= 100; $i++) { ?>
                 <option><?php echo $i; ?></option>
             <?php } ?>
         </select>
-        <button style="padding: 0;" class="btn col-xs-2" type="button">Winkelwagen</button>
+        <button class="btn col-xs-2" type="button">Winkelwagen</button>
     </div>
 
 </div>

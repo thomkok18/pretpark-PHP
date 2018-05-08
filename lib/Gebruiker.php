@@ -70,7 +70,7 @@ class Gebruiker {
         $conn = $db->getConnectie();
         $query = "DELETE FROM gebruiker WHERE idgebruiker = :idgebruiker";
         $sth = $conn->prepare($query);
-        $sth->bindParam(':id', $_GET['delete']);
+        $sth->bindParam(':idgebruiker', $_GET['delete']);
         return $sth->execute();
     }
 
