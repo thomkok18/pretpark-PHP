@@ -26,7 +26,6 @@ include("layout/header.php");
 if (isset($_POST['registreren'])) {
     echo $message[0];
 }
-
 ?>
 
     <div class="container">

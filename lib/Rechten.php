@@ -40,7 +40,7 @@ class Rechten {
     }
 
     /**
-     * @param mixed $rechtenomschrijving
+     * @param $rechtomschrijving
      */
     public function setRechtomschrijving($rechtomschrijving): void {
         $this->rechtomschrijving = $rechtomschrijving;

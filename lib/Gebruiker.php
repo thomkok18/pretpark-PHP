@@ -65,6 +65,21 @@ class Gebruiker {
         return $sth->execute();
     }
 
+    public function updateGebruiker($idgebruiker, $naam, $tussenvoegsels, $achternaam, $login, $wachtwoord, $idrechten) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE gebruiker SET naam = :naam, tussenvoegsels = :tussenvoegsels, achternaam = :achternaam, login = :login, wachtwoord = :wachtwoord, idrechten = :idrechten WHERE idgebruiker = :idgebruiker';
+        $sth = $conn->prepare($query);
+        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $sth->bindParam(':naam', $naam, PDO::PARAM_STR);
+        $sth->bindParam(':tussenvoegsels', $tussenvoegsels, PDO::PARAM_STR);
+        $sth->bindParam(':achternaam', $achternaam, PDO::PARAM_STR);
+        $sth->bindParam(':login', $login, PDO::PARAM_STR);
+        $sth->bindParam(':wachtwoord', $wachtwoord, PDO::PARAM_STR);
+        $sth->bindParam(':idrechten', $idrechten, PDO::PARAM_STR);
+        return $sth->execute();
+    }
+
     public function deleteGebruiker() {
         $db = new Db();
         $conn = $db->getConnectie();

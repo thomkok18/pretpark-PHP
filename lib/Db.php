@@ -19,8 +19,7 @@ class Db {
         }
 
         try {
-            $this->connectie = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $db, $user, $password);
-            //echo "De verbinding is gelukt.";
+            $this->connectie = new PDO("mysql:host=$host;port=$port;dbname=$db", $user, $password);
         } catch (PDOException $e) {
             echo 'De verbinding is niet gelukt, Connection failed: ' . $e->getMessage();
         }
