@@ -7,30 +7,19 @@ $gebruiker = new Gebruiker();
 $rechten = new Rechten();
 $user = $gebruiker->getGebruikerById($id);
 
-if (isset($_POST['aanpassen'])) {
+if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
-    $gebruiker->updateGebruiker($id, $naam, $tussenvoegsels, $achternaam, $login, $wachtwoord, $idrechten);
-//    $gebruiker->setNaam($naam);
-//    $gebruiker->setTussenvoegsels($tussenvoegsels);
-//    $gebruiker->setAchternaam($achternaam);
-//    $gebruiker->setLogin($login);
-//    $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
-//    $gebruiker->setRechten($recht);
-
-    if ($gebruiker->updateGebruiker($id, $naam, $tussenvoegsels, $achternaam, $login, $wachtwoord, $idrechten)) {
-        $message[] = "Gebruiker is aangepast";
-    } else {
-        $message[] = "Gebruiker is niet aangepast";
-    }
+    $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
+} else if (isset($_POST['wachtwoordOpslaan'])) {
+    extract($_POST);
+    $gebruiker->updateWachtwoord($id, password_hash($wachtwoord, PASSWORD_DEFAULT));
+} else if (isset($_POST['rechtenOpslaan'])) {
+    extract($_POST);
+    $gebruiker->updateRechten($id, $idrechten);
 }
-
 include("layout/header.php");
-//if (isset($_POST['aanpassen'])) {
-//    echo $message[0];
-//}
 ?>
 
-<!-- TODO form tags en submit knoppen toevoegen -->
     <div>
         <div class="page-header">
             <h1>Gebruiker Aanpassen</h1>
@@ -41,7 +30,8 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="id" class="col-sm-2 control-label">Id</label>
                 <div class="col-sm-10">
-                    <input disabled type="text" class="form-control" id="id" name="idgebruiker" value="<?php echo $id; ?>">
+                    <input disabled type="text" class="form-control" id="id" name="idgebruiker"
+                           value="<?php echo $id; ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -72,8 +62,15 @@ include("layout/header.php");
                            value="<?php echo $user->getAchternaam(); ?>">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" name="persoonsgegevensOpslaan">Opslaan</button>
+                </div>
+            </div>
+        </form>
 
-            <h3>Wachtwoord</h3>
+        <h3>Wachtwoord</h3>
+        <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="wachtwoordHuidig" class="col-sm-2 control-label">Huidige wachtwoord</label>
                 <div class="col-sm-10">
@@ -93,8 +90,15 @@ include("layout/header.php");
                            value="">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" name="wachtwoordOpslaan">Opslaan</button>
+                </div>
+            </div>
+        </form>
 
-            <h3>Rechten</h3>
+        <h3>Rechten</h3>
+        <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="rechten" class="col-sm-2 control-label">Rechten</label>
                 <div class="col-sm-10">
@@ -106,7 +110,7 @@ include("layout/header.php");
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" name="aanpassen">Aanpassen</button>
+                    <button type="submit" class="btn btn-default" name="rechtenOpslaan">Opslaan</button>
                 </div>
             </div>
         </form>
