@@ -74,19 +74,19 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="wachtwoordHuidig" class="col-sm-2 control-label">Huidige wachtwoord</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord" value="">
+                    <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="nieuwWachtwoord" class="col-sm-2 control-label">Nieuw wachtwoord</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord" value="">
+                    <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="wachtwoordHerhalen" class="col-sm-2 control-label">Wachtwoord herhalen</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="wachtwoordHerhalen" name="wachtwoordHerhalen"
+                    <input required type="password" class="form-control" id="herhaalWachtwoord" name="herhaalWachtwoord"
                            value="">
                 </div>
             </div>
