@@ -4,7 +4,7 @@ include_once("lib/Gebruiker.php");
 
 $id = $_GET['id'];
 $gebruiker = new Gebruiker();
-$gebruiker = $gebruiker->getGebruikerById($id);
+$user = $gebruiker->getGebruikerById($id);
 
 if (isset($_POST['aanpassen'])) {
     extract($_POST);
@@ -41,26 +41,26 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="naam" name="naam" value="<?php echo $gebruiker->getNaam(); ?>">
+                    <input type="text" class="form-control" id="naam" name="naam" value="<?php echo $user->getNaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
-                           value="<?php echo $gebruiker->getTussenvoegsels(); ?>">
+                           value="<?php echo $user->getTussenvoegsels(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="<?php echo $gebruiker->getAchternaam(); ?>">
+                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="<?php echo $user->getAchternaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="login" name="login" value="<?php echo $gebruiker->getLogin(); ?>">
+                    <input type="text" class="form-control" id="login" name="login" value="<?php echo $user->getLogin(); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -84,7 +84,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="rechten" class="col-sm-2 control-label">Rechten</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="rechten" name="rechten" <?php echo $gebruiker->getRechten(); ?>>
+                    <select class="form-control" id="rechten" name="rechten">
                         <option>Beheerder</option>
                         <option>Bezoeker</option>
                     </select>

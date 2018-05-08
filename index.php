@@ -21,7 +21,7 @@ include("layout/header.php");
         <?php foreach ($attractieLijst->getAttracties() as $attractie) { ?>
             <div class="row">
                 <div class="offset-md-4 col-md-8">
-                    <?php echo $attractie->getGebruikerById()->getVolledigeNaam(); ?>
+                    <?php echo $attractie->getGebruikerById()->getLogin(); ?>
                 </div>
             </div>
 

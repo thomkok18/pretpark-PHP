@@ -24,7 +24,7 @@ include("layout/header.php");
             </div>
 
             <div class="col-md-8">
-                <p><i><?php echo $gebruiker->getVolledigeNaam(); ?></i></p>
+                <p><i><?php echo $gebruiker->getLogin(); ?></i></p>
                 <h3><?php echo $attractie->getTitel(); ?></h3>
                 <p><?php echo $attractie->getOmschrijving(); ?></p>
             </div>
@@ -40,7 +40,7 @@ include("layout/header.php");
                 </div>
                 <div class="col-md-11">
                     <p><?php echo $reactie->getReactietekst(); ?></p>
-                    <p><i>Door: <?php echo $gebruiker->getVolledigeNaam(); ?></i></p>
+                    <p><i>Door: <?php echo $gebruiker->getLogin(); ?></i></p>
                 </div>
             </div>
         <?php } ?>

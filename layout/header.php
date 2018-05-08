@@ -42,7 +42,7 @@
                     <li><img style="width:42px;height:42px; margin-top:4px;"
                              src="img/<?php echo $_SESSION['login']['login']; ?>.png"
                              alt="plaatje gebruiker"></li>
-                    <li><a><?php echo $_SESSION['login']['volledige naam']; ?></a></li>
+                    <li><a><?php echo $_SESSION['login']['login']; ?></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
