@@ -1,14 +1,14 @@
 <?php
 include_once("lib/config.php");
 include_once("lib/Gebruiker.php");
-$messages = array();
+
 if (isset($_POST['login'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
     if ($gebruiker->checkLogin($password, $login)) {
         header('Location: index.php');
     } else {
-        $messages[] = "Er is iets misgegaan met inloggen";
+        $message[] = "Er is iets misgegaan met inloggen";
     }
 }
 
@@ -16,6 +16,12 @@ $pagina = 'login';
 
 include("layout/header.php");
 ?>
+
+<?php if (isset($_POST['login'])) { ?>
+    <div class="alert alert-danger" role="alert">
+        <strong><?php echo $message[0]; ?></strong>
+    </div>
+<?php } ?>
 
     <div class="row">
         <div class="col-sm-offset-2 col-sm-10">

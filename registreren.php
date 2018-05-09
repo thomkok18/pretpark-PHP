@@ -23,10 +23,12 @@ if (isset($_POST['login'])) {
 $pagina = 'registreren';
 
 include("layout/header.php");
-if (isset($_POST['registreren'])) {
-    echo $message[0];
-}
 ?>
+    <?php if (isset($_POST['registreren'])) { ?>
+    <div class="alert alert-success" role="alert">
+        <strong><?php echo $message[0]; ?></strong>
+    </div>
+    <?php } ?>
 
     <div class="container">
         <div class="row">
