@@ -34,7 +34,10 @@
                     <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a>
                     </li>
                 <?php } ?>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
+                <?php if (isset($_SESSION['login'])) { ?>
+                    <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
+                <?php } ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
                 <li <?php if ($pagina === 'shopping') { ?> class="active" <?php } ?> ><a id="shopping" href="shopping.php"><img src="img/shopping_cart.png" width="50" height="50"></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>

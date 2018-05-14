@@ -4,17 +4,32 @@ include_once('lib/Rechten.php');
 
 class Gebruiker {
     public $idgebruiker;
+    private $idrechten;
+    private $idwinkelwagen;
     private $naam;
     private $tussenvoegsels;
     private $achternaam;
     private $login;
     private $wachtwoord;
-    private $idrechten;
 
     /**
      * Beheerder constructor.
      */
     public function __construct() {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdwinkelwagen() {
+        return $this->idwinkelwagen;
+    }
+
+    /**
+     * @param mixed $idwinkelwagen
+     */
+    public function setIdwinkelwagen($idwinkelwagen): void {
+        $this->idwinkelwagen = $idwinkelwagen;
     }
 
     /**

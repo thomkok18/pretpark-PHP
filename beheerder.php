@@ -68,17 +68,6 @@ include("layout/header.php");
         </tbody>
     </table>
 
-    <h3>Bestellen</h3>
-    <div>
-        <p class="col-xs-8">Test</p>
-        <select style="padding-top: 6px; padding-bottom: 6px;" class="col-xs-2">
-            <?php for ($i = 0; $i <= 100; $i++) { ?>
-                <option><?php echo $i; ?></option>
-            <?php } ?>
-        </select>
-        <button class="btn col-xs-2" type="button">Winkelwagen</button>
-    </div>
-
 </div>
 <?php
 include("layout/footer.php");

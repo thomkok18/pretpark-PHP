@@ -20,7 +20,7 @@ include("layout/header.php");
 
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="<?php echo $attractie->getUrlFoto(); ?>">
+                <img class="img-responsive" src="<?php echo $attractie->getUrlFoto(); ?>" alt="Attractie">
             </div>
 
             <div class="col-md-8">
