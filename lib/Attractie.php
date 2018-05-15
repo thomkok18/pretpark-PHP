@@ -20,8 +20,7 @@ class Attractie {
     public function insertAttractie() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO attractie (idgebruiker, titel, omschrijving, urlfoto) "
-            ."VALUES (:idgebruiker, :titel, :omschrijving, :urlfoto)";
+        $query = "INSERT INTO attractie (idgebruiker, titel, omschrijving, urlfoto) VALUES (:idgebruiker, :titel, :omschrijving, :urlfoto)";
         $sth = $conn->prepare($query);
         $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
         $sth->bindParam(':titel',$this->titel, PDO::PARAM_STR);
@@ -36,7 +35,8 @@ class Attractie {
     public function getGebruikerById() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = ".$this->idgebruiker);
+        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :idgebruiker");
+        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
         return $sth->fetch();
@@ -49,7 +49,8 @@ class Attractie {
     public function getAttractieById($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM attractie WHERE idattractie = ".$id);
+        $sth = $conn->prepare("SELECT * FROM attractie WHERE idattractie = :id");
+        $sth->bindParam(':id',$id, PDO::PARAM_INT);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Attractie');
         return $sth->fetch();
@@ -75,7 +76,8 @@ class Attractie {
     function getReactiesByIdAttractie() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM reactie WHERE idattractie = ".$this->idattractie);
+        $sth = $conn->prepare("SELECT * FROM reactie WHERE idattractie = :idattractie");
+        $sth->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_CLASS, "Reactie");
     }

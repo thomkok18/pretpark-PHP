@@ -1,6 +1,7 @@
 <?php
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
+include_once("lib/Rechten.php");
 
 $id = $_GET['id'];
 $gebruiker = new Gebruiker();
@@ -103,8 +104,13 @@ include("layout/header.php");
                 <label for="rechten" class="col-sm-2 control-label">Rechten</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="rechten" name="idrechten">
+                        <?php if ($gebruiker->getRechtomschrijvingByIdGebruiker($id)[0] === "1") { ?>
                         <option value="1">Beheerder</option>
                         <option value="2">Bezoeker</option>
+                        <?php } else { ?>
+                        <option value="2">Bezoeker</option>
+                        <option value="1">Beheerder</option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>

@@ -18,6 +18,20 @@ class Gebruiker {
     }
 
     /**
+     * @param $idgebruiker
+     * @return mixed
+     */
+    public function getRechtomschrijvingByIdGebruiker($idgebruiker) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $sth = $conn->prepare("SELECT idrechten FROM gebruiker WHERE idgebruiker = :idgebruiker AND idrechten = 1");
+        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_COLUMN, 'Rechten');
+        return $sth->fetch();
+    }
+
+    /**
      * @param $orgWachtwoord
      * @param $login
      * @return bool|mixed
@@ -53,8 +67,7 @@ class Gebruiker {
     public function insertGebruiker() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten) "
-            ."VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten)";
+        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten) VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten)";
         $sth = $conn->prepare($query);
         $sth->bindParam(':naam', $this->naam, PDO::PARAM_STR);
         $sth->bindParam(':tussenvoegsels', $this->tussenvoegsels, PDO::PARAM_STR);
@@ -146,7 +159,8 @@ class Gebruiker {
     public function getGebruikerById($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = ".$id);
+        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :id");
+        $sth->bindParam(':id', $id, PDO::PARAM_INT);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
         return $sth->fetch();
