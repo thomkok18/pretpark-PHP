@@ -3,10 +3,40 @@ include_once('lib/Db.php');
 
 class Product {
     private $idproduct;
+    private $idgebruiker;
     private $titel;
     private $productomschrijving;
     private $aantal;
+    private $prijs;
     private $urlfoto;
+
+    /**
+     * @return mixed
+     */
+    public function getIdgebruiker() {
+        return $this->idgebruiker;
+    }
+
+    /**
+     * @param mixed $idgebruiker
+     */
+    public function setIdgebruiker($idgebruiker): void {
+        $this->idgebruiker = $idgebruiker;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrijs() {
+        return $this->prijs;
+    }
+
+    /**
+     * @param mixed $prijs
+     */
+    public function setPrijs($prijs): void {
+        $this->prijs = $prijs;
+    }
 
     /**
      * @return array

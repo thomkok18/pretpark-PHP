@@ -2,10 +2,13 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
+include_once("lib/Product.php");
 
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
 $rechten = new Rechten();
+$product = new Product();
+$producten = $product->getProducten();
 $pagina = 'beheerder';
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
@@ -61,9 +64,11 @@ include("layout/header.php");
         </thead>
         <tbody>
         <tr>
-            <th class="tabelText"><?php echo "1" //Id ?></th>
-            <th class="tabelText"><?php echo "Test" //Product ?></th>
-            <th class="tabelText"><?php echo "23" //Vooraad ?></th>
+            <?php foreach ($producten as $key => $prod) { ?>
+            <th class="tabelText"><?php echo $prod->getIdproduct(); ?></th>
+            <th class="tabelText"><?php echo $prod->getTitel(); ?></th>
+            <th class="tabelText"><?php echo $prod->getAantal(); ?></th>
+            <?php } ?>
         </tr>
         </tbody>
     </table>

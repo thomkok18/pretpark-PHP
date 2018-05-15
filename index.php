@@ -18,7 +18,7 @@ include("layout/header.php");
             </div>
         </div>
 
-        <?php foreach ($attractieLijst->getAttracties() as $attractie) { ?>
+        <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div class="row">
                 <div class="offset-md-4 col-md-8">
                     <?php echo $attractie->getGebruikerById()->getLogin(); ?>
