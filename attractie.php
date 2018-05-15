@@ -35,8 +35,7 @@ include("layout/header.php");
             ?>
             <div class="row">
                 <div class="col-md-1">
-                    <img style="width:42px;height:42px;" src="img/<?php echo $gebruiker->getLogin(); ?>.png"
-                         alt="plaatje gebruiker">
+                    <img style="width:42px;height:42px;" src="<?php echo $gebruiker->getAvatar(); ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
                 </div>
                 <div class="col-md-11">
                     <p><?php echo $reactie->getReactietekst(); ?></p>

@@ -10,6 +10,7 @@ class Gebruiker {
     private $achternaam;
     private $login;
     private $wachtwoord;
+    private $avatar;
 
     /**
      * Beheerder constructor.
@@ -269,5 +270,19 @@ class Gebruiker {
      */
     public function setIdRechten($idrechten): void {
         $this->idrechten = $idrechten;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatar() {
+        return $this->avatar;
+    }
+
+    /**
+     * @param mixed $avatar
+     */
+    public function setAvatar($avatar): void {
+        $this->avatar = $avatar;
     }
 }

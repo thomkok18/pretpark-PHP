@@ -9,8 +9,6 @@ class Attractie {
     private $titel;
     private $omschrijving;
     private $urlfoto;
-    private $aangemaakt;
-    private $gewijzigd;
 
 
     public function __construct() {
@@ -136,34 +134,6 @@ class Attractie {
      */
     public function setUrlfoto($urlfoto): void {
         $this->urlfoto = $urlfoto;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAangemaakt() {
-        return $this->aangemaakt;
-    }
-
-    /**
-     * @param mixed $aangemaakt
-     */
-    public function setAangemaakt($aangemaakt): void {
-        $this->aangemaakt = $aangemaakt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGewijzigd() {
-        return $this->gewijzigd;
-    }
-
-    /**
-     * @param mixed $gewijzigd
-     */
-    public function setGewijzigd($gewijzigd): void {
-        $this->gewijzigd = $gewijzigd;
     }
 }
 ?>

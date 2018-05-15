@@ -11,6 +11,7 @@ if (isset($_POST['login'])) {
     $gebruiker->setLogin($login);
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
     $gebruiker->setIdRechten('2');
+    $gebruiker->setAvatar("img/profile.png");
 
 
     if ($gebruiker->insertGebruiker()) {
