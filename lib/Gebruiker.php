@@ -131,6 +131,21 @@ class Gebruiker {
     }
 
     /**
+     * @param $idgebruiker
+     * @param $avatar
+     * @return bool
+     */
+    public function updateAvatar($idgebruiker, $avatar) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE gebruiker SET avatar = :avatar WHERE idgebruiker = :idgebruiker';
+        $sth = $conn->prepare($query);
+        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $sth->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+        return $sth->execute();
+    }
+
+    /**
      * @return bool
      */
     public function deleteGebruiker() {

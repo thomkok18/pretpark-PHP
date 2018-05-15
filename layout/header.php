@@ -1,3 +1,9 @@
+<?php
+include_once("lib/Gebruiker.php");
+
+$gebruiker = new Gebruiker();
+//TODO: profiel aanpassen fixen.
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +48,7 @@
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li><img style="width:42px;height:42px; margin-top:4px;"
-                             src="img/<?php echo $_SESSION['login']['login']; ?>.png"
-                             alt="plaatje gebruiker"></li>
-                    <li><a><?php echo $_SESSION['login']['login']; ?></a></li>
+                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a style="padding-top: 0; padding-bottom: 4px;" href="profiel.php?id=<?php echo $gebruiker->getIdgebruiker(); ?>"><img style="width:42px;height:42px; margin-top:4px; margin-right: 15px; " src="img/<?php echo $_SESSION['login']['login']; ?>.png" alt="<?php echo $gebruiker->getLogin(); ?>"><p style="float: right; margin-top: 15px; "><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
