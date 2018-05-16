@@ -7,11 +7,7 @@ $id = $_GET['id'];
 $gebruiker = new Gebruiker();
 $rechten = new Rechten();
 $user = $gebruiker->getGebruikerById($id);
-
-
 $pagina = 'profiel';
-
-
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
@@ -101,7 +97,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="profielFoto" name="profielFoto" value="">
+                    <input required type="text" class="form-control" id="profielFoto" name="avatar" value="">
                 </div>
             </div>
             <div class="form-group">
