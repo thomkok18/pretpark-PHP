@@ -7,7 +7,11 @@ $id = $_GET['id'];
 $gebruiker = new Gebruiker();
 $rechten = new Rechten();
 $user = $gebruiker->getGebruikerById($id);
+
+
 $pagina = 'profiel';
+
+
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
@@ -19,6 +23,7 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
     $gebruiker->updateAvatar($id, $avatar);
 }
+
 include("layout/header.php");
 ?>
 
@@ -94,8 +99,10 @@ include("layout/header.php");
         <h3>Profiel foto</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <input required type="text" class="form-control" id="profielFoto" name="profielFoto"
-                       value="">
+                <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
+                <div class="col-sm-10">
+                    <input required type="text" class="form-control" id="profielFoto" name="profielFoto" value="">
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
