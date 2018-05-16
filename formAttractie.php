@@ -15,6 +15,7 @@ if (isset($_POST['toevoegen'])) {
     $attractie->setOmschrijving($omschrijving);
     $attractie->setUrlfoto($urlfoto);
     $attractie->setIdgebruiker($_SESSION['login']['idgebruiker']);
+    header('Location: index.php');
 
     if ($attractie->insertAttractie()) {
         $message[] = "Attractie is toegevoegd";

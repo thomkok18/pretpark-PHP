@@ -22,7 +22,7 @@ if (isset($_POST['toevoegen'])) {
     $reactie->setIdAttractie($id);
 
     if ($reactie->insertReactie()) {
-        $message[] = "Reactie is toegevoegd";
+        header('Location: attractie.php?id='. $id);
     } else {
         $message[] = "Reactie is niet toegevoegd";
     }

@@ -11,12 +11,15 @@ $user = $gebruiker->getGebruikerById($id);
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
     $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
+    header('Location: formGebruiker.php?id='. $id);
 } else if (isset($_POST['wachtwoordOpslaan'])) {
     extract($_POST);
     $gebruiker->updateWachtwoord($id, password_hash($wachtwoord, PASSWORD_DEFAULT));
+    header('Location: formGebruiker.php?id='. $id);
 } else if (isset($_POST['rechtenOpslaan'])) {
     extract($_POST);
     $gebruiker->updateRechten($id, $idrechten);
+    header('Location: formGebruiker.php?id='. $id);
 }
 include("layout/header.php");
 ?>

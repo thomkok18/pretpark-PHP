@@ -68,7 +68,7 @@ class Gebruiker {
     public function insertGebruiker() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten) VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten)";
+        $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten, avatar) VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten, :avatar)";
         $sth = $conn->prepare($query);
         $sth->bindParam(':naam', $this->naam, PDO::PARAM_STR);
         $sth->bindParam(':tussenvoegsels', $this->tussenvoegsels, PDO::PARAM_STR);
@@ -76,6 +76,7 @@ class Gebruiker {
         $sth->bindParam(':login', $this->login, PDO::PARAM_STR);
         $sth->bindParam(':wachtwoord', $this->wachtwoord, PDO::PARAM_STR);
         $sth->bindParam(':idrechten', $this->idrechten, PDO::PARAM_STR);
+        $sth->bindParam(':avatar', $this->avatar, PDO::PARAM_STR);
         return $sth->execute();
     }
 

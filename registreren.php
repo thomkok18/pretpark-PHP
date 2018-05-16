@@ -11,11 +11,11 @@ if (isset($_POST['login'])) {
     $gebruiker->setLogin($login);
     $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
     $gebruiker->setIdRechten('2');
-    $gebruiker->setAvatar("img/profile.png");
+    $gebruiker->setAvatar('img/profiel.png');
 
 
     if ($gebruiker->insertGebruiker()) {
-        $message[] = "Gebruiker is succesvol toegevoegd!";
+        header('Location: login.php');
     } else {
         $message[] = "Gebruiker is niet toegevoegd.";
     }
@@ -26,7 +26,7 @@ $pagina = 'registreren';
 include("layout/header.php");
 ?>
     <?php if (isset($_POST['registreren'])) { ?>
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-danger" role="alert">
         <strong><?php echo $message[0]; ?></strong>
     </div>
     <?php } ?>
