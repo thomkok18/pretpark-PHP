@@ -39,10 +39,10 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
-                <th><a href="beheerder.php?delete=<?php echo $geb->idgebruiker; ?>"><img style="margin-top: 5px;" src="img/prullenbakOpen.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20"></a>
+                <th><a href="beheerder.php?delete=<?php echo $geb->getIdgebruiker(); ?>"><img style="margin-top: 5px;" src="img/prullenbakOpen.jpg" value="<?php echo $geb->getIdgebruiker(); ?>" width="20" height="20"></a>
                 <?php } ?>
                     <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
-                <th><img style="margin-top: 5px;" src="img/prullenbakDicht.jpg" value="<?php echo $geb->idgebruiker; ?>" width="20" height="20">
+                <th><img style="margin-top: 5px;" src="img/prullenbakDicht.jpg" value="<?php echo $geb->getIdgebruiker(); ?>" width="20" height="20">
                     <?php } ?>
                 <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo $geb->getIdgebruiker(); ?>"><?php echo $geb->getIdgebruiker(); ?></a></th>
                 <th class="tabelText"><?php echo $geb->getVolledigeNaam(); ?></th>

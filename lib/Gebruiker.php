@@ -3,7 +3,7 @@ include_once('lib/Db.php');
 include_once('lib/Rechten.php');
 
 class Gebruiker {
-    public $idgebruiker;
+    private $idgebruiker;
     private $idrechten;
     private $naam;
     private $tussenvoegsels;
