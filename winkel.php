@@ -16,16 +16,17 @@ include("layout/header.php");
 
         <div>
             <?php foreach ($producten as $key => $prod) { ?>
-            <div class="col-md-4">
-                <img class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product" height="100" width="100">
-            </div>
-            <h3 style="margin-top:42px;" class="col-xs-4"><?php echo $prod->getTitel(); ?></h3>
-            <select style="margin-top:42px; padding-top: 6px; padding-bottom: 6px;" class="col-xs-2">
-                <?php for ($i = 0; $i <= $prod->getAantal(); $i++) { ?>
-                    <option><?php echo $i; ?></option>
-                <?php } ?>
-            </select>
-            <button style="margin-top:42px;" class="btn col-xs-2" type="button">Winkelwagen</button>
+                <div class="col-md-4">
+                    <img class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product" height="100"
+                         width="100">
+                </div>
+                <h3 style="margin-top:42px;" class="col-xs-4"><?php echo $prod->getTitel(); ?></h3>
+                <select style="margin-top:42px; padding-top: 6px; padding-bottom: 6px;" class="col-xs-2">
+                    <?php for ($i = 0; $i <= $prod->getAantal(); $i++) { ?>
+                        <option><?php echo $i; ?></option>
+                    <?php } ?>
+                </select>
+                <button style="margin-top:42px;" class="btn col-xs-2" type="button">Winkelwagen</button>
             <?php } ?>
         </div>
 

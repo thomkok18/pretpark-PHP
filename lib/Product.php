@@ -11,6 +11,24 @@ class Product {
     private $urlfoto;
 
     /**
+     * @return bool
+     */
+    public function insertProduct() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "INSERT INTO product (idproduct, idgebruiker, titel, productomschrijving, aantal, prijs, urlfoto) VALUES(:idproduct, :idgebruiker, :titel, :productomschrijving, :aantal, :prijs, :urlfoto)";
+        $sth = $conn->prepare($query);
+        $sth->bindParam(':idproduct', $this->idproduct, PDO::PARAM_INT);
+        $sth->bindParam(':idgebruiker', $this->idgebruiker, PDO::PARAM_INT);
+        $sth->bindParam(':titel', $this->titel, PDO::PARAM_STR);
+        $sth->bindParam(':productomschrijving', $this->productomschrijving, PDO::PARAM_STR);
+        $sth->bindParam(':aantal', $this->aantal, PDO::PARAM_INT);
+        $sth->bindParam(':prijs', $this->prijs, PDO::PARAM_STR);
+        $sth->bindParam(':urlfoto', $this->urlfoto, PDO::PARAM_STR);
+        return $sth->execute();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdgebruiker() {

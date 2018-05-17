@@ -62,15 +62,15 @@ include("layout/header.php");
             <th>Vooraad</th>
         </tr>
         </thead>
+        <?php foreach ($producten as $key => $prod) { ?>
         <tbody>
         <tr>
-            <?php foreach ($producten as $key => $prod) { ?>
             <th class="tabelText"><?php echo $prod->getIdproduct(); ?></th>
             <th class="tabelText"><?php echo $prod->getTitel(); ?></th>
             <th class="tabelText"><?php echo $prod->getAantal(); ?></th>
-            <?php } ?>
         </tr>
         </tbody>
+        <?php } ?>
     </table>
 
 </div>

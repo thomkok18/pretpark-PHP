@@ -41,7 +41,7 @@ $gebruikers = $gebruiker->getGebruikers();
                     <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a>
                     </li>
                 <?php } ?>
-                <?php if (isset($_SESSION['login'])) { ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
