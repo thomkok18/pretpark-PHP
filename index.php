@@ -20,18 +20,17 @@ include("layout/header.php");
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div class="row">
-                <div class="offset-md-4 col-md-8">
-                    <?php echo $attractie->getGebruikerById()->getLogin(); ?>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-4">
                     <img src="<?php echo $attractie->getUrlfoto(); ?>" alt="Attractie">
                 </div>
                 <div class="col-md-8">
                     <h3><?php echo $attractie->getTitel(); ?></h3>
                     <p><?php echo $attractie->getOmschrijving(); ?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-4 col-md-8">
+                    <?php echo $attractie->getGebruikerById()->getLogin(); ?>
                 </div>
             </div>
             <div class="row">
