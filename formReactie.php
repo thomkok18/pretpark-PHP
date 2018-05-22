@@ -1,9 +1,11 @@
 <?php
-include_once('lib/config.php');
-if (!$_SESSION['login']) {
-    header("Location: login.php");
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
 }
 
+include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Attractie.php");
 include_once("lib/Reactie.php");

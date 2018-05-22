@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login']) && $_SESSION['login']['rechten'] === 'Gebruiker') {
+    header('Location: login.php');
+}
+
 include_once('lib/config.php');
 include_once('lib/Product.php');
 

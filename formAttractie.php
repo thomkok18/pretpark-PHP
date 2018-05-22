@@ -1,10 +1,11 @@
 <?php
-include_once('lib/config.php');
+session_start();
 
-if (!$_SESSION['login']) {
-    header("Location: login.php");
+if (!isset($_SESSION['login']) && $_SESSION['login']['rechten'] === 'Beheerder') {
+    header('Location: login.php');
 }
 
+include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Attractie.php");
 
