@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+}
+
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
