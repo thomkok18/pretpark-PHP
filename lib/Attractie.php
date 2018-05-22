@@ -19,12 +19,12 @@ class Attractie {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "INSERT INTO attractie (idgebruiker, titel, omschrijving, urlfoto) VALUES (:idgebruiker, :titel, :omschrijving, :urlfoto)";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':titel',$this->titel, PDO::PARAM_STR);
-        $sth->bindParam(':omschrijving',$this->omschrijving, PDO::PARAM_STR);
-        $sth->bindParam(':urlfoto',$this->urlfoto, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':titel',$this->titel, PDO::PARAM_STR);
+        $stmt->bindParam(':omschrijving',$this->omschrijving, PDO::PARAM_STR);
+        $stmt->bindParam(':urlfoto',$this->urlfoto, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -33,11 +33,11 @@ class Attractie {
     public function getGebruikerById() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :idgebruiker");
-        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :idgebruiker");
+        $stmt->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        return $stmt->fetch();
     }
 
     /**
@@ -47,11 +47,11 @@ class Attractie {
     public function getAttractieById($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM attractie WHERE idattractie = :id");
-        $sth->bindParam(':id',$id, PDO::PARAM_INT);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Attractie');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT * FROM attractie WHERE idattractie = :id");
+        $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Attractie');
+        return $stmt->fetch();
     }
 
     /**
@@ -74,10 +74,10 @@ class Attractie {
     function getReactiesByIdAttractie() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM reactie WHERE idattractie = :idattractie");
-        $sth->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
-        $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_CLASS, "Reactie");
+        $stmt = $conn->prepare("SELECT * FROM reactie WHERE idattractie = :idattractie");
+        $stmt->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, "Reactie");
     }
 
     /**

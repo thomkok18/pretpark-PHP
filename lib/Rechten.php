@@ -12,12 +12,11 @@ class Rechten {
     public function getRechtenByIdGebruiker($idgebruiker) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM rechten WHERE idrechten = :idgebruiker");
-        $sth->bindParam(':idgebruiker',$idgebruiker, PDO::PARAM_INT);
-
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Rechten');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT * FROM rechten WHERE idrechten = :idgebruiker");
+        $stmt->bindParam(':idgebruiker',$idgebruiker, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Rechten');
+        return $stmt->fetch();
     }
 
     /**

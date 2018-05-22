@@ -17,15 +17,15 @@ class Product {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "INSERT INTO product (idproduct, idgebruiker, titel, productomschrijving, aantal, prijs, urlfoto) VALUES(:idproduct, :idgebruiker, :titel, :productomschrijving, :aantal, :prijs, :urlfoto)";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idproduct', $this->idproduct, PDO::PARAM_INT);
-        $sth->bindParam(':idgebruiker', $this->idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':titel', $this->titel, PDO::PARAM_STR);
-        $sth->bindParam(':productomschrijving', $this->productomschrijving, PDO::PARAM_STR);
-        $sth->bindParam(':aantal', $this->aantal, PDO::PARAM_INT);
-        $sth->bindParam(':prijs', $this->prijs, PDO::PARAM_STR);
-        $sth->bindParam(':urlfoto', $this->urlfoto, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $this->idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':idgebruiker', $this->idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':titel', $this->titel, PDO::PARAM_STR);
+        $stmt->bindParam(':productomschrijving', $this->productomschrijving, PDO::PARAM_STR);
+        $stmt->bindParam(':aantal', $this->aantal, PDO::PARAM_INT);
+        $stmt->bindParam(':prijs', $this->prijs, PDO::PARAM_STR);
+        $stmt->bindParam(':urlfoto', $this->urlfoto, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -62,9 +62,9 @@ class Product {
     public function getProducten() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM product");
-        $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_CLASS, 'Product');
+        $stmt = $conn->prepare("SELECT * FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Product');
     }
 
     /**

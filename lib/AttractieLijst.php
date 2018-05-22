@@ -32,9 +32,9 @@ class AttractieLijst {
     function selectAttracties() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("select * from attractie");
-        $sth->execute();
-        $this->attracties = $sth->fetchAll(PDO::FETCH_CLASS, "Attractie");
+        $stmt = $conn->prepare("select * from attractie");
+        $stmt->execute();
+        $this->attracties = $stmt->fetchAll(PDO::FETCH_CLASS, "Attractie");
     }
 }
 ?>

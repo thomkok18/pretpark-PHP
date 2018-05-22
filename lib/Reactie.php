@@ -18,11 +18,11 @@ class Reactie {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "INSERT INTO reactie (idgebruiker, idattractie, reactietekst) VALUES (:idgebruiker, :idattractie, :reactietekst)";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
-        $sth->bindParam(':reactietekst',$this->reactietekst, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
+        $stmt->bindParam(':reactietekst',$this->reactietekst, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -31,11 +31,11 @@ class Reactie {
     public function getGebruikerById() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :idgebruiker");
-        $sth->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :idgebruiker");
+        $stmt->bindParam(':idgebruiker',$this->idgebruiker, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        return $stmt->fetch();
     }
 
     /**

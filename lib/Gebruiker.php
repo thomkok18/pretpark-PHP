@@ -25,11 +25,11 @@ class Gebruiker {
     public function getRechtomschrijvingByIdGebruiker($idgebruiker) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT idrechten FROM gebruiker WHERE idgebruiker = :idgebruiker AND idrechten = 1");
-        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_COLUMN, 'Rechten');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT idrechten FROM gebruiker WHERE idgebruiker = :idgebruiker AND idrechten = 1");
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_COLUMN, 'Rechten');
+        return $stmt->fetch();
     }
 
     /**
@@ -41,11 +41,11 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "SELECT * FROM gebruiker WHERE login = :login";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':login', $login, PDO::PARAM_STR);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
-        $gebruiker = $sth->fetch();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        $gebruiker = $stmt->fetch();
         $rechten = new Rechten();
         if ($gebruiker && password_verify($orgWachtwoord, $gebruiker->getWachtwoord())) {
             $_SESSION['login'] = array (
@@ -69,15 +69,15 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "INSERT INTO gebruiker (naam, tussenvoegsels, achternaam, login, wachtwoord, idrechten, avatar) VALUES(:naam, :tussenvoegsels, :achternaam, :login, :wachtwoord, :idrechten, :avatar)";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':naam', $this->naam, PDO::PARAM_STR);
-        $sth->bindParam(':tussenvoegsels', $this->tussenvoegsels, PDO::PARAM_STR);
-        $sth->bindParam(':achternaam', $this->achternaam, PDO::PARAM_STR);
-        $sth->bindParam(':login', $this->login, PDO::PARAM_STR);
-        $sth->bindParam(':wachtwoord', $this->wachtwoord, PDO::PARAM_STR);
-        $sth->bindParam(':idrechten', $this->idrechten, PDO::PARAM_STR);
-        $sth->bindParam(':avatar', $this->avatar, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':naam', $this->naam, PDO::PARAM_STR);
+        $stmt->bindParam(':tussenvoegsels', $this->tussenvoegsels, PDO::PARAM_STR);
+        $stmt->bindParam(':achternaam', $this->achternaam, PDO::PARAM_STR);
+        $stmt->bindParam(':login', $this->login, PDO::PARAM_STR);
+        $stmt->bindParam(':wachtwoord', $this->wachtwoord, PDO::PARAM_STR);
+        $stmt->bindParam(':idrechten', $this->idrechten, PDO::PARAM_STR);
+        $stmt->bindParam(':avatar', $this->avatar, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -92,13 +92,13 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = 'UPDATE gebruiker SET login = :login, naam = :naam, tussenvoegsels = :tussenvoegsels, achternaam = :achternaam WHERE idgebruiker = :idgebruiker';
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':login', $login, PDO::PARAM_STR);
-        $sth->bindParam(':naam', $naam, PDO::PARAM_STR);
-        $sth->bindParam(':tussenvoegsels', $tussenvoegsels, PDO::PARAM_STR);
-        $sth->bindParam(':achternaam', $achternaam, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+        $stmt->bindParam(':naam', $naam, PDO::PARAM_STR);
+        $stmt->bindParam(':tussenvoegsels', $tussenvoegsels, PDO::PARAM_STR);
+        $stmt->bindParam(':achternaam', $achternaam, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -110,10 +110,10 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = 'UPDATE gebruiker SET wachtwoord = :wachtwoord WHERE idgebruiker = :idgebruiker';
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':wachtwoord', $wachtwoord, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':wachtwoord', $wachtwoord, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -125,10 +125,10 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = 'UPDATE gebruiker SET idrechten = :idrechten WHERE idgebruiker = :idgebruiker';
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':idrechten', $idrechten, PDO::PARAM_INT);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':idrechten', $idrechten, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     /**
@@ -140,10 +140,10 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = 'UPDATE gebruiker SET avatar = :avatar WHERE idgebruiker = :idgebruiker';
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
-        $sth->bindParam(':avatar', $avatar, PDO::PARAM_STR);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -153,9 +153,9 @@ class Gebruiker {
         $db = new Db();
         $conn = $db->getConnectie();
         $query = "DELETE FROM gebruiker WHERE idgebruiker = :idgebruiker";
-        $sth = $conn->prepare($query);
-        $sth->bindParam(':idgebruiker', $_GET['delete']);
-        return $sth->execute();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $_GET['delete']);
+        return $stmt->execute();
     }
 
     /**
@@ -164,9 +164,9 @@ class Gebruiker {
     public function getGebruikers() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker");
-        $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_CLASS, 'Gebruiker');
+        $stmt = $conn->prepare("SELECT * FROM gebruiker");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Gebruiker');
     }
 
     /**
@@ -176,11 +176,11 @@ class Gebruiker {
     public function getGebruikerById($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $sth = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :id");
-        $sth->bindParam(':id', $id, PDO::PARAM_INT);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
-        return $sth->fetch();
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE idgebruiker = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        return $stmt->fetch();
     }
 
     /**
