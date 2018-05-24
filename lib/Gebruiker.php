@@ -52,8 +52,8 @@ class Gebruiker {
                 "volledige naam" => $gebruiker->getVolledigeNaam(),
                 "idgebruiker" => $gebruiker->getIdgebruiker(),
                 "login" => $gebruiker->getLogin(),
-                "rechten" => $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten()
-                )->getRechtomschrijving()
+                "rechten" => $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten())->getRechtomschrijving(),
+                "avatar" => $gebruiker->getAvatar()
             );
             return $gebruiker;
         } else {
