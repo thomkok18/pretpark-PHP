@@ -1,8 +1,6 @@
 <?php
 include_once("lib/Gebruiker.php");
 
-var_dump($_SESSION['login']);
-
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
 
