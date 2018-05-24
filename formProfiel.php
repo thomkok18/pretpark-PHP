@@ -100,11 +100,11 @@ include("layout/header.php");
         </form>
 
         <h3>Profiel foto</h3>
-        <form class="form-horizontal" method="post">
+        <form action="upload.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="profielFoto" name="avatar" value="">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">
