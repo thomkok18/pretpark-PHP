@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['login']) && $_SESSION['login']['rechten'] === 'Beheerder' || $_SESSION['login']['idgebruiker'] !== $id) {
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
 

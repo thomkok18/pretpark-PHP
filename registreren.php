@@ -23,6 +23,8 @@ if (isset($_POST['login'])) {
 
 $pagina = 'registreren';
 
+
+
 include("layout/header.php");
 ?>
     <?php if (isset($_POST['registreren'])) { ?>
@@ -41,7 +43,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="voornaam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="voornaam" name="voornaam" placeholder="Voornaam">
+                    <input required type="text" class="form-control" id="voornaam" name="voornaam" placeholder="Voornaam">
                 </div>
             </div>
             <div class="form-group">
@@ -53,7 +55,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="achternaam" name="achternaam" placeholder="Achternaam">
+                    <input required type="text" class="form-control" id="achternaam" name="achternaam" placeholder="Achternaam">
                 </div>
             </div>
             <div class="form-group">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['login']) && $_SESSION['login']['rechten'] === 'Beheerder' || $_SESSION['login']['idgebruiker'] !== $id) {
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
 
@@ -38,19 +38,19 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="titel" name="titel" placeholder="Titel">
+                    <input required type="text" class="form-control" id="titel" name="titel" placeholder="Titel">
                 </div>
             </div>
             <div class="form-group">
                 <label for="omschrijving" class="col-sm-2 control-label">Attractie omschrijving</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" id="omschrijving" name="omschrijving"></textarea>
+                    <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="urlfoto" class="col-sm-2 control-label">Url van de foto</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="urlfoto" name="urlfoto" placeholder="Url van de foto">
+                    <input required type="text" class="form-control" id="urlfoto" name="urlfoto" placeholder="Url van de foto">
                 </div>
             </div>
             <div class="form-group">

@@ -2,6 +2,10 @@
 include_once('lib/config.php');
 include_once('lib/Product.php');
 
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Bezoeker') {
+    header('Location: login.php');
+}
+
 $product = new Product();
 $producten = $product->getProducten();
 $pagina = 'shopping';
