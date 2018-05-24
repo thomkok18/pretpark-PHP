@@ -103,7 +103,7 @@ include("layout/header.php");
         <form action="upload.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
-                <div class="col-sm-10">
+                <div style="margin-top: 6px;" class="col-sm-10">
                     <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             </div>

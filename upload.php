@@ -29,11 +29,6 @@ if (isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-// Check if file already exists
-//if (file_exists($target_file)) {
-//    echo "Sorry, file already exists.";
-//    $uploadOk = 0;
-//}
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
@@ -52,7 +47,6 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $gebruiker->updateAvatar($id, 'img/' . $_FILES["fileToUpload"]["name"]);
        header('Location: formProfiel.php?id='.$id);
-        echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
