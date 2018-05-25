@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
     if ($gebruiker->checkLogin($password, $login)) {
         header('Location: index.php');
     } else {
-        $message[] = "Er is iets misgegaan met inloggen";
+        $message[] = "Uw login gegevens kloppen niet";
     }
 }
 
