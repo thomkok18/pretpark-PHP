@@ -23,7 +23,7 @@ include("layout/header.php");
                 <div class="col-xs-4">
                     <img id="winkelwagenProduct" class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product">
                 </div>
-                <p id="productnaam" class="col-xs-6"><?php echo $prod->getTitel(); ?></p>
+                <h3 id="productnaam" class="col-xs-6"><?php echo $prod->getTitel(); ?></h3>
                 <select id="koopSelectbox" class="col-xs-2">
                     <?php for ($i = 0; $i <= 100; $i++) { ?>
                         <option><?php echo $i; ?></option>
