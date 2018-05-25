@@ -16,6 +16,14 @@ $gebruikers = $gebruiker->getGebruikers();
         <link rel="stylesheet" href="css/beheerder.css">
     <?php } else if ($pagina === 'attractie') {?>
         <link rel="stylesheet" href="css/attractie.css">
+    <?php } else if ($pagina === 'profiel') {?>
+        <link rel="stylesheet" href="css/formProfiel.css">
+    <?php } else if ($pagina === 'attractie') {?>
+        <link rel="stylesheet" href="css/index.css">
+    <?php } else if ($pagina === 'winkel') {?>
+        <link rel="stylesheet" href="css/winkel.css">
+    <?php } else if ($pagina === 'winkelwagen') {?>
+        <link rel="stylesheet" href="css/winkelwagen.css">
     <?php } ?>
 </head>
 <body>
@@ -43,15 +51,15 @@ $gebruikers = $gebruiker->getGebruikers();
                     <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a>
                     </li>
                 <?php } ?>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
+                <?php if (isset($_SESSION['login'])) { ?>
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
-                <li <?php if ($pagina === 'shopping') { ?> class="active" <?php } ?> ><a id="shopping" href="shopping.php"><img id="shopping-cart" src="img/shopping_cart.png"></a></li>
+                <?php if (isset($_SESSION['login'])) { ?>
+                <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php"><img id="winkelwagen" src="img/shopping_cart.png"></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>"><img id="profiel-afbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>"><p id="profiel-naam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
+                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>"><img id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>"><p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
@@ -61,7 +69,7 @@ $gebruikers = $gebruiker->getGebruikers();
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </nav>
-<img src="img/pretpark_logo.png" id="pretpark-logo" class="img-responsive" alt="logo pretpark">
+<img src="img/pretpark_logo.png" id="pretparkLogo" class="img-responsive" alt="logo pretpark">
 <div class="container">
     <?php if (isset($messages) && count($messages) > 0) { ?>
         <div class="well">

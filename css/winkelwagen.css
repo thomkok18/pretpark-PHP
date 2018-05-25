@@ -1,0 +1,16 @@
+#productnaam {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#koopSelectbox {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#winkelwagenProduct {
+    height: 100px;
+    width: 100px;
+}

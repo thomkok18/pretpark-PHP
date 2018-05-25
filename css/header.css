@@ -1,4 +1,4 @@
-#shopping {
+#winkelwagenLink {
     padding: 0;
 }
 
@@ -7,24 +7,24 @@
     padding-bottom: 4px;
 }
 
-#pretpark-logo {
+#pretparkLogo {
     width: 20%;
     margin: auto;
 }
 
-#profiel-afbeelding {
+#profielAfbeelding {
     width: 42px;
     height: 42px;
     margin-top: 4px;
     margin-right: 15px;
 }
 
-#profiel-naam {
+#profielnaam {
     float: right;
     margin-top: 15px;
 }
 
-#shopping-cart {
+#winkelwagen {
     width: 50px;
     height: 50px;
 }

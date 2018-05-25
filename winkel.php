@@ -2,7 +2,7 @@
 include_once('lib/config.php');
 include_once('lib/Product.php');
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Bezoeker') {
+if (!isset($_SESSION['login'])) {
     header('Location: login.php');
 }
 
@@ -22,16 +22,15 @@ include("layout/header.php");
             <?php foreach ($producten as $key => $prod) { ?>
                 <div class="col-xs-12">
                     <div class="col-xs-4">
-                        <img class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product" height="100"
-                             width="100">
+                        <img id="productAfbeelding" class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product">
                     </div>
-                    <h3 style="margin-top:42px;" class="col-xs-4"><?php echo $prod->getTitel(); ?></h3>
-                    <select style="margin-top:42px; padding-top: 6px; padding-bottom: 6px;" class="col-xs-2">
+                    <h3 class="tabelWinkel col-xs-4"><?php echo $prod->getTitel(); ?></h3>
+                    <select id="voorraadSelectbox" class="tabelWinkel col-xs-2">
                         <?php for ($i = 0; $i <= $prod->getAantal(); $i++) { ?>
                             <option><?php echo $i; ?></option>
                         <?php } ?>
                     </select>
-                    <button style="margin-top:42px;" class="btn col-xs-2" type="button">Winkelwagen</button>
+                    <button class="tabelWinkel btn col-xs-2" type="button">Winkelwagen</button>
                 </div>
             <?php } ?>
         </div>

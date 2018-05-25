@@ -2,13 +2,13 @@
 include_once('lib/config.php');
 include_once('lib/Product.php');
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Bezoeker') {
+if (!isset($_SESSION['login'])) {
     header('Location: login.php');
 }
 
 $product = new Product();
 $producten = $product->getProducten();
-$pagina = 'shopping';
+$pagina = 'winkelwagen';
 
 include("layout/header.php");
 ?>
@@ -20,9 +20,11 @@ include("layout/header.php");
 
         <div>
             <?php foreach ($producten as $key => $prod) { ?>
-                <img class="col-xs-1 img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product" height="50" width="50">
-                <p style="margin-top: 25px; margin-bottom: 25px;" class="col-xs-10"><?php echo $prod->getTitel(); ?></p>
-                <select style="padding-top: 6px; padding-bottom: 6px; margin-top: 20px; margin-bottom: 20px;" class="col-xs-1">
+                <div class="col-xs-4">
+                    <img id="winkelwagenProduct" class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product">
+                </div>
+                <p id="productnaam" class="col-xs-6"><?php echo $prod->getTitel(); ?></p>
+                <select id="koopSelectbox" class="col-xs-2">
                     <?php for ($i = 0; $i <= 100; $i++) { ?>
                         <option><?php echo $i; ?></option>
                     <?php } ?>
