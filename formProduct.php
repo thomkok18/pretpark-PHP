@@ -10,7 +10,9 @@ include_once("lib/Product.php");
 
 $id = $_GET['id'];
 $Product = new Product();
+$products = $Product->getProducten();
 $product = $Product->getProductById($id);
+$pagina = 'product';
 
 //if (isset($_POST['persoonsgegevensOpslaan'])) {
 //    extract($_POST);
@@ -66,14 +68,23 @@ include("layout/header.php");
                 </div>
             </div>
             <div class="form-group">
-                <label for="urlfoto" class="col-sm-2 control-label">Urlfoto</label>
-                <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="urlfoto" name="urlfoto" value="<?php echo $product->getUrlfoto(); ?>">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" name="productOpslaan">Opslaan</button>
+                </div>
+            </div>
+        </form>
+
+        <h3>Product foto</h3>
+        <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) { if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) { echo $prod->getIdproduct(); } } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
+                <div id="uploadButton" class="col-sm-10">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" name="productOpslaan">Opslaan</button>
+                    <button type="submit" class="btn btn-default" name="productFotoOpslaan">Opslaan</button>
                 </div>
             </div>
         </form>

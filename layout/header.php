@@ -24,6 +24,8 @@ $gebruikers = $gebruiker->getGebruikers();
         <link rel="stylesheet" href="css/winkel.css">
     <?php } else if ($pagina === 'winkelwagen') {?>
         <link rel="stylesheet" href="css/winkelwagen.css">
+    <?php } else if ($pagina === 'product') {?>
+        <link rel="stylesheet" href="css/formProduct.css">
     <?php } ?>
 </head>
 <body>
