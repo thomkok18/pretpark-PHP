@@ -71,7 +71,7 @@ include("layout/header.php");
         <?php foreach ($producten as $key => $prod) { ?>
         <tbody>
         <tr>
-            <th class="tabelText"><?php echo $prod->getIdproduct(); ?></th>
+            <th class="tabelText"><a class="btn btn-info" role="button" href="formProduct.php?id=<?php echo $prod->getIdproduct(); ?>"><?php echo $prod->getIdproduct(); ?></a></th>
             <th class="tabelText"><?php echo $prod->getTitel(); ?></th>
             <th class="tabelText"><?php echo $prod->getAantal(); ?></th>
         </tr>

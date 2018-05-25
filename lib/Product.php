@@ -29,6 +29,20 @@ class Product {
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT * FROM product WHERE idproduct = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product');
+        return $stmt->fetch();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdgebruiker() {
