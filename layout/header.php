@@ -49,7 +49,7 @@ $gebruikers = $gebruiker->getGebruikers();
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a style="padding-top: 0; padding-bottom: 4px;" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>"><img style="width:42px;height:42px; margin-top:4px; margin-right: 15px; " src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>"><p style="float: right; margin-top: 15px; "><?php echo $_SESSION['login']['login']; ?></p></a></li>
+                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>"><img id="profiel-afbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>"><p id="profiel-naam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
@@ -59,7 +59,7 @@ $gebruikers = $gebruiker->getGebruikers();
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </nav>
-<img style="width:20%;margin:auto;" src="img/pretpark_logo.png" class="img-responsive" alt="logo pretpark">
+<img src="img/pretpark_logo.png" id="pretpark-logo" class="img-responsive" alt="logo pretpark">
 <div class="container">
     <?php if (isset($messages) && count($messages) > 0) { ?>
         <div class="well">
