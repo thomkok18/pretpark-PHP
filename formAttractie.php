@@ -34,7 +34,7 @@ include("layout/header.php");
                 <h1>Attractie Toevoegen</h1>
             </div>
         </div>
-        <form class="form-horizontal" action="#" method="post">
+        <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
