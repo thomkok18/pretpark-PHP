@@ -14,6 +14,8 @@ $gebruikers = $gebruiker->getGebruikers();
     <link rel="stylesheet" href="css/header.css">
     <?php if ($pagina === 'beheerder') { ?>
         <link rel="stylesheet" href="css/beheerder.css">
+    <?php } else if ($pagina === 'attractie') {?>
+        <link rel="stylesheet" href="css/attractie.css">
     <?php } ?>
 </head>
 <body>
@@ -45,7 +47,7 @@ $gebruikers = $gebruiker->getGebruikers();
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Bezoeker') { ?>
-                <li <?php if ($pagina === 'shopping') { ?> class="active" <?php } ?> ><a id="shopping" href="shopping.php"><img src="img/shopping_cart.png" width="50" height="50"></a></li>
+                <li <?php if ($pagina === 'shopping') { ?> class="active" <?php } ?> ><a id="shopping" href="shopping.php"><img id="shopping-cart" src="img/shopping_cart.png"></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
