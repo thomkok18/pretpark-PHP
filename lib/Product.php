@@ -6,7 +6,7 @@ class Product {
     private $idgebruiker;
     private $titel;
     private $productomschrijving;
-    private $aantal;
+    private $voorraad;
     private $prijs;
     private $urlfoto;
 
@@ -16,13 +16,13 @@ class Product {
     public function insertProduct() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO product (idproduct, idgebruiker, titel, productomschrijving, aantal, prijs, urlfoto) VALUES(:idproduct, :idgebruiker, :titel, :productomschrijving, :aantal, :prijs, :urlfoto)";
+        $query = "INSERT INTO product (idproduct, idgebruiker, titel, productomschrijving, voorraad, prijs, urlfoto) VALUES(:idproduct, :idgebruiker, :titel, :productomschrijving, :voorraad, :prijs, :urlfoto)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':idproduct', $this->idproduct, PDO::PARAM_INT);
         $stmt->bindParam(':idgebruiker', $this->idgebruiker, PDO::PARAM_INT);
         $stmt->bindParam(':titel', $this->titel, PDO::PARAM_STR);
         $stmt->bindParam(':productomschrijving', $this->productomschrijving, PDO::PARAM_STR);
-        $stmt->bindParam(':aantal', $this->aantal, PDO::PARAM_INT);
+        $stmt->bindParam(':voorraad', $this->voorraad, PDO::PARAM_INT);
         $stmt->bindParam(':prijs', $this->prijs, PDO::PARAM_STR);
         $stmt->bindParam(':urlfoto', $this->urlfoto, PDO::PARAM_STR);
         return $stmt->execute();
@@ -40,6 +40,27 @@ class Product {
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Product');
         return $stmt->fetch();
+    }
+
+    /**
+     * @param $idproduct
+     * @param $titel
+     * @param $productomschrijving
+     * @param $voorraad
+     * @param $prijs
+     * @return bool
+     */
+    public function updateProductgegevens($idproduct, $titel, $productomschrijving, $voorraad, $prijs) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE product SET titel = :titel, productomschrijving = :productomschrijving, voorraad = :voorraad, prijs = :prijs WHERE idproduct = :idproduct';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':titel', $titel, PDO::PARAM_STR);
+        $stmt->bindParam(':productomschrijving', $productomschrijving, PDO::PARAM_STR);
+        $stmt->bindParam(':voorraad', $voorraad, PDO::PARAM_INT);
+        $stmt->bindParam(':prijs', $prijs, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -79,6 +100,21 @@ class Product {
         $stmt = $conn->prepare("SELECT * FROM product");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'Product');
+    }
+
+    /**
+     * @param $idproduct
+     * @param $urlfoto
+     * @return bool
+     */
+    public function updateProductfoto($idproduct, $urlfoto) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE product SET urlfoto = :urlfoto WHERE idproduct = :idproduct';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':urlfoto', $urlfoto, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**
@@ -126,20 +162,6 @@ class Product {
     /**
      * @return mixed
      */
-    public function getAantal() {
-        return $this->aantal;
-    }
-
-    /**
-     * @param mixed $aantal
-     */
-    public function setAantal($aantal): void {
-        $this->aantal = $aantal;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getUrlfoto() {
         return $this->urlfoto;
     }
@@ -149,5 +171,19 @@ class Product {
      */
     public function setUrlfoto($urlfoto): void {
         $this->urlfoto = $urlfoto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVoorraad() {
+        return $this->voorraad;
+    }
+
+    /**
+     * @param mixed $voorraad
+     */
+    public function setVoorraad($voorraad): void {
+        $this->voorraad = $voorraad;
     }
 }

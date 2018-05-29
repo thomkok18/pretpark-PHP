@@ -6,11 +6,12 @@ include_once("lib/Gebruiker.php");
 
 $id = $_GET['id'];
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
     header('Location: login.php');
 }
 
-$gebruiker = new Gebruiker();
+$product = new Product();
+$productTitel = $product->getTitel();
 
 $target_dir = "img/";
 $_FILES["fileToUpload"]["name"] = $_SESSION['login']['login'] . '.png';
@@ -45,8 +46,8 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $gebruiker->updateAvatar($id, 'img/' . $_FILES["fileToUpload"]["name"]);
-       header('Location: formProfiel.php?id='.$id);
+        $product->updateProductfoto($id, 'img/' . $_FILES["fileToUpload"]["name"]);
+       header('Location: formProduct.php?id='.$id);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

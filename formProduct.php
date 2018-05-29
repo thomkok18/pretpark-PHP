@@ -14,19 +14,20 @@ $products = $Product->getProducten();
 $product = $Product->getProductById($id);
 $pagina = 'product';
 
-//if (isset($_POST['persoonsgegevensOpslaan'])) {
-//    extract($_POST);
-//    $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
-//    header('Location: formGebruiker.php?id='. $id);
-//} else if (isset($_POST['wachtwoordOpslaan'])) {
-//    extract($_POST);
-//    $gebruiker->updateWachtwoord($id, password_hash($wachtwoord, PASSWORD_DEFAULT));
-//    header('Location: formGebruiker.php?id='. $id);
-//} else if (isset($_POST['rechtenOpslaan'])) {
-//    extract($_POST);
-//    $gebruiker->updateRechten($id, $idrechten);
-//    header('Location: formGebruiker.php?id='. $id);
-//}
+if (isset($_POST['productOpslaan'])) {
+    extract($_POST);
+    $product->updateProductgegevens($id, $titel, $productomschrijving, $voorraad, $prijs);
+    header('Location: formProduct.php?id=' . $id);
+} else if (isset($_POST['productFotoOpslaan'])) {
+    extract($_POST);
+    $gebruiker->updateProductfoto($id, $urlfoto);
+}
+foreach ($products as $key => $prod) {
+    if ($id == $prod->getIdproduct()) {
+        var_dump($prod->getIdproduct()->getTitel());
+    }
+}
+
 include("layout/header.php");
 ?>
 
@@ -56,9 +57,9 @@ include("layout/header.php");
                 </div>
             </div>
             <div class="form-group">
-                <label for="aantal" class="col-sm-2 control-label">Voorraad</label>
+                <label for="voorraad" class="col-sm-2 control-label">Voorraad</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="aantal" name="aantal" value="<?php echo $product->getAantal(); ?>">
+                    <input type="text" class="form-control" id="voorraad" name="voorraad" value="<?php echo $product->getVoorraad(); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -75,7 +76,11 @@ include("layout/header.php");
         </form>
 
         <h3>Product foto</h3>
-        <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) { if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) { echo $prod->getIdproduct(); } } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) {
+            if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) {
+                echo $prod->getIdproduct();
+            }
+        } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
                 <div id="uploadButton" class="col-sm-10">
