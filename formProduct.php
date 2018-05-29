@@ -22,12 +22,6 @@ if (isset($_POST['productOpslaan'])) {
     extract($_POST);
     $gebruiker->updateProductfoto($id, $urlfoto);
 }
-foreach ($products as $key => $prod) {
-    if ($id == $prod->getIdproduct()) {
-        var_dump($prod->getIdproduct()->getTitel());
-    }
-}
-
 include("layout/header.php");
 ?>
 

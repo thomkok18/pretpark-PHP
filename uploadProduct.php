@@ -14,6 +14,7 @@ $product = new Product();
 $productTitel = $product->getTitel();
 
 $target_dir = "img/";
+//TODO: Filenaam moet worden veranderd naar de titel van het product
 $_FILES["fileToUpload"]["name"] = $_SESSION['login']['login'] . '.png';
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
