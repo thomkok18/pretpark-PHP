@@ -25,7 +25,7 @@ include("layout/header.php");
                 </div>
                 <h3 id="productnaam" class="col-xs-6"><?php echo $prod->getTitel(); ?></h3>
                 <select id="koopSelectbox" class="col-xs-2">
-                    <?php for ($i = 0; $i <= 100; $i++) { ?>
+                    <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
                         <option><?php echo $i; ?></option>
                     <?php } ?>
                 </select>

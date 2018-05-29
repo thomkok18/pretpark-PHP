@@ -26,7 +26,7 @@ include("layout/header.php");
                     </div>
                     <h3 class="tabelWinkel col-xs-4"><?php echo $prod->getTitel(); ?></h3>
                     <select id="voorraadSelectbox" class="tabelWinkel col-xs-2">
-                        <?php for ($i = 0; $i <= $prod->getAantal(); $i++) { ?>
+                        <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
                             <option><?php echo $i; ?></option>
                         <?php } ?>
                     </select>
