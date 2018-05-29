@@ -2,7 +2,7 @@
 session_start();
 
 include_once('lib/config.php');
-include_once("lib/Gebruiker.php");
+include_once("lib/Product.php");
 
 $id = $_GET['id'];
 
@@ -11,11 +11,9 @@ if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder')
 }
 
 $product = new Product();
-$productTitel = $product->getTitel();
 
 $target_dir = "img/";
-//TODO: Filenaam moet worden veranderd naar de titel van het product
-$_FILES["fileToUpload"]["name"] = $_SESSION['login']['login'] . '.png';
+$_FILES["fileToUpload"]["name"] = $product->getProductTitelById($id)[0] . '.png';
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
