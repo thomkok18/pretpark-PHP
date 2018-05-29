@@ -73,7 +73,7 @@ include("layout/header.php");
         <tr>
             <th class="tabelText"><a class="btn btn-info" role="button" href="formProduct.php?id=<?php echo $prod->getIdproduct(); ?>"><?php echo $prod->getIdproduct(); ?></a></th>
             <th class="tabelText"><?php echo $prod->getTitel(); ?></th>
-            <th class="tabelText"><?php echo $prod->getAantal(); ?></th>
+            <th class="tabelText"><?php echo $prod->getVoorraad(); ?></th>
         </tr>
         </tbody>
         <?php } ?>
