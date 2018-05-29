@@ -6,14 +6,15 @@ include_once("lib/Product.php");
 
 $id = $_GET['id'];
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
+if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
 
 $product = new Product();
 
+$productTitel = $product->getProductTitelById($id)[0];
 $target_dir = "img/";
-$_FILES["fileToUpload"]["name"] = $product->getProductTitelById($id)[0] . '.png';
+$_FILES["fileToUpload"]["name"] = $productTitel . '.png';
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
