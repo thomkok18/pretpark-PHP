@@ -57,6 +57,20 @@ class Product {
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductVoorraadById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT voorraad FROM product WHERE idproduct = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_COLUMN, 'Product');
+        return $stmt->fetch();
+    }
+
+    /**
      * @param $idproduct
      * @param $titel
      * @param $productomschrijving

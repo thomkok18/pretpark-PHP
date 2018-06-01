@@ -2,7 +2,7 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 
-if (isset($_POST['login'])) {
+if (isset($_POST['registreren'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
     $gebruiker->setNaam($voornaam);
