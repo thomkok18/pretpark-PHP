@@ -4,7 +4,7 @@
 }
 
 #prijs {
-    margin-top: 45px;
+    margin-top: 50px;
 }
 
 #koopSelectbox {
@@ -17,4 +17,22 @@
 #winkelwagenProduct {
     height: 100px;
     width: 100px;
+}
+
+#productAfbeelding {
+    height: 100px;
+    width: 100px;
+}
+
+#voorraadSelectbox {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.tabelWinkel {
+    margin-top: 42px;
+}
+
+#betalen {
+    float: right;
 }

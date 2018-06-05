@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once("lib/config.php");
 include_once("lib/Gebruiker.php");
 
