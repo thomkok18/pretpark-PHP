@@ -11,54 +11,35 @@ $producten = $product->getProducten();
 $pagina = 'winkel';
 
 if (isset($_POST['winkelwagen'])) {
-
     if (!isset($_SESSION['winkelwagen'])) {
         $_SESSION['winkelwagen'] = array(
-                array(
+            array(
+                "idproduct" => $_GET['id'],
+                "urlfoto" => $_POST['urlfoto'],
+                "titel" => $_POST['titel'],
+                "prijs" => $_POST['prijs'],
+                "aantal" => $_POST['aantal'],
+                "voorraad" => $_POST['voorraad']
+            )
+        );
+    } else {
+        for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
+            $id = array_column($_SESSION['winkelwagen'], 'idproduct');
+            if (!in_array($_GET['id'], $id)) {
+                $productArray = array(
                     "idproduct" => $_GET['id'],
                     "urlfoto" => $_POST['urlfoto'],
                     "titel" => $_POST['titel'],
                     "prijs" => $_POST['prijs'],
                     "aantal" => $_POST['aantal'],
                     "voorraad" => $_POST['voorraad']
-                )
-        );
-    } else {
-        $productArray = array(
-            "idproduct" => $_GET['id'],
-            "urlfoto" => $_POST['urlfoto'],
-            "titel" => $_POST['titel'],
-            "prijs" => $_POST['prijs'],
-            "aantal" => $_POST['aantal'],
-            "voorraad" => $_POST['voorraad']
-        );
-        array_push($_SESSION['winkelwagen'], $productArray);
+                );
+                array_push($_SESSION['winkelwagen'], $productArray);
+            } else if ($_GET['id'] == $_SESSION['winkelwagen'][$i]['idproduct']) {
+                $_SESSION['winkelwagen'][$i]['aantal'] = $_POST['aantal'];
+            }
+        }
     }
-
-//    if (isset($_SESSION['winkelwagen'])) {
-//        $product_array_id = array_column($_SESSION['winkelwagen'], "idproduct");
-//        if (!in_array($_GET['id'], $product_array_id)) {
-//            $count = count($_SESSION["winkelwagen"]);
-//            $productArray = array(
-//                "idproduct" => $_GET['id'],
-//                "titel" => $_POST['titel'],
-//                "prijs" => $_POST['prijs'],
-//                "aantal" => $_POST['aantal']
-//            );
-//            $_SESSION['winkelwagen'][$count] = $productArray;
-//        } else {
-//            echo 'Product is al toegevoegd.';
-////            header('Location: winkelwagen.php');
-//        }
-//    } else {
-//        $productArray = array(
-//            "idproduct" => $_GET['id'],
-//            "titel" => $_POST['titel'],
-//            "prijs" => $_POST['prijs'],
-//            "aantal" => $_POST['aantal']
-//        );
-//        $_SESSION['winkelwagen'] = $productArray;
-//    }
 }
 
 if (isset($_POST['winkelwagen'])) {
@@ -83,7 +64,8 @@ include("layout/header.php");
                   action="winkel.php?action=add&id=<?php echo $prod->getIdproduct(); ?>">
                 <div class="col-xs-12">
                     <div class="col-xs-3">
-                        <img id="productAfbeelding" class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>" alt="Product">
+                        <img id="productAfbeelding" class="img-responsive" src="<?php echo $prod->getUrlFoto(); ?>"
+                             alt="Product">
                     </div>
                     <h3 class="tabelWinkel col-xs-3"><?php echo $prod->getTitel(); ?></h3>
                     <b id="prijs" class="col-xs-2">€ <?php echo $prod->getPrijs(); ?></b>
@@ -100,7 +82,6 @@ include("layout/header.php");
                 </div>
             </form>
         <?php } ?>
-
 
     </div>
 
