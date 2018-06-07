@@ -22,8 +22,6 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     }
 }
 
-var_dump($_SESSION['winkelwagen']);
-
 include("layout/header.php");
 ?>
 
@@ -69,6 +67,12 @@ include("layout/header.php");
             <?php } else {
                 echo 'Er zijn nog geen producten in het winkelwagentje.';
             } ?>
+            <?php if (isset($_POST['betalen'])) {
+                unset($_SESSION['winkelwagen'][$key]);
+                $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
+                header('Location: winkelwagen.php');
+            }
+            ?>
         </form>
 
     </div>
