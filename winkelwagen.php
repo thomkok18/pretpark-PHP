@@ -54,12 +54,26 @@ include("layout/header.php");
                             <b id="prijs"
                                class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
                         </div>
-                        <?php $totaal = $totaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal']; ?>
+                        <?php
+                        $subtotaal = $totaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'];
+                        $verzendkosten = 0.95;
+                        $totaal = $subtotaal + $verzendkosten;
+                        ?>
                     <?php } ?>
                 <?php } ?>
                 <div class="col-xs-12">
-                    <b class="col-xs-2 totaal"><?php echo '€ ' . number_format($totaal, 2); ?></b>
-                    <b class="col-xs-2 totaal">Totaal</b>
+                    <div class="row">
+                        <b class="col-xs-2 totaal"><?php echo '€ ' . number_format($subtotaal, 2); ?></b>
+                        <b class="col-xs-2 totaal">Subtotaal</b>
+                    </div>
+                    <div class="row">
+                        <p class="col-xs-2 totaal"><?php echo '€ ' . number_format($verzendkosten, 2); ?></p>
+                        <p class="col-xs-2 totaal">Verzendskosten</p>
+                    </div>
+                    <div class="row">
+                        <b class="col-xs-2 totaal"><?php echo '€ ' . number_format($totaal, 2); ?></b>
+                        <b class="col-xs-2 totaal">Totaal</b>
+                    </div>
                 </div>
                 <div class="col-xs-12">
                     <button id="betalen" class="col-xs-2 tabelWinkel btn" type="submit" name="betalen">Betalen</button>
