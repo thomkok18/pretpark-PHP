@@ -11,7 +11,7 @@ $producten = $product->getProducten();
 $pagina = 'winkel';
 
 if (isset($_POST['winkelwagen'])) {
-    if (!isset($_SESSION['winkelwagen'])) {
+    if (!isset($_SESSION['winkelwagen']) || sizeof($_SESSION['winkelwagen']) == 0) {
         $_SESSION['winkelwagen'] = array(
             array(
                 "idproduct" => $_GET['id'],

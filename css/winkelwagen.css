@@ -36,3 +36,11 @@
 #betalen {
     float: right;
 }
+
+.totaal {
+    float: right;
+}
+
+#verwijderen {
+    margin-top: 48px;
+}

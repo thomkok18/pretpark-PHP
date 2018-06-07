@@ -12,6 +12,18 @@ $producten = $product->getProducten();
 $pagina = 'winkelwagen';
 $winkelwagen = new Winkelwagen();
 
+if (isset($_GET['delete']) && !empty($_GET['delete'])) {
+    foreach ($_SESSION['winkelwagen'] as $key => $wagen) {
+        if ($wagen['idproduct'] == $_GET['delete']) {
+            unset($_SESSION['winkelwagen'][$key]);
+            $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
+            header('Location: winkelwagen.php');
+        }
+    }
+}
+
+var_dump($_SESSION['winkelwagen']);
+
 include("layout/header.php");
 ?>
 
@@ -21,23 +33,36 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
-            <?php if (isset($_SESSION['winkelwagen'])) { ?>
-                <?php for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) { ?>
-                    <div class="col-xs-12">
-                        <div class="col-xs-4">
-                            <img id="productAfbeelding" class="img-responsive"
-                                 src="<?php echo $_SESSION['winkelwagen'][$i]['urlfoto']; ?>" alt="Product">
+            <?php if (isset($_SESSION['winkelwagen'])) {
+                $totaal = 0;
+                ?>
+                <?php for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
+                    $id = array_column($_SESSION['winkelwagen'], 'idproduct');
+                    if (in_array($_SESSION['winkelwagen'][$i]['idproduct'], $id)) { ?>
+                        <div class="col-xs-12">
+                            <div class="col-xs-3">
+                                <img id="productAfbeelding" class="img-responsive"
+                                     src="<?php echo $_SESSION['winkelwagen'][$i]['urlfoto']; ?>" alt="Product">
+                            </div>
+                            <h3 class="tabelWinkel col-xs-3"><?php echo $_SESSION['winkelwagen'][$i]['titel']; ?></h3>
+                            <a id="verwijderen" class="col-xs-2"
+                               href="winkelwagen.php?delete=<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span
+                                        class="text-danger">Verwijderen</span></a>
+                            <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
+                                <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
+                                    <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?php echo $voorraad; ?></option>
+                                <?php } ?>
+                            </select>
+                            <b id="prijs"
+                               class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
                         </div>
-                        <h3 class="tabelWinkel col-xs-4"><?php echo $_SESSION['winkelwagen'][$i]['titel']; ?></h3>
-                        <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
-                            <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
-                                <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) {?> selected <?php } ?> ><?php echo $voorraad; ?></option>
-                            <?php } ?>
-                        </select>
-                        <b id="prijs"
-                           class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
-                    </div>
+                        <?php $totaal = $totaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal']; ?>
+                    <?php } ?>
                 <?php } ?>
+                <div class="col-xs-12">
+                    <b class="col-xs-2 totaal"><?php echo '€ ' . number_format($totaal, 2); ?></b>
+                    <b class="col-xs-2 totaal">Totaal</b>
+                </div>
                 <div class="col-xs-12">
                     <button id="betalen" class="col-xs-2 tabelWinkel btn" type="submit" name="betalen">Betalen</button>
                 </div>
