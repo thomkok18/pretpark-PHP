@@ -9,21 +9,22 @@ $gebruikers = $gebruiker->getGebruikers();
 <html>
 <head>
     <link rel="icon" type="image/png" href="img/pretpark_favicon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="css/header.css">
     <?php if ($pagina === 'beheerder') { ?>
         <link rel="stylesheet" href="css/beheerder.css">
-    <?php } else if ($pagina === 'attractie') {?>
+    <?php } else if ($pagina === 'attractie') { ?>
         <link rel="stylesheet" href="css/attractie.css">
-    <?php } else if ($pagina === 'profiel') {?>
+    <?php } else if ($pagina === 'profiel') { ?>
         <link rel="stylesheet" href="css/formProfiel.css">
-    <?php } else if ($pagina === 'attractie') {?>
+    <?php } else if ($pagina === 'attractie') { ?>
         <link rel="stylesheet" href="css/index.css">
-    <?php } else if ($pagina === 'winkel') {?>
+    <?php } else if ($pagina === 'winkel') { ?>
         <link rel="stylesheet" href="css/winkel.css">
-    <?php } else if ($pagina === 'winkelwagen') {?>
+    <?php } else if ($pagina === 'winkelwagen') { ?>
         <link rel="stylesheet" href="css/winkelwagen.css">
-    <?php } else if ($pagina === 'product') {?>
+    <?php } else if ($pagina === 'product') { ?>
         <link rel="stylesheet" href="css/formProduct.css">
     <?php } ?>
 </head>
@@ -53,14 +54,31 @@ $gebruikers = $gebruiker->getGebruikers();
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
+                    <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel"
+                                                                                           href="winkel.php">Winkel</a>
+                    </li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount"><?php echo array_sum(array_column($_SESSION['winkelwagen'], 'aantal')); ?></span></a></li>
+                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink"
+                                                                                                href="winkelwagen.php"><img
+                                    id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
+                            <?php if (isset($_SESSION['winkelwagen'])) {
+                                echo array_sum(array_column($_SESSION['winkelwagen'], 'aantal'));
+                            } else {
+                                echo 0;
+                            } ?> </span></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>"><img id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>"><p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
+                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel"
+                                                                                           href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
+                                                                                               if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
+                                                                                                   echo $geb->getIdgebruiker();
+                                                                                               }
+                                                                                           } ?>"><img
+                                    id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>"
+                                    alt="<?php echo $gebruiker->getLogin(); ?>">
+                            <p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
