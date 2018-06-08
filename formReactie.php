@@ -14,6 +14,8 @@ if (isset($_GET['id'])) {
     $id = 0;
 }
 
+$pagina = '';
+
 if (isset($_POST['toevoegen'])) {
     extract($_POST);
     $reactie = new Reactie();

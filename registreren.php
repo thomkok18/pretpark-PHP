@@ -23,8 +23,6 @@ if (isset($_POST['registreren'])) {
 
 $pagina = 'registreren';
 
-
-
 include("layout/header.php");
 ?>
     <?php if (isset($_POST['registreren'])) { ?>

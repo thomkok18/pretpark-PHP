@@ -7,6 +7,8 @@ if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' 
     header('Location: login.php');
 }
 
+$pagina = '';
+
 if (isset($_POST['toevoegen'])) {
     extract($_POST);
     $attractie = new Attractie();

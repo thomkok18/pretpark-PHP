@@ -11,6 +11,7 @@ $id = $_GET['id'];
 $gebruiker = new Gebruiker();
 $rechten = new Rechten();
 $user = $gebruiker->getGebruikerById($id);
+$pagina = '';
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
