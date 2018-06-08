@@ -12,6 +12,10 @@ $producten = $product->getProducten();
 $pagina = 'winkelwagen';
 $winkelwagen = new Winkelwagen();
 
+$subtotaal = 0;
+$verzendkosten = 0.95;
+$totaal = 0;
+
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     foreach ($_SESSION['winkelwagen'] as $key => $wagen) {
         if ($wagen['idproduct'] == $_GET['delete']) {
@@ -31,32 +35,26 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
-            <?php if (isset($_SESSION['winkelwagen'])) {
-                $subtotaal = 0;
-                $verzendkosten = 0.95;
-                $totaal = 0;
-                ?>
+            <?php if (isset($_SESSION['winkelwagen'])) { ?>
                 <?php for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
                     $id = array_column($_SESSION['winkelwagen'], 'idproduct');
                     if (in_array($_SESSION['winkelwagen'][$i]['idproduct'], $id)) { ?>
                         <div class="col-xs-12">
                             <div class="col-xs-3">
-                                <img id="productAfbeelding" class="img-responsive"
-                                     src="<?php echo $_SESSION['winkelwagen'][$i]['urlfoto']; ?>" alt="Product">
+                                <img id="productAfbeelding" class="img-responsive" src="<?php echo $_SESSION['winkelwagen'][$i]['urlfoto']; ?>" alt="Product">
                             </div>
                             <h3 class="tabelWinkel col-xs-3"><?php echo $_SESSION['winkelwagen'][$i]['titel']; ?></h3>
-                            <a id="verwijderen" class="col-xs-2"
-                               href="winkelwagen.php?delete=<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span
-                                        class="text-danger">Verwijderen</span></a>
+                            <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete=<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span class="text-danger">Verwijderen</span></a>
                             <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
                                 <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
                                     <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?php echo $voorraad; ?></option>
                                 <?php } ?>
                             </select>
-                            <b id="prijs"
-                               class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
+                            <b id="prijs" class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
                         </div>
                         <?php
+                        $aantalProducten = 0;
+                        $aantalProducten = $aantalProducten + $_SESSION['winkelwagen'][$i]['aantal'];
                         $subtotaal = $subtotaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'];
                         $totaal = $subtotaal + $verzendkosten;
                         ?>
