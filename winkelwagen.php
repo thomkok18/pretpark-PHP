@@ -35,7 +35,7 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
-            <?php if (isset($_SESSION['winkelwagen'])) { ?>
+            <?php if (isset($_SESSION['winkelwagen']) && sizeof($_SESSION['winkelwagen']) > 0) { ?>
                 <?php for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
                     $id = array_column($_SESSION['winkelwagen'], 'idproduct');
                     if (in_array($_SESSION['winkelwagen'][$i]['idproduct'], $id)) { ?>
