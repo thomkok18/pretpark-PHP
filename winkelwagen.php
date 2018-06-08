@@ -32,6 +32,8 @@ include("layout/header.php");
 
         <form class="form-horizontal" method="post">
             <?php if (isset($_SESSION['winkelwagen'])) {
+                $subtotaal = 0;
+                $verzendkosten = 0.95;
                 $totaal = 0;
                 ?>
                 <?php for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
@@ -55,8 +57,7 @@ include("layout/header.php");
                                class="col-xs-2"><?php echo '€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2); ?></b>
                         </div>
                         <?php
-                        $subtotaal = $totaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'];
-                        $verzendkosten = 0.95;
+                        $subtotaal = $subtotaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'];
                         $totaal = $subtotaal + $verzendkosten;
                         ?>
                     <?php } ?>
@@ -82,7 +83,7 @@ include("layout/header.php");
                 echo 'Er zijn nog geen producten in het winkelwagentje.';
             } ?>
             <?php if (isset($_POST['betalen'])) {
-                unset($_SESSION['winkelwagen'][$key]);
+                unset($_SESSION['winkelwagen']);
                 $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
                 header('Location: winkelwagen.php');
             }
