@@ -1,12 +1,10 @@
 <?php
-session_start();
+include_once('lib/config.php');
+include_once("lib/Product.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
-
-include_once('lib/config.php');
-include_once("lib/Product.php");
 
 $id = $_GET['id'];
 $Product = new Product();

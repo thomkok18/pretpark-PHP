@@ -1,6 +1,7 @@
 <?php
 include_once('lib/config.php');
 include_once("lib/AttractieLijst.php");
+
 $attractieLijst = new AttractieLijst();
 $attractieLijst->selectAttracties();
 $pagina = 'attractie';

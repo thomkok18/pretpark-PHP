@@ -1,14 +1,12 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['login'])) {
-    header('Location: login.php');
-}
-
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Attractie.php");
 include_once("lib/Reactie.php");
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

@@ -1,15 +1,13 @@
 <?php
-session_start();
+include_once('lib/config.php');
+include_once("lib/Gebruiker.php");
+include_once("lib/Rechten.php");
 
 $id = $_GET['id'];
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
-
-include_once('lib/config.php');
-include_once("lib/Gebruiker.php");
-include_once("lib/Rechten.php");
 
 $gebruiker = new Gebruiker();
 $rechten = new Rechten();

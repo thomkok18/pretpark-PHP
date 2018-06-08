@@ -1,13 +1,11 @@
 <?php
-session_start();
+include_once('lib/config.php');
+include_once("lib/Gebruiker.php");
+include_once("lib/Attractie.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
 }
-
-include_once('lib/config.php');
-include_once("lib/Gebruiker.php");
-include_once("lib/Attractie.php");
 
 if (isset($_POST['toevoegen'])) {
     extract($_POST);

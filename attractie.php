@@ -1,8 +1,11 @@
 <?php
-session_start();
-
 include_once('lib/config.php');
 include_once('lib/Attractie.php');
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 $id = $_GET['id'];
 $Attractie = new Attractie();
 $attractie = $Attractie->getAttractieById($id);

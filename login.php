@@ -6,6 +6,7 @@ if (isset($_POST['login'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
     if ($gebruiker->checkLogin($password, $login)) {
+        session_start();
         header('Location: index.php');
     } else {
         $message[] = "Uw login gegevens kloppen niet";

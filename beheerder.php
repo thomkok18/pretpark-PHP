@@ -1,14 +1,12 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
-    header('Location: login.php');
-}
-
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
 include_once("lib/Product.php");
+
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
+    header('Location: login.php');
+}
 
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
