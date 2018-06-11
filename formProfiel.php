@@ -18,8 +18,13 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
     $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
 } else if (isset($_POST['wachtwoordOpslaan'])) {
-    extract($_POST);
-    $gebruiker->updateWachtwoord($id, password_hash($wachtwoord, PASSWORD_DEFAULT));
+    if (password_verify($_POST['wachtwoord'], $user->getWachtwoord()) && !empty($_POST['nieuwWachtwoord']) && $_POST['nieuwWachtwoord'] == $_POST['herhaalWachtwoord']) {
+        extract($_POST);
+        $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
+        $message[0] = 'Het is gelukt.';
+    } else {
+        $message[0] = 'Het nieuwe wachtwoord komt niet overeen.';
+    }
 } else if (isset($_POST['profielFotoOpslaan'])) {
     extract($_POST);
     $gebruiker->updateAvatar($id, $avatar);
@@ -27,6 +32,11 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
 
 include("layout/header.php");
 ?>
+<?php if (isset($_POST['wachtwoordOpslaan'])) { ?>
+    <div class="alert alert-danger" role="alert">
+        <strong><?php echo $message[0]; ?></strong>
+    </div>
+<?php } ?>
 
     <div>
         <div class="page-header">
@@ -38,29 +48,25 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="login" name="login"
-                           value="<?php echo $user->getLogin(); ?>">
+                    <input required type="text" class="form-control" id="login" name="login" value="<?php echo $user->getLogin(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="naam" name="naam"
-                           value="<?php echo $user->getNaam(); ?>">
+                    <input required type="text" class="form-control" id="naam" name="naam" value="<?php echo $user->getNaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
-                           value="<?php echo $user->getTussenvoegsels(); ?>">
+                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?php echo $user->getTussenvoegsels(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="achternaam" name="achternaam"
-                           value="<?php echo $user->getAchternaam(); ?>">
+                    <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?php echo $user->getAchternaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
