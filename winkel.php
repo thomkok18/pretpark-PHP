@@ -58,7 +58,6 @@ include("layout/header.php");
             <h1>Winkel</h1>
         </div>
 
-
         <?php foreach ($producten as $key => $prod) { ?>
             <form class="form-horizontal" method="post"
                   action="winkel.php?action=add&id=<?php echo $prod->getIdproduct(); ?>">

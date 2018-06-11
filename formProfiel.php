@@ -18,11 +18,14 @@ $error = false;
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
     $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
+    $message[0] = 'Uw persoonsgegevens zijn aangepast.';
+    $error = false;
 } else if (isset($_POST['wachtwoordOpslaan'])) {
     if (password_verify($_POST['wachtwoord'], $user->getWachtwoord()) && !empty($_POST['nieuwWachtwoord']) && $_POST['nieuwWachtwoord'] == $_POST['herhaalWachtwoord']) {
         extract($_POST);
         $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
-        $message[0] = 'Je hebt nu een nieuw wachtwoord.';
+        $message[0] = 'Uw wachtwoord is aangepast.';
+        $error = false;
     } else {
         $error = true;
         $message[0] = 'Het nieuwe wachtwoord komt niet overeen.';
