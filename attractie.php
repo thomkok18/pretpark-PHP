@@ -18,9 +18,6 @@ include("layout/header.php");
     <div class="container">
         <div class="page-header">
             <h1>Attractie</h1>
-            <?php if (isset($_SESSION['login'])) { ?>
-                <p><a class="btn btn-default" role="button" href="formReactie.php?id=<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a></p>
-            <?php } ?>
         </div>
 
         <div class="row">
@@ -30,7 +27,12 @@ include("layout/header.php");
 
             <div class="col-md-8">
                 <p><i><?php echo $gebruiker->getLogin(); ?></i></p>
-                <h3><?php echo $attractie->getTitel(); ?></h3>
+                <div class="row">
+                    <?php if (isset($_SESSION['login'])) { ?>
+                        <h3 class="col-xs-10"><?php echo $attractie->getTitel(); ?></h3>
+                        <a style="margin-top:15px;" class="btn btn-default col-xs-2" role="button" href="formReactie.php?id=<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a>
+                    <?php } ?>
+                </div>
                 <p><?php echo $attractie->getOmschrijving(); ?></p>
             </div>
         </div>
