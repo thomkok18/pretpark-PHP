@@ -92,6 +92,38 @@ class Attractie {
     }
 
     /**
+     * @param $idattractie
+     * @param $urlfoto
+     * @return bool
+     */
+    public function updateUrlfoto($idattractie, $urlfoto) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE attractie SET urlfoto = :urlfoto WHERE idattractie = :idattractie';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idattractie', $idattractie, PDO::PARAM_INT);
+        $stmt->bindParam(':urlfoto', $urlfoto, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    /**
+     * @param $idattractie
+     * @param $titel
+     * @param $omschrijving
+     * @return bool
+     */
+    public function updateAttractiegegevens($idattractie, $titel, $omschrijving) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE attractie SET titel = :titel, omschrijving = :omschrijving WHERE idattractie = :idattractie';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idattractie', $idattractie, PDO::PARAM_INT);
+        $stmt->bindParam(':titel', $titel, PDO::PARAM_STR);
+        $stmt->bindParam(':omschrijving', $omschrijving, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdgebruiker() {

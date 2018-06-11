@@ -92,7 +92,7 @@ include("layout/header.php");
 
     <div class="row">
         <h3 class="col-xs-11">Attracties</h3>
-        <a style="margin-top: 16px;" class="btn btn-default" role="button" href="formAttractie.php">+</a>
+        <a style="margin-top: 16px;" class="btn btn-default" role="button" href="formAttractieToevoegen.php">+</a>
     </div>
     <table class="table">
         <thead>
