@@ -13,6 +13,7 @@ $gebruiker = new Gebruiker();
 $rechten = new Rechten();
 $user = $gebruiker->getGebruikerById($id);
 $pagina = 'profiel';
+$error = false;
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
@@ -21,8 +22,9 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
     if (password_verify($_POST['wachtwoord'], $user->getWachtwoord()) && !empty($_POST['nieuwWachtwoord']) && $_POST['nieuwWachtwoord'] == $_POST['herhaalWachtwoord']) {
         extract($_POST);
         $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
-        $message[0] = 'Het is gelukt.';
+        $message[0] = 'Je hebt nu een nieuw wachtwoord.';
     } else {
+        $error = true;
         $message[0] = 'Het nieuwe wachtwoord komt niet overeen.';
     }
 } else if (isset($_POST['profielFotoOpslaan'])) {
@@ -32,11 +34,15 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
 
 include("layout/header.php");
 ?>
-<?php if (isset($_POST['wachtwoordOpslaan'])) { ?>
-    <div class="alert alert-danger" role="alert">
-        <strong><?php echo $message[0]; ?></strong>
+<?php if (isset($message)) {
+    if ($error) { ?>
+        <div class="alert alert-danger" role="alert">
+    <?php } else { ?>
+        <div class="alert alert-success" role="alert">
+    <?php } ?>
+    <strong><?php echo $message[0]; ?></strong>
     </div>
-<?php } ?>
+    <?php } ?>
 
     <div>
         <div class="page-header">
@@ -48,25 +54,29 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="login" name="login" value="<?php echo $user->getLogin(); ?>">
+                    <input required type="text" class="form-control" id="login" name="login"
+                           value="<?php echo $user->getLogin(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="naam" name="naam" value="<?php echo $user->getNaam(); ?>">
+                    <input required type="text" class="form-control" id="naam" name="naam"
+                           value="<?php echo $user->getNaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?php echo $user->getTussenvoegsels(); ?>">
+                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
+                           value="<?php echo $user->getTussenvoegsels(); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?php echo $user->getAchternaam(); ?>">
+                    <input required type="text" class="form-control" id="achternaam" name="achternaam"
+                           value="<?php echo $user->getAchternaam(); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -81,19 +91,22 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="wachtwoordHuidig" class="col-sm-2 control-label">Huidige wachtwoord</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord" value="">
+                    <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord"
+                           value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="nieuwWachtwoord" class="col-sm-2 control-label">Nieuw wachtwoord</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord" value="">
+                    <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord"
+                           value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="wachtwoordHerhalen" class="col-sm-2 control-label">Wachtwoord herhalen</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="herhaalWachtwoord" name="herhaalWachtwoord" value="">
+                    <input required type="password" class="form-control" id="herhaalWachtwoord" name="herhaalWachtwoord"
+                           value="">
                 </div>
             </div>
             <div class="form-group">
@@ -104,7 +117,11 @@ include("layout/header.php");
         </form>
 
         <h3>Profiel foto</h3>
-        <form action="uploadProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) { if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) { echo $geb->getIdgebruiker(); } } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
+            if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
+                echo $geb->getIdgebruiker();
+            }
+        } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div id="uploadButton" class="col-sm-10">
