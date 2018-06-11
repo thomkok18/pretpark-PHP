@@ -15,9 +15,13 @@ $product = new Product();
 $producten = $product->getProducten();
 $pagina = 'beheerder';
 
-if (isset($_GET['delete']) && !empty($_GET['delete'])) {
+if (isset($_GET['deleteGebruiker']) && !empty($_GET['deleteGebruiker'])) {
     $conn = new Gebruiker();
     $conn->deleteGebruiker();
+    header('Location: beheerder.php');
+} else if (isset($_GET['deleteProduct']) && !empty($_GET['deleteProduct'])) {
+    $conn = new Product();
+    $conn->deleteProduct();
     header('Location: beheerder.php');
 }
 
@@ -43,7 +47,7 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
-                <th><a href="beheerder.php?delete=<?php echo $geb->getIdgebruiker(); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo $geb->getIdgebruiker(); ?>"></a>
+                <th><a href="beheerder.php?deleteGebruiker=<?php echo $geb->getIdgebruiker(); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo $geb->getIdgebruiker(); ?>"></a>
                 <?php } ?>
                     <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
                 <th><img class="prullenbak" src="img/prullenbakDicht.jpg" value="<?php echo $geb->getIdgebruiker(); ?>">
@@ -57,10 +61,14 @@ include("layout/header.php");
         <?php } ?>
     </table>
 
-    <h3>Vooraad</h3>
+    <div class="row">
+        <h3 class="col-xs-11">Vooraad</h3>
+        <a style="margin-top: 16px;" class="btn btn-default" role="button" href="formWinkel.php">+</a>
+    </div>
     <table class="table">
         <thead>
         <tr>
+            <th>#</th>
             <th>Id</th>
             <th>Product</th>
             <th>Vooraad</th>
@@ -69,6 +77,7 @@ include("layout/header.php");
         <?php foreach ($producten as $key => $prod) { ?>
         <tbody>
         <tr>
+            <th><a href="beheerder.php?deleteProduct=<?php echo $prod->getIdproduct(); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo $prod->getIdproduct(); ?>"></a>
             <th class="tabelText"><a class="btn btn-info" role="button" href="formProduct.php?id=<?php echo $prod->getIdproduct(); ?>"><?php echo $prod->getIdproduct(); ?></a></th>
             <th class="tabelText"><?php echo $prod->getTitel(); ?></th>
             <th class="tabelText"><?php echo $prod->getVoorraad(); ?></th>

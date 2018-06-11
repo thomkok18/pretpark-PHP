@@ -153,7 +153,7 @@ class Gebruiker {
         $conn = $db->getConnectie();
         $query = "DELETE FROM gebruiker WHERE idgebruiker = :idgebruiker";
         $stmt = $conn->prepare($query);
-        $stmt->bindParam(':idgebruiker', $_GET['delete']);
+        $stmt->bindParam(':idgebruiker', $_GET['deleteGebruiker']);
         return $stmt->execute();
     }
 

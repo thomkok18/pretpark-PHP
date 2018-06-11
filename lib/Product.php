@@ -16,10 +16,8 @@ class Product {
     public function insertProduct() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = "INSERT INTO product (idproduct, idgebruiker, titel, productomschrijving, voorraad, prijs, urlfoto) VALUES(:idproduct, :idgebruiker, :titel, :productomschrijving, :voorraad, :prijs, :urlfoto)";
+        $query = "INSERT INTO product (titel, productomschrijving, voorraad, prijs, urlfoto) VALUES(:titel, :productomschrijving, :voorraad, :prijs, :urlfoto)";
         $stmt = $conn->prepare($query);
-        $stmt->bindParam(':idproduct', $this->idproduct, PDO::PARAM_INT);
-        $stmt->bindParam(':idgebruiker', $this->idgebruiker, PDO::PARAM_INT);
         $stmt->bindParam(':titel', $this->titel, PDO::PARAM_STR);
         $stmt->bindParam(':productomschrijving', $this->productomschrijving, PDO::PARAM_STR);
         $stmt->bindParam(':voorraad', $this->voorraad, PDO::PARAM_INT);
@@ -88,6 +86,18 @@ class Product {
         $stmt->bindParam(':productomschrijving', $productomschrijving, PDO::PARAM_STR);
         $stmt->bindParam(':voorraad', $voorraad, PDO::PARAM_INT);
         $stmt->bindParam(':prijs', $prijs, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    /**
+     * @return bool
+     */
+    public function deleteProduct() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "DELETE FROM product WHERE idproduct = :idproduct";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $_GET['deleteProduct']);
         return $stmt->execute();
     }
 
