@@ -13,9 +13,6 @@ include("layout/header.php");
         <div class="page-header">
             <div class="row">
                 <h1 class="col-xs-10">Attractie overzicht</h1>
-                <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
-                    <a style="margin-top: 22px;" id="attractieButton" role="button" class="btn btn-default col-xs-2" href="formAttractie.php">Attractie toevoegen</a>
-                <?php } ?>
             </div>
         </div>
 

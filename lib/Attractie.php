@@ -15,6 +15,17 @@ class Attractie {
 
     }
 
+    /**
+     * @return array
+     */
+    public function getAttracties() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT * FROM attractie");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Attractie');
+    }
+
     public function insertAttractie() {
         $db = new Db();
         $conn = $db->getConnectie();

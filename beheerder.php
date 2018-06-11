@@ -3,6 +3,7 @@ include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 include_once("lib/Rechten.php");
 include_once("lib/Product.php");
+include_once("lib/Attractie.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
     header('Location: login.php');
@@ -13,6 +14,9 @@ $gebruikers = $gebruiker->getGebruikers();
 $rechten = new Rechten();
 $product = new Product();
 $producten = $product->getProducten();
+$attractie = new Attractie();
+$attracties = $attractie->getAttracties();
+
 $pagina = 'beheerder';
 
 if (isset($_GET['deleteGebruiker']) && !empty($_GET['deleteGebruiker'])) {
@@ -85,6 +89,32 @@ include("layout/header.php");
         </tbody>
         <?php } ?>
     </table>
+
+    <div class="row">
+        <h3 class="col-xs-11">Attracties</h3>
+        <a style="margin-top: 16px;" class="btn btn-default" role="button" href="formAttractie.php">+</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Titel</th>
+            <th>Omschrijving</th>
+        </tr>
+        </thead>
+        <?php foreach ($attracties as $key => $attractie) { ?>
+            <tbody>
+            <tr>
+                <th><a href="beheerder.php?deleteProduct=<?php echo $attractie->getIdattractie(); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo $attractie->getIdattractie(); ?>"></a>
+                <th class="tabelText"><a class="btn btn-info" role="button" href="formAttractie.php?id=<?php echo $attractie->getIdattractie(); ?>"><?php echo $attractie->getIdattractie(); ?></a></th>
+                <th class="tabelText"><?php echo $attractie->getTitel(); ?></th>
+                <th class="tabelText"><?php echo $attractie->getOmschrijving(); ?></th>
+            </tr>
+            </tbody>
+        <?php } ?>
+    </table>
+
 
 </div>
 <?php
