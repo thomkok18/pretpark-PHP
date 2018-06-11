@@ -26,6 +26,15 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     }
 }
 
+if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['productAantal']) && !empty($_GET['productAantal'])) {
+     for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
+        if ($_SESSION['winkelwagen'][$i]['idproduct'] == $_GET['idproduct']) {
+            $_SESSION['winkelwagen'][$i]['aantal'] = $_GET['productAantal'];
+            header('Location: winkelwagen.php');
+        }
+    }
+}
+
 include("layout/header.php");
 ?>
 
@@ -45,7 +54,7 @@ include("layout/header.php");
                             </div>
                             <h3 class="tabelWinkel col-xs-3"><?php echo $_SESSION['winkelwagen'][$i]['titel']; ?></h3>
                             <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete=<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span class="text-danger">Verwijderen</span></a>
-                            <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
+                            <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>)">
                                 <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
                                     <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?php echo $voorraad; ?></option>
                                 <?php } ?>
@@ -89,6 +98,14 @@ include("layout/header.php");
         </form>
 
     </div>
+<script>
+    function  refresh(idproduct) {
+        var e = document.getElementById("voorraadSelectbox" + idproduct);
+        var productAantal = e.options[e.selectedIndex].value;
+
+        window.location.href = "winkelwagen.php?idproduct=" + idproduct + "&productAantal=" + productAantal;
+    }
+</script>
 
 <?php
 include("layout/footer.php");
