@@ -45,7 +45,7 @@ include("layout/header.php");
                     <img id="reactieProfielfoto" src="<?php echo $gebruiker->getAvatar(); ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
                 </div>
                 <div class="col-md-11">
-                    <p><?php echo $reactie->getReactietekst(); ?></p>
+                    <p><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
                     <p><i>Door: <?php echo $gebruiker->getLogin(); ?></i></p>
                 </div>
             </div>
