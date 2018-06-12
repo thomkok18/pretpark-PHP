@@ -22,15 +22,15 @@ include("layout/header.php");
 
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="<?php echo $attractie->getUrlFoto(); ?>" alt="Attractie">
+                <img class="img-responsive" src="<?php echo htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie">
             </div>
 
             <div class="col-md-8">
-                <p><i><?php echo $gebruiker->getLogin(); ?></i></p>
+                <p><i><?php echo htmlspecialchars($gebruiker->getLogin()); ?></i></p>
                 <div class="row">
                     <?php if (isset($_SESSION['login'])) { ?>
                         <h3 class="col-xs-10"><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
-                        <a style="margin-top:15px;" class="btn btn-default col-xs-2" role="button" href="formReactie.php?id=<?php echo $attractie->getIdAttractie(); ?>">Reactie plaatsen</a>
+                        <a style="margin-top:15px;" class="btn btn-default col-xs-2" role="button" href="formReactie.php?id=<?php echo htmlspecialchars($attractie->getIdAttractie()); ?>">Reactie plaatsen</a>
                     <?php } ?>
                 </div>
                 <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
@@ -42,7 +42,7 @@ include("layout/header.php");
             ?>
             <div class="row">
                 <div class="col-md-1">
-                    <img id="reactieProfielfoto" src="<?php echo $gebruiker->getAvatar(); ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
+                    <img id="reactieProfielfoto" src="<?php echo htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
                 </div>
                 <div class="col-md-11">
                     <p><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>

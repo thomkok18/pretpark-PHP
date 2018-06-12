@@ -19,17 +19,17 @@ include("layout/header.php");
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="<?php echo $attractie->getUrlfoto(); ?>" alt="Attractie">
+                    <img src="<?php echo htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie">
                 </div>
                 <div class="col-md-8">
-                    <h3><?php echo $attractie->getTitel(); ?></h3>
-                    <p><?php echo $attractie->getOmschrijving(); ?></p>
+                    <h3><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
+                    <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
                 <div class="offset-md-4 col-md-8">
-                    <i>Door: <?php echo $attractie->getGebruikerById()->getLogin(); ?></i>
+                    <i>Door: <?php echo htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
                 <div class="offset-md-4 col-md-8">
-                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo $attractie->getIdattractie(); ?>">Reacties</a>
+                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>">Reacties</a>
                 </div>
             </div>
             <div class="row">

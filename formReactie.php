@@ -39,7 +39,7 @@ include("layout/header.php");
                 <h1>Reactie Toevoegen</h1>
             </div>
         </div>
-        <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']."?id=".$id; ?>" method="post">
+        <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']."?id=".$id); ?>" method="post">
             <div class="form-group">
                 <label for="reactietekst" class="col-sm-2 control-label">Reactie</label>
                 <div class="col-sm-10">

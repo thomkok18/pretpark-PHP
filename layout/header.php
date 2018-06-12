@@ -50,15 +50,12 @@ $gebruikers = $gebruiker->getGebruikers();
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li <?php if ($pagina === 'attractie') { ?> class="active" <?php } ?> ><a
-                            href="index.php">Attracties</a></li>
+                <li <?php if ($pagina === 'attractie') { ?> class="active" <?php } ?> ><a href="index.php">Attracties</a></li>
                 <?php if (isset($_SESSION['login']) && $_SESSION['login']['rechten'] == 'Beheerder') { ?>
-                    <li <?php if ($pagina === 'beheerder') { ?> class="active" <?php } ?> ><a href="beheerder.php">Beheren</a>
-                    </li>
+                    <li <?php if ($pagina === 'beheerder') { ?> class="active" <?php } ?> ><a href="beheerder.php">Beheren</a></li>
                 <?php } ?>
                 <?php if (!isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a>
-                    </li>
+                    <li <?php if ($pagina === 'registreren') { ?> class="active" <?php } ?> ><a href="registreren.php">Registreren</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
@@ -66,20 +63,20 @@ $gebruikers = $gebruiker->getGebruikers();
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
                             <?php if (isset($_SESSION['winkelwagen'])) {
-                                echo array_sum(array_column($_SESSION['winkelwagen'], 'aantal'));
+                                echo htmlspecialchars(array_sum(array_column($_SESSION['winkelwagen'], 'aantal')));
                             } else {
-                                echo 0;
+                                echo htmlspecialchars(0);
                             } ?> </span></a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
                     <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
                         if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
-                            echo $geb->getIdgebruiker();
+                            echo htmlspecialchars($geb->getIdgebruiker());
                             }
                             } ?>">
-                            <img id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
-                            <p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
+                            <img id="profielAfbeelding" src="<?php echo htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
+                            <p id="profielnaam"><?php echo htmlspecialchars($_SESSION['login']['login']); ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
@@ -95,7 +92,7 @@ $gebruikers = $gebruiker->getGebruikers();
         <div class="well">
             <ul>
                 <?php foreach ($messages as $message) { ?>
-                    <li class="message"><?php echo $message; ?></li>
+                    <li class="message"><?php echo htmlspecialchars($message); ?></li>
                 <?php } ?>
             </ul>
         </div>

@@ -43,7 +43,7 @@ include("layout/header.php");
     <?php } else { ?>
         <div class="alert alert-success" role="alert">
     <?php } ?>
-    <strong><?php echo $message[0]; ?></strong>
+    <strong><?php echo htmlspecialchars($message[0]); ?></strong>
     </div>
 <?php } ?>
 
@@ -58,28 +58,28 @@ include("layout/header.php");
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="login" name="login"
-                           value="<?php echo $user->getLogin(); ?>">
+                           value="<?php echo htmlspecialchars($user->getLogin()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="naam" name="naam"
-                           value="<?php echo $user->getNaam(); ?>">
+                           value="<?php echo htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
-                           value="<?php echo $user->getTussenvoegsels(); ?>">
+                           value="<?php echo htmlspecialchars($user->getTussenvoegsels()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="achternaam" name="achternaam"
-                           value="<?php echo $user->getAchternaam(); ?>">
+                           value="<?php echo htmlspecialchars($user->getAchternaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -122,7 +122,7 @@ include("layout/header.php");
         <h3>Profiel foto</h3>
         <form action="uploadProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
             if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
-                echo $geb->getIdgebruiker();
+                echo htmlspecialchars($geb->getIdgebruiker());
             }
         } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">

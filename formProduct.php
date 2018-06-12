@@ -33,31 +33,31 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="id" class="col-sm-2 control-label">Id</label>
                 <div class="col-sm-10">
-                    <input required disabled type="text" class="form-control" id="id" name="idproduct" value="<?php echo $id; ?>">
+                    <input required disabled type="text" class="form-control" id="id" name="idproduct" value="<?php echo htmlspecialchars($id); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo $product->getTitel(); ?>">
+                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo htmlspecialchars($product->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="productomschrijving" class="col-sm-2 control-label">Productomschrijving</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="<?php echo $product->getProductomschrijving(); ?>">
+                    <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="<?php echo htmlspecialchars($product->getProductomschrijving()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="voorraad" class="col-sm-2 control-label">Voorraad</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="voorraad" name="voorraad" value="<?php echo $product->getVoorraad(); ?>">
+                    <input type="text" class="form-control" id="voorraad" name="voorraad" value="<?php echo htmlspecialchars($product->getVoorraad()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="prijs" class="col-sm-2 control-label">Prijs</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="prijs" name="prijs" value="<?php echo $product->getPrijs(); ?>">
+                    <input required type="text" class="form-control" id="prijs" name="prijs" value="<?php echo htmlspecialchars($product->getPrijs()); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -70,7 +70,7 @@ include("layout/header.php");
         <h3>Product foto</h3>
         <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) {
             if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) {
-                echo $prod->getIdproduct();
+                echo htmlspecialchars($prod->getIdproduct());
             }
         } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">

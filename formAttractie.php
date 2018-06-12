@@ -33,13 +33,13 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo $attracties->getTitel(); ?>">
+                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo htmlspecialchars($attracties->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="omschrijving" class="col-sm-2 control-label">Attractie omschrijving</label>
                 <div class="col-sm-10">
-                    <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"><?php echo $attracties->getOmschrijving(); ?></textarea>
+                    <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"><?php echo htmlspecialchars($attracties->getOmschrijving()); ?></textarea>
                 </div>
             </div>
             </div>
@@ -52,7 +52,7 @@ include("layout/header.php");
             <h3>Attractie foto</h3>
             <form action="uploadProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
                 if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
-                    echo $geb->getIdgebruiker();
+                    echo htmlspecialchars($geb->getIdgebruiker());
                 }
             } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <div class="form-group">
