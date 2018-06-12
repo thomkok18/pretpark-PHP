@@ -9,48 +9,59 @@ if (!isset($_SESSION['login'])) {
 $product = new Product();
 $producten = $product->getProducten();
 $pagina = 'winkel';
+$error = false;
 
 if (isset($_POST['winkelwagen'])) {
-    if (!isset($_SESSION['winkelwagen']) || sizeof($_SESSION['winkelwagen']) == 0) {
-        $_SESSION['winkelwagen'] = array(
-            array(
-                "idproduct" => $_GET['id'],
-                "urlfoto" => $_POST['urlfoto'],
-                "titel" => $_POST['titel'],
-                "prijs" => $_POST['prijs'],
-                "aantal" => $_POST['aantal'],
-                "voorraad" => $_POST['voorraad']
-            )
-        );
-    } else {
-        for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
-            $id = array_column($_SESSION['winkelwagen'], 'idproduct');
-            if (!in_array($_GET['id'], $id)) {
-                $productArray = array(
+    if ($_POST['aantal'] > 0) {
+
+        if (!isset($_SESSION['winkelwagen']) || sizeof($_SESSION['winkelwagen']) == 0) {
+            $_SESSION['winkelwagen'] = array(
+                array(
                     "idproduct" => $_GET['id'],
                     "urlfoto" => $_POST['urlfoto'],
                     "titel" => $_POST['titel'],
                     "prijs" => $_POST['prijs'],
                     "aantal" => $_POST['aantal'],
                     "voorraad" => $_POST['voorraad']
-                );
-                array_push($_SESSION['winkelwagen'], $productArray);
-            } else if ($_GET['id'] == $_SESSION['winkelwagen'][$i]['idproduct']) {
-                $_SESSION['winkelwagen'][$i]['aantal'] = $_POST['aantal'];
+                )
+            );
+        } else {
+            for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
+                $id = array_column($_SESSION['winkelwagen'], 'idproduct');
+                if (!in_array($_GET['id'], $id)) {
+                    $productArray = array(
+                        "idproduct" => $_GET['id'],
+                        "urlfoto" => $_POST['urlfoto'],
+                        "titel" => $_POST['titel'],
+                        "prijs" => $_POST['prijs'],
+                        "aantal" => $_POST['aantal'],
+                        "voorraad" => $_POST['voorraad']
+                    );
+                    array_push($_SESSION['winkelwagen'], $productArray);
+                } else if ($_GET['id'] == $_SESSION['winkelwagen'][$i]['idproduct']) {
+                    $_SESSION['winkelwagen'][$i]['aantal'] = $_POST['aantal'];
+                }
             }
         }
+    } else {
+        $error = true;
+        $message[0] = 'Product is niet toegevoegd.';
     }
 }
 
-if (isset($_POST['winkelwagen'])) {
+if (isset($_POST['winkelwagen']) && !$error) {
     $message[0] = 'Product is toegevoegd.';
 }
 
 include("layout/header.php");
 ?>
-<?php if (isset($_POST['winkelwagen'])) { ?>
-    <div class="alert alert-success" role="alert">
-        <strong><?php echo $message[0]; ?></strong>
+<?php if (isset($message)) {
+    if ($error) { ?>
+        <div class="alert alert-danger" role="alert">
+    <?php } else { ?>
+        <div class="alert alert-success" role="alert">
+    <?php } ?>
+    <strong><?php echo $message[0]; ?></strong>
     </div>
 <?php } ?>
     <div class="container">

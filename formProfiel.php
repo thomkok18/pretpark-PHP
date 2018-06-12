@@ -45,7 +45,7 @@ include("layout/header.php");
     <?php } ?>
     <strong><?php echo $message[0]; ?></strong>
     </div>
-    <?php } ?>
+<?php } ?>
 
     <div>
         <div class="page-header">
