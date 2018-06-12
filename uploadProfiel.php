@@ -44,7 +44,8 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $gebruiker->updateAvatar($id, 'img/' . $_FILES["fileToUpload"]["name"]);
-       header('Location: formProfiel.php?id='.$id);
+        session_destroy();
+        header('Location: login.php');
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

@@ -55,14 +55,10 @@ $gebruikers = $gebruiker->getGebruikers();
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel"
-                                                                                           href="winkel.php">Winkel</a>
-                    </li>
+                    <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink"
-                                                                                                href="winkelwagen.php"><img
-                                    id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
+                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
                             <?php if (isset($_SESSION['winkelwagen'])) {
                                 echo array_sum(array_column($_SESSION['winkelwagen'], 'aantal'));
                             } else {
@@ -76,9 +72,8 @@ $gebruikers = $gebruiker->getGebruikers();
                                                                                                if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
                                                                                                    echo $geb->getIdgebruiker();
                                                                                                }
-                                                                                           } ?>"><img
-                                    id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>"
-                                    alt="<?php echo $gebruiker->getLogin(); ?>">
+                                                                                           } ?>">
+                            <img id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
                             <p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>

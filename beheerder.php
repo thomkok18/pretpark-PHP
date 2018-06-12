@@ -66,7 +66,7 @@ include("layout/header.php");
     </table>
 
     <div class="row">
-        <h3 class="col-xs-11">Vooraad</h3>
+        <h3 class="col-xs-11">Voorraad</h3>
         <a style="margin-top: 16px;" class="btn btn-default" role="button" href="formWinkel.php">+</a>
     </div>
     <table class="table">
@@ -75,7 +75,7 @@ include("layout/header.php");
             <th>#</th>
             <th>Id</th>
             <th>Product</th>
-            <th>Vooraad</th>
+            <th>Voorraad</th>
         </tr>
         </thead>
         <?php foreach ($producten as $key => $prod) { ?>
