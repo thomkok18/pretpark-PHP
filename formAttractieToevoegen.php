@@ -7,7 +7,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' 
     header('Location: login.php');
 }
 
-$pagina = '';
+$pagina = 'formAttractieToevoegen';
 
 if (isset($_POST['toevoegen'])) {
     extract($_POST);

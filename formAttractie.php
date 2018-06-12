@@ -10,7 +10,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder')
 $id = $_GET['id'];
 $attractie = new Attractie();
 $attracties = $attractie->getAttractieById($id);
-$pagina = '';
+$pagina = 'formAttractie';
 
 if (isset($_POST['attractiegegevens'])) {
     extract($_POST);
@@ -56,14 +56,14 @@ include("layout/header.php");
                 }
             } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
+                    <label for="attractieFoto" class="col-sm-2 control-label">Attractie foto</label>
                     <div id="uploadButton" class="col-sm-10">
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" name="profielFotoOpslaan">Opslaan</button>
+                        <button type="submit" class="btn btn-default" name="attractieFotoOpslaan">Opslaan</button>
                     </div>
                 </div>
             </form>

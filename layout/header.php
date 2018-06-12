@@ -27,6 +27,12 @@ $gebruikers = $gebruiker->getGebruikers();
         <link rel="stylesheet" href="css/formProduct.css">
     <?php } else if ($pagina === 'index') { ?>
         <link rel="stylesheet" href="css/index.css">
+    <?php } else if ($pagina === 'formAttractie') { ?>
+        <link rel="stylesheet" href="css/formAttractie.css">
+    <?php } else if ($pagina === 'formAttractieToevoegen') { ?>
+        <link rel="stylesheet" href="css/formAttractieToevoegen.css">
+    <?php } else if ($pagina === 'voorraad') { ?>
+        <link rel="stylesheet" href="css/formWinkel.css">
     <?php } ?>
 </head>
 <body>
@@ -67,12 +73,11 @@ $gebruikers = $gebruiker->getGebruikers();
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
                     <li><a href="loguit.php">Uitloggen</a></li>
-                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel"
-                                                                                           href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
-                                                                                               if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
-                                                                                                   echo $geb->getIdgebruiker();
-                                                                                               }
-                                                                                           } ?>">
+                    <li <?php if ($pagina === 'profiel') { ?> class="active" <?php } ?>><a id="profiel" href="formProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
+                        if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
+                            echo $geb->getIdgebruiker();
+                            }
+                            } ?>">
                             <img id="profielAfbeelding" src="<?php echo $_SESSION['login']['avatar']; ?>" alt="<?php echo $gebruiker->getLogin(); ?>">
                             <p id="profielnaam"><?php echo $_SESSION['login']['login']; ?></p></a></li>
                 <?php } else { ?>
