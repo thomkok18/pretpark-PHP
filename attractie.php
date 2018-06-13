@@ -13,6 +13,20 @@ $reacties = $attractie->getReactiesByIdAttractie();
 $gebruiker = $attractie->getGebruikerById();
 $pagina = 'attractie';
 
+if (isset($_POST['toevoegen'])) {
+    extract($_POST);
+    $reactie = new Reactie();
+    $reactie->setReactietekst($reactietekst);
+    $reactie->setIdGebruiker($_SESSION['login']['idgebruiker']);
+    $reactie->setIdAttractie($id);
+
+    if ($reactie->insertReactie()) {
+        header('Location: attractie.php?id='. $id);
+    } else {
+        $message[] = "Reactie is niet toegevoegd";
+    }
+}
+
 include("layout/header.php");
 ?>
     <div class="container">
@@ -30,12 +44,28 @@ include("layout/header.php");
                 <div class="row">
                     <?php if (isset($_SESSION['login'])) { ?>
                         <h3 class="col-xs-10"><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
-                        <a style="margin-top:15px;" class="btn btn-default col-xs-2" role="button" href="formReactie.php?id=<?php echo htmlspecialchars($attractie->getIdAttractie()); ?>">Reactie plaatsen</a>
                     <?php } ?>
                 </div>
                 <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>
         </div>
+        <?php if (isset($_SESSION['login'])) { ?>
+        <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']."?id=".$id); ?>" method="post">
+            <div class="form-group">
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="col-xs-1">
+                        <img id="profielAfbeelding" src="<?php echo htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
+                    </div>
+                    <div class="col-xs-10">
+                        <textarea style="margin-top:5px;" class="form-control" name="reactietekst" placeholder="Voeg reactie toe" rows="1"></textarea>
+                    </div>
+                    <div class="col-xs-1">
+                        <button style="margin-top:5px;" type="submit" class="btn btn-default" name="toevoegen">Verstuur</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <?php } ?>
         <hr>
         <?php foreach ($reacties as $reactie) {
             $gebruiker = $reactie->getGebruikerById();
