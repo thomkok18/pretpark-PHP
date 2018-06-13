@@ -9,7 +9,7 @@ if(!isset($_SESSION)) {
 $id = $_GET['id'];
 $Attractie = new Attractie();
 $attractie = $Attractie->getAttractieById($id);
-$reacties = $attractie->getReactiesByIdAttractie();
+$reacties = $attractie->getReactiesByIdAttractieOrderByDESC();
 $gebruiker = $attractie->getGebruikerById();
 $pagina = 'attractie';
 

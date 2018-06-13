@@ -82,10 +82,10 @@ class Attractie {
     /**
      * @return array
      */
-    function getReactiesByIdAttractie() {
+    function getReactiesByIdAttractieOrderByDESC() {
         $db = new Db();
         $conn = $db->getConnectie();
-        $stmt = $conn->prepare("SELECT * FROM reactie WHERE idattractie = :idattractie");
+        $stmt = $conn->prepare("SELECT * FROM reactie WHERE idattractie = :idattractie ORDER BY idreactie DESC");
         $stmt->bindParam(':idattractie',$this->idattractie, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, "Reactie");
