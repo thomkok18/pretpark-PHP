@@ -14,7 +14,7 @@ if (isset($_POST['productOpslaan'])) {
     $product = new Product();
     $product->setTitel($titel);
     $product->setProductomschrijving($productomschrijving);
-    $product->setVoorraad($voorraad);
+    $product->setVoorraad(0);
     $product->setPrijs(number_format($prijs,2));
     $product->setUrlfoto('img/product.png');
 
@@ -36,7 +36,7 @@ include("layout/header.php");
 
     <div>
         <div class="page-header">
-            <h1>Product Aanpassen</h1>
+            <h1>Product Aanmaken</h1>
             <p>* zijn verplichte velden.</p>
         </div>
 
@@ -52,12 +52,6 @@ include("layout/header.php");
                 <label for="productomschrijving" class="col-sm-2 control-label">* Productomschrijving</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="voorraad" class="col-sm-2 control-label">* Voorraad</label>
-                <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="voorraad" name="voorraad" value="">
                 </div>
             </div>
             <div class="form-group">

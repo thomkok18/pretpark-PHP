@@ -72,19 +72,17 @@ class Product {
      * @param $idproduct
      * @param $titel
      * @param $productomschrijving
-     * @param $voorraad
      * @param $prijs
      * @return bool
      */
-    public function updateProductgegevens($idproduct, $titel, $productomschrijving, $voorraad, $prijs) {
+    public function updateProductgegevens($idproduct, $titel, $productomschrijving, $prijs) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = 'UPDATE product SET titel = :titel, productomschrijving = :productomschrijving, voorraad = :voorraad, prijs = :prijs WHERE idproduct = :idproduct';
+        $query = 'UPDATE product SET titel = :titel, productomschrijving = :productomschrijving, prijs = :prijs WHERE idproduct = :idproduct';
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
         $stmt->bindParam(':titel', $titel, PDO::PARAM_STR);
         $stmt->bindParam(':productomschrijving', $productomschrijving, PDO::PARAM_STR);
-        $stmt->bindParam(':voorraad', $voorraad, PDO::PARAM_INT);
         $stmt->bindParam(':prijs', $prijs, PDO::PARAM_STR);
         return $stmt->execute();
     }

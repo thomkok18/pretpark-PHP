@@ -38,8 +38,6 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
     }
 }
 
-var_dump($_SESSION['winkelwagen']);
-
 include("layout/header.php");
 ?>
 
@@ -96,6 +94,7 @@ include("layout/header.php");
             } ?>
             <?php if (isset($_POST['betalen'])) {
                 foreach ($geldvoorraad as $key => $geld) {
+                    //TODO: Saldo veranderd niet.
                     $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
                 }
                 for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
@@ -113,7 +112,7 @@ include("layout/header.php");
         function refresh(idproduct) {
             var e = document.getElementById("voorraadSelectbox" + idproduct);
             var productAantal = e.options[e.selectedIndex].value;
-            window.location.href = "winkelwagen.php?idproduct=" + idproduct + "&productAantal=" + productAantal;
+            window.location.href = "winkelwagen.php?id=" + idproduct + "&productAantal=" + productAantal;
         }
     </script>
 
