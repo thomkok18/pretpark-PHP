@@ -90,6 +90,28 @@ class Product {
     }
 
     /**
+     * @param $idproduct
+     * @param $voorraad
+     * @param $aantal
+     * @param $status
+     * @return bool
+     */
+    public function updateVoorraad($idproduct, $voorraad, $aantal, $status) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        if ($status == 'verkocht') {
+            $query = 'UPDATE product SET voorraad = :voorraad - :aantal WHERE idproduct = :idproduct';
+        } else {
+            $query = 'UPDATE product SET voorraad = :voorraad + :aantal WHERE idproduct = :idproduct';
+        }
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':voorraad', $voorraad, PDO::PARAM_INT);
+        $stmt->bindParam(':aantal', $aantal, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    /**
      * @return bool
      */
     public function deleteProduct() {
