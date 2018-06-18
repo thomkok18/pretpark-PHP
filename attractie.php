@@ -70,12 +70,12 @@ include("layout/header.php");
         <?php foreach ($reacties as $reactie) {
             $gebruiker = $reactie->getGebruikerById();
             ?>
-            <div class="row">
+            <div class="row" id="test">
                 <div class="col-md-1">
                     <img id="reactieProfielfoto" src="<?php echo htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
                 </div>
                 <div class="col-md-11">
-                    <p><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
+                    <p style="white-space: nowrap;"><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
                     <p><i>Door: <?php echo htmlspecialchars($gebruiker->getLogin()); ?></i></p>
                 </div>
             </div>

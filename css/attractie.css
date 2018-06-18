@@ -1,8 +1,13 @@
 #reactieProfielfoto {
     width: 42px;
     height: 42px;
+    margin-top:8px;
 }
 
 textarea {
     resize: none;
+}
+
+#test:nth-child(even) {
+    background-color: #f3f3f3;
 }
