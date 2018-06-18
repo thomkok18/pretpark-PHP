@@ -19,7 +19,7 @@ include("layout/header.php");
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="<?php echo htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie">
+                    <img src="<?php echo htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
                 <div class="col-md-8">
                     <h3><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>

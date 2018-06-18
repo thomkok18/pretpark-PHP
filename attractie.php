@@ -36,7 +36,7 @@ include("layout/header.php");
 
         <div class="row">
             <div class="col-md-4">
-                <img class="img-responsive" src="<?php echo htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie">
+                <img src="<?php echo htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie" width="300" height="300">
             </div>
 
             <div class="col-md-8">
@@ -60,7 +60,7 @@ include("layout/header.php");
                         <textarea style="margin-top:5px;" class="form-control" name="reactietekst" placeholder="Voeg reactie toe" rows="1"></textarea>
                     </div>
                     <div class="col-xs-1">
-                        <button style="margin-top:5px;" type="submit" class="btn btn-default" name="toevoegen">Verstuur</button>
+                        <button style="margin-top:5px;" type="submit" class="btn btn-default" name="toevoegen">Reageren</button>
                     </div>
                 </div>
             </div>
@@ -75,8 +75,8 @@ include("layout/header.php");
                     <img id="reactieProfielfoto" src="<?php echo htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
                 </div>
                 <div class="col-md-11">
+                    <p><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
                     <p style="white-space: nowrap;"><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
-                    <p><i>Door: <?php echo htmlspecialchars($gebruiker->getLogin()); ?></i></p>
                 </div>
             </div>
         <?php } ?>
