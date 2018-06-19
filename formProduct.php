@@ -26,7 +26,6 @@ if (isset($_POST['productOpslaan'])) {
 } else if (isset($_POST['productBijvullen'])) {
     extract($_POST);
     foreach ($geldvoorraad as $key => $geld) {
-        var_dump($geld->getSaldo());
         $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'gekocht');
     }
     $product->updateVoorraad($id, $product->getVoorraad(), $_GET['productAantal'], 'gekocht');
