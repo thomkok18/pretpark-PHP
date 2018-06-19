@@ -26,7 +26,7 @@ class Saldo {
     public function updateSaldo($idsaldo, $saldo, $totaal, $status) {
         $db = new Db();
         $conn = $db->getConnectie();
-        if ($status == 'verkocht') {
+        if ($status === 'verkocht') {
             $query = 'UPDATE saldo SET saldo = :saldo + :totaal WHERE idsaldo = :idsaldo';
         } else {
             $query = 'UPDATE saldo SET saldo = :saldo - :totaal WHERE idsaldo = :idsaldo';

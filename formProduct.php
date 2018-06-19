@@ -13,7 +13,7 @@ $products = $Product->getProducten();
 $product = $Product->getProductById($id);
 $saldo = new Saldo();
 $geldvoorraad = $saldo->getSaldoVoorraad();
-$totaal = 0.00;
+$totaal = $_GET['productAantal'] * 2;
 $pagina = 'product';
 
 if (isset($_POST['productOpslaan'])) {
@@ -26,6 +26,7 @@ if (isset($_POST['productOpslaan'])) {
 } else if (isset($_POST['productBijvullen'])) {
     extract($_POST);
     foreach ($geldvoorraad as $key => $geld) {
+        var_dump($geld->getSaldo());
         $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'gekocht');
     }
     $product->updateVoorraad($id, $product->getVoorraad(), $_GET['productAantal'], 'gekocht');
@@ -107,7 +108,6 @@ include("layout/header.php");
                 </div>
             </div>
             <div class="form-group">
-                <?php $totaal = $_GET['productAantal'] * 2; ?>
                 <label id="prijs<?php echo $id; ?>" for="prijs" class="col-sm-2 control-label">Prijs: € <?php echo number_format($totaal,2); ?></label>
             </div>
             <div class="form-group">
