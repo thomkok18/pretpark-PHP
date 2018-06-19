@@ -75,7 +75,7 @@ include("layout/header.php");
                     <img id="reactieProfielfoto" src="<?php echo htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
                 </div>
                 <div class="col-md-11">
-                    <p><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
+                    <p style="margin-top: 5px;"><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
                     <p style="white-space: nowrap;"><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
                 </div>
             </div>
