@@ -22,7 +22,7 @@ include("layout/header.php");
                     <img src="<?php echo htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
                 <div class="col-md-8">
-                    <h3><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
+                    <h3 style="margin-top: 0;"><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
                     <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
                 <div class="offset-md-4 col-md-8">
