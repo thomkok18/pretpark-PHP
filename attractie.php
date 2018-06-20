@@ -76,7 +76,7 @@ include("layout/header.php");
                 <div class="col-md-11">
                     <?php if ($_SESSION['login']['login'] == $gebruiker->getLogin()) { ?>
                         <div style="float:right;">
-                            <img style="margin-top: 10px; cursor: pointer;" src="img/bewerk.jpg" height="20" width="20">
+                            <img style="margin-top: 10px; cursor: pointer;" onclick="bewerken(<?php echo $id; ?>,<?php echo $reactie->getIdreactie(); ?>)" src="img/bewerk.jpg" height="20" width="20">
                         </div>
                     <?php } ?>
                     <p style="margin-top: 10px;"><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
@@ -85,6 +85,11 @@ include("layout/header.php");
             </div>
         <?php } ?>
     </div>
+    <script>
+        function bewerken(idattractie, idreactie) {
+            window.location.href = "attractie.php?id=" + idattractie + "&idreactie=" + idreactie;
+        }
+    </script>
 <?php
 include("layout/footer.php");
 ?>

@@ -29,7 +29,7 @@ include("layout/header.php");
                     <i>Door: <?php echo htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
                 <div class="offset-md-4 col-md-8">
-                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>">Reacties</a>
+                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
             </div>
             <div class="row">

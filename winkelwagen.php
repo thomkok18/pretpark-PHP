@@ -94,7 +94,6 @@ include("layout/header.php");
             } ?>
             <?php if (isset($_POST['betalen'])) {
                 foreach ($geldvoorraad as $key => $geld) {
-                    //TODO: Saldo veranderd niet.
                     $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
                 }
                 for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
