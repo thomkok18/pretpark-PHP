@@ -93,21 +93,19 @@ include("layout/header.php");
                 <div class="col-md-11">
                     <?php if (isset($_SESSION['login'])) {
                         if ($_SESSION['login']['login'] == $gebruiker->getLogin()) {
-                            if ($reactie->getIdgebruiker() == $gebruiker->getIdgebruiker()) {
-                                if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
-                                    <div style="float:right;">
-                                        <img style="margin-top: 10px; cursor: pointer;"
-                                             onclick="bewerken(<?php echo $id; ?>,<?php echo $reactie->getIdreactie(); ?>)"
-                                             src="img/bewerk.jpg" height="20" width="20">
-                                    </div>
-                                <?php } else { ?>
-                                    <div style="float:right;">
-                                        <img style="margin-top: 10px; cursor: pointer;"
-                                             onclick="cancel(<?php echo $id; ?>)"
-                                             src="img/cancel.png" height="20" width="20">
-                                    </div>
-                                <?php }
-                            }
+                            if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
+                                <div style="float:right;">
+                                    <img style="margin-top: 10px; cursor: pointer;"
+                                         onclick="bewerken(<?php echo $id; ?>,<?php echo $reactie->getIdreactie(); ?>)"
+                                         src="img/bewerk.jpg" height="20" width="20">
+                                </div>
+                            <?php } else { ?>
+                                <div style="float:right;">
+                                    <img style="margin-top: 10px; cursor: pointer;"
+                                         onclick="cancel(<?php echo $id; ?>)"
+                                         src="img/cancel.png" height="20" width="20">
+                                </div>
+                            <?php }
                         }
                     } ?>
                     <p style="margin-top: 10px;"><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
