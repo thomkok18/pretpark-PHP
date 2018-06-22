@@ -38,6 +38,16 @@ class Reactie {
         return $stmt->fetch();
     }
 
+    public function updateReactieById($idreactie, $reactietekst) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE reactie SET reactietekst = :reactietekst WHERE idreactie = :idreactie';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idreactie', $idreactie, PDO::PARAM_INT);
+        $stmt->bindParam(':reactietekst', $reactietekst, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
     /**
      * @return mixed
      */
