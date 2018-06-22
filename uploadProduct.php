@@ -4,50 +4,45 @@ include_once("lib/Product.php");
 
 $id = $_GET['id'];
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
-    header('Location: login.php');
-}
+// Settings
+$allowed_mime = array('image/png', 'image/jpeg');
 
-$product = new Product();
-
-$productTitel = $product->getProductTitelById($id)[0];
-$target_dir = "img/";
-$_FILES["fileToUpload"]["name"] = $productTitel . '.png';
-
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if ($check !== false) {
-        echo htmlspecialchars("File is an image - " . $check["mime"] . ".");
-        $uploadOk = 1;
+// If statements with safety checks
+if (isset($_FILES['file'])) {
+    $target_mime = mime_content_type($_FILES['file']['tmp_name']);
+    if (in_array($target_mime, $allowed_mime)) {
+        $real_ext = getExtension($target_mime);
+        $target = getcwd() . '/img/' . createName() . "." . $real_ext;
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+            $target_parts = explode('/file/', $target);
+        } else {
+            echo 'Sorry, there was a problem uploading your file.';
+        }
     } else {
-        echo htmlspecialchars("File is not an image.");
-        $uploadOk = 0;
+        echo 'That type of file isn\'t allowed by the server.';
     }
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo htmlspecialchars("Sorry, your file is too large.");
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo htmlspecialchars("Sorry, only JPG, JPEG & PNG files are allowed.");
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo htmlspecialchars("Sorry, your file was not uploaded.");
-// if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $product->updateProductfoto($id, 'img/' . $_FILES["fileToUpload"]["name"]);
-        header('Location: formProduct.php?id='.$id);
-    } else {
-        echo htmlspecialchars("Sorry, there was an error uploading your file.");
+    echo 'You didn\'t upload a file.';
+}
+
+// Get the real extension of the file
+function getExtension($file_mime) {
+    $mime = explode('/', $file_mime);
+    $ext = end($mime);
+    if ($ext == 'jpeg') $ext = 'jpg';
+    else if ($ext == 'png') $ext = 'png';
+    return $ext;
+}
+
+// Create a random name for the uploaded file
+function createName() {
+    $name = '';
+    $pos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+
+    for ($i = 0; $i < 7; $i++) {
+        $name .= $pos[rand(0, 61)];
     }
+
+    return $name;
 }
 ?>

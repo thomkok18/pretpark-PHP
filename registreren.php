@@ -5,7 +5,7 @@ include_once("lib/Gebruiker.php");
 if (isset($_POST['registreren'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
-    if ($voornaam != '' && $tussenvoegsels != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
+    if ($_GET['voornaam'] != '' && $_GET['tussenvoegsels'] != '' && $_GET['achternaam'] != '' && $_GET['login'] != '' && $_GET['wachtwoord'] != '') {
         $gebruiker->setNaam($voornaam);
         $gebruiker->setTussenvoegsels($tussenvoegsels);
         $gebruiker->setAchternaam($achternaam);
