@@ -5,19 +5,23 @@ include_once("lib/Gebruiker.php");
 if (isset($_POST['registreren'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
-    $gebruiker->setNaam($voornaam);
-    $gebruiker->setTussenvoegsels($tussenvoegsels);
-    $gebruiker->setAchternaam($achternaam);
-    $gebruiker->setLogin($login);
-    $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
-    $gebruiker->setIdRechten('2');
-    $gebruiker->setAvatar('img/profiel.png');
+    if ($voornaam != '' && $tussenvoegsels != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
+        $gebruiker->setNaam($voornaam);
+        $gebruiker->setTussenvoegsels($tussenvoegsels);
+        $gebruiker->setAchternaam($achternaam);
+        $gebruiker->setLogin($login);
+        $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
+        $gebruiker->setIdRechten('2');
+        $gebruiker->setAvatar('img/profiel.png');
 
 
-    if ($gebruiker->insertGebruiker()) {
-        header('Location: login.php');
+        if ($gebruiker->insertGebruiker()) {
+            header('Location: login.php');
+        } else {
+            $message[] = "Gebruiker is niet toegevoegd.";
+        }
     } else {
-        $message[] = "Gebruiker is niet toegevoegd.";
+        $message[] = "Vul alle verplichte gegevens in.";
     }
 }
 

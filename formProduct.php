@@ -22,7 +22,7 @@ if (isset($_POST['productOpslaan'])) {
     header('Location: formProduct.php?id=' . $id. '&productAantal=0');
 } else if (isset($_POST['productFotoOpslaan'])) {
     extract($_POST);
-    $gebruiker->updateProductfoto($id, $urlfoto);
+    $product->updateProductfoto($id, $urlfoto);
 } else if (isset($_POST['productBijvullen'])) {
     extract($_POST);
     foreach ($geldvoorraad as $key => $geld) {
@@ -75,13 +75,13 @@ include("layout/header.php");
         <h3>Product foto</h3>
         <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) {
             if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) {
-                echo htmlspecialchars($prod->getIdproduct());
+                echo $prod->getIdproduct();
             }
         } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
                 <div id="uploadButton" class="col-sm-10">
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="file" name="file" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">
