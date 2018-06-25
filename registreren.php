@@ -6,11 +6,11 @@ if (isset($_POST['registreren'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
     $voornaam = preg_replace('/\s+/', '', $_POST['voornaam']);
-    $tussenvoegsels = preg_replace('/\s+/', '', $_POST['tussenvoegsels']);
+    $tussenvoegsels = $_POST['tussenvoegsels'];
     $achternaam = preg_replace('/\s+/', '', $_POST['achternaam']);
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
-    if ($voornaam != '' && $tussenvoegsels != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
+    if ($voornaam != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
         $gebruiker->setNaam($voornaam);
         $gebruiker->setTussenvoegsels($tussenvoegsels);
         $gebruiker->setAchternaam($achternaam);
