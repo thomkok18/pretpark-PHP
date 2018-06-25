@@ -8,6 +8,7 @@ include_once('lib/Saldo.php');
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] != 'Beheerder') {
     header('Location: login.php');
+    return;
 }
 
 $gebruiker = new Gebruiker();
