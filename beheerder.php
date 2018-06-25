@@ -6,7 +6,7 @@ include_once("lib/Product.php");
 include_once("lib/Attractie.php");
 include_once('lib/Saldo.php');
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder') {
+if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] != 'Beheerder') {
     header('Location: login.php');
 }
 
