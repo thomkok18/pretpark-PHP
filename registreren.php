@@ -10,23 +10,34 @@ if (isset($_POST['registreren'])) {
     $achternaam = preg_replace('/\s+/', '', $_POST['achternaam']);
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
+
+    if (ctype_alpha($voornaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de Voornaam.';
+    }
+
+    // Checkt of de achternaam alleen uit letters bestaat
+    if (ctype_alpha($achternaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de Achternaam.';
+    }
+
     if ($voornaam != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
-        $gebruiker->setNaam($voornaam);
-        $gebruiker->setTussenvoegsels($tussenvoegsels);
-        $gebruiker->setAchternaam($achternaam);
-        $gebruiker->setLogin($login);
-        $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
-        $gebruiker->setIdRechten('2');
-        $gebruiker->setAvatar('img/profiel.png');
+        if (!isset($error_message)) {
+            $gebruiker->setNaam($voornaam);
+            $gebruiker->setTussenvoegsels($tussenvoegsels);
+            $gebruiker->setAchternaam($achternaam);
+            $gebruiker->setLogin($login);
+            $gebruiker->setWachtwoord(password_hash($wachtwoord, PASSWORD_DEFAULT));
+            $gebruiker->setIdRechten('2');
+            $gebruiker->setAvatar('img/profiel.png');
 
-
-        if ($gebruiker->insertGebruiker()) {
-            header('Location: login.php');
-        } else {
-            $message[] = "Gebruiker is niet toegevoegd.";
+            if ($gebruiker->insertGebruiker()) {
+                header('Location: login.php');
+            } else {
+                $error_message[] = "Gebruiker is niet toegevoegd.";
+            }
         }
     } else {
-        $message[] = "Vul alle verplichte gegevens in.";
+        $error_message[] = "Vul alle verplichte gegevens in.";
     }
 }
 
@@ -34,9 +45,11 @@ $pagina = 'registreren';
 
 include("layout/header.php");
 ?>
-    <?php if (isset($_POST['registreren'])) { ?>
+    <?php if (isset($_POST['registreren']) && isset($error_message)) { ?>
     <div class="alert alert-danger" role="alert">
-        <strong><?= htmlspecialchars($message[0]); ?></strong>
+        <?php foreach ($error_message as $key => $error){ ?>
+        <strong><?= htmlspecialchars($error) . "<br>"; ?></strong>
+        <?php } ?>
     </div>
     <?php } ?>
 
