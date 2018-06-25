@@ -44,25 +44,25 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="id" class="col-sm-2 control-label">Id</label>
                 <div class="col-sm-10">
-                    <input required disabled type="text" class="form-control" id="id" name="idproduct" value="<?php echo htmlspecialchars($id); ?>">
+                    <input required disabled type="text" class="form-control" id="id" name="idproduct" value="<?= htmlspecialchars($id); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo htmlspecialchars($product->getTitel()); ?>">
+                    <input required type="text" class="form-control" id="titel" name="titel" value="<?= htmlspecialchars($product->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="productomschrijving" class="col-sm-2 control-label">Productomschrijving</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="<?php echo htmlspecialchars($product->getProductomschrijving()); ?>">
+                    <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="<?= htmlspecialchars($product->getProductomschrijving()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="prijs" class="col-sm-2 control-label">Prijs</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="prijs" name="prijs" value="<?php echo htmlspecialchars($product->getPrijs()); ?>">
+                    <input required type="text" class="form-control" id="prijs" name="prijs" value="<?= htmlspecialchars($product->getPrijs()); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -99,15 +99,15 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="prijs" class="col-sm-2 control-label">Bijvullen</label>
                 <div class="col-sm-10">
-                    <select style="padding: 6px 0 6px 0;" id="bijvullenSelectbox<?php echo htmlspecialchars($id); ?>" name="bijvullen" onchange="refresh(<?php echo htmlspecialchars($id); ?>)">
+                    <select style="padding: 6px 0 6px 0;" id="bijvullenSelectbox<?= htmlspecialchars($id); ?>" name="bijvullen" onchange="refresh(<?= htmlspecialchars($id); ?>)">
                         <?php for ($voorraad = 0; $voorraad <= 1000; $voorraad++) { ?>
-                            <option <?php if ($voorraad == $_GET['productAantal']) { ?> selected <?php } ?> ><?php echo htmlspecialchars($voorraad); ?></option>
+                            <option <?php if ($voorraad == $_GET['productAantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
                         <?php } ?>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label id="prijs<?php echo $id; ?>" for="prijs" class="col-sm-2 control-label">Prijs: € <?php echo number_format($totaal,2); ?></label>
+                <label id="prijs<?= $id; ?>" for="prijs" class="col-sm-2 control-label">Prijs: € <?= number_format($totaal,2); ?></label>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

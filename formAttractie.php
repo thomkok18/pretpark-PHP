@@ -33,13 +33,13 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="titel" class="col-sm-2 control-label">Titel</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="titel" name="titel" value="<?php echo htmlspecialchars($attracties->getTitel()); ?>">
+                    <input required type="text" class="form-control" id="titel" name="titel" value="<?= htmlspecialchars($attracties->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="omschrijving" class="col-sm-2 control-label">Attractie omschrijving</label>
                 <div class="col-sm-10">
-                    <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"><?php echo htmlspecialchars($attracties->getOmschrijving()); ?></textarea>
+                    <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"><?= htmlspecialchars($attracties->getOmschrijving()); ?></textarea>
                 </div>
             </div>
             </div>

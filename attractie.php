@@ -43,7 +43,7 @@ include("layout/header.php");
 
         <div class="row">
             <div class="col-md-4">
-                <img src="<?php echo htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie" width="300"
+                <img src="<?= htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie" width="300"
                      height="300">
             </div>
 
@@ -51,21 +51,21 @@ include("layout/header.php");
                 <div class="row">
                     <?php if (isset($_SESSION['login'])) { ?>
                         <h3 style="margin-top: 0;"
-                            class="col-xs-10"><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
+                            class="col-xs-10"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                     <?php } ?>
                 </div>
-                <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
+                <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>
         </div>
         <?php if (isset($_SESSION['login'])) { ?>
-            <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?id=" . $id); ?>"
+            <form class="form-horizontal" action="<?= htmlspecialchars($_SERVER['PHP_SELF'] . "?id=" . $id); ?>"
                   method="post">
                 <div class="form-group">
                     <div class="col-xs-12" style="margin-top:20px;">
                         <div class="col-xs-1">
                             <img id="profielAfbeelding"
-                                 src="<?php echo htmlspecialchars($_SESSION['login']['avatar']); ?>"
-                                 alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
+                                 src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>"
+                                 alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
                         </div>
                         <div class="col-xs-10">
                             <textarea style="margin-top:5px;" class="form-control" name="reactietekst"
@@ -87,8 +87,8 @@ include("layout/header.php");
             <div class="row" id="test">
                 <div class="col-md-1">
                     <img style="margin-top: 15px;" id="reactieProfielfoto"
-                         src="<?php echo htmlspecialchars($gebruiker->getAvatar()); ?>"
-                         alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
+                         src="<?= htmlspecialchars($gebruiker->getAvatar()); ?>"
+                         alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
                 </div>
                 <div class="col-md-11">
                     <?php if (isset($_SESSION['login'])) {
@@ -96,28 +96,28 @@ include("layout/header.php");
                             if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
                                 <div style="float:right;">
                                     <img style="margin-top: 10px; cursor: pointer;"
-                                         onclick="bewerken(<?php echo $id; ?>,<?php echo $reactie->getIdreactie(); ?>)"
+                                         onclick="bewerken(<?= $id; ?>,<?= $reactie->getIdreactie(); ?>)"
                                          src="img/bewerk.jpg" height="20" width="20">
                                 </div>
                             <?php } else { ?>
                                 <div style="float:right;">
                                     <img style="margin-top: 10px; cursor: pointer;"
-                                         onclick="cancel(<?php echo $id; ?>)"
+                                         onclick="cancel(<?= $id; ?>)"
                                          src="img/cancel.png" height="20" width="20">
                                 </div>
                             <?php }
                         }
                     } ?>
-                    <p style="margin-top: 10px;"><b><?php echo htmlspecialchars($gebruiker->getLogin()); ?></b></p>
+                    <p style="margin-top: 10px;"><b><?= htmlspecialchars($gebruiker->getLogin()); ?></b></p>
                     <?php if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
-                        <p style="white-space: nowrap;"><?php echo htmlspecialchars($reactie->getReactietekst()); ?></p>
+                        <p style="white-space: nowrap;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
                     <?php } else { ?>
                         <form class="form-horizontal" method="post">
-                            <input hidden name="id" value="<?php echo $id; ?>">
-                            <input hidden name="idreactie" value="<?php echo $reactie->getIdreactie(); ?>">
+                            <input hidden name="id" value="<?= $id; ?>">
+                            <input hidden name="idreactie" value="<?= $reactie->getIdreactie(); ?>">
                             <div style="padding-left: 0;" class="col-xs-10">
                                 <textarea class="form-control" name="reactietekstAanpassen"
-                                          rows="1"><?php echo $reactie->getReactietekst(); ?></textarea>
+                                          rows="1"><?= $reactie->getReactietekst(); ?></textarea>
                             </div>
                             <div class="col-xs-2">
                                 <button style="margin-top:5px;" type="submit" class="btn btn-default" name="aanpassen">

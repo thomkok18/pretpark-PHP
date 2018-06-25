@@ -39,31 +39,31 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="id" class="col-sm-2 control-label">Id</label>
                 <div class="col-sm-10">
-                    <input required disabled type="text" class="form-control" id="id" name="idgebruiker" value="<?php echo htmlspecialchars($id); ?>">
+                    <input required disabled type="text" class="form-control" id="id" name="idgebruiker" value="<?= htmlspecialchars($id); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="login" name="login" value="<?php echo htmlspecialchars($user->getLogin()); ?>">
+                    <input required type="text" class="form-control" id="login" name="login" value="<?= htmlspecialchars($user->getLogin()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="naam" name="naam" value="<?php echo htmlspecialchars($user->getNaam()); ?>">
+                    <input required type="text" class="form-control" id="naam" name="naam" value="<?= htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?php echo htmlspecialchars($user->getTussenvoegsels()); ?>">
+                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?= htmlspecialchars($user->getTussenvoegsels()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?php echo htmlspecialchars($user->getAchternaam()); ?>">
+                    <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?= htmlspecialchars($user->getAchternaam()); ?>">
                 </div>
             </div>
             <div class="form-group">

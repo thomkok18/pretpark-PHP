@@ -53,16 +53,16 @@ include("layout/header.php");
                     if (in_array($_SESSION['winkelwagen'][$i]['idproduct'], $id)) { ?>
                         <div class="col-xs-12">
                             <div class="col-xs-3">
-                                <img id="productAfbeelding" class="img-responsive" src="<?php echo htmlspecialchars($_SESSION['winkelwagen'][$i]['urlfoto']); ?>" alt="Product">
+                                <img id="productAfbeelding" class="img-responsive" src="<?= htmlspecialchars($_SESSION['winkelwagen'][$i]['urlfoto']); ?>" alt="Product">
                             </div>
-                            <h3 class="tabelWinkel col-xs-3"><?php echo htmlspecialchars($_SESSION['winkelwagen'][$i]['titel']); ?></h3>
-                            <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete=<?php echo $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span class="text-danger">Verwijderen</span></a>
-                            <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?php echo htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?>" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(<?php echo htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?>)">
+                            <h3 class="tabelWinkel col-xs-3"><?= htmlspecialchars($_SESSION['winkelwagen'][$i]['titel']); ?></h3>
+                            <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete=<?= $_SESSION['winkelwagen'][$i]['idproduct']; ?>"><span class="text-danger">Verwijderen</span></a>
+                            <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?= htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?>" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(<?= htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?>)">
                                 <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
-                                    <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?php echo htmlspecialchars($voorraad); ?></option>
+                                    <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
                                 <?php } ?>
                             </select>
-                            <b id="prijs" class="col-xs-2"><?php echo htmlspecialchars('€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2)); ?></b>
+                            <b id="prijs" class="col-xs-2"><?= htmlspecialchars('€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2)); ?></b>
                         </div>
                         <?php
                         $aantalProducten = 0;
@@ -74,15 +74,15 @@ include("layout/header.php");
                 <?php } ?>
                 <div class="col-xs-12">
                     <div class="row">
-                        <b class="col-xs-2 totaal"><?php echo htmlspecialchars('€ ' . number_format($subtotaal, 2)); ?></b>
+                        <b class="col-xs-2 totaal"><?= htmlspecialchars('€ ' . number_format($subtotaal, 2)); ?></b>
                         <b class="col-xs-2 totaal">Subtotaal</b>
                     </div>
                     <div class="row">
-                        <p class="col-xs-2 totaal"><?php echo htmlspecialchars('€ ' . number_format($verzendkosten, 2)); ?></p>
+                        <p class="col-xs-2 totaal"><?= htmlspecialchars('€ ' . number_format($verzendkosten, 2)); ?></p>
                         <p class="col-xs-2 totaal">Verzendskosten</p>
                     </div>
                     <div class="row">
-                        <b class="col-xs-2 totaal"><?php echo htmlspecialchars('€ ' . number_format($totaal, 2)); ?></b>
+                        <b class="col-xs-2 totaal"><?= htmlspecialchars('€ ' . number_format($totaal, 2)); ?></b>
                         <b class="col-xs-2 totaal">Totaal</b>
                     </div>
                 </div>

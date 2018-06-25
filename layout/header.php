@@ -75,8 +75,8 @@ $gebruikers = $gebruiker->getGebruikers();
                             echo htmlspecialchars($geb->getIdgebruiker());
                             }
                             } ?>">
-                            <img id="profielAfbeelding" src="<?php echo htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?php echo htmlspecialchars($gebruiker->getLogin()); ?>">
-                            <p id="profielnaam"><?php echo htmlspecialchars($_SESSION['login']['login']); ?></p></a></li>
+                            <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
+                            <p id="profielnaam"><?= htmlspecialchars($_SESSION['login']['login']); ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
                     </li>
@@ -92,7 +92,7 @@ $gebruikers = $gebruiker->getGebruikers();
         <div class="well">
             <ul>
                 <?php foreach ($messages as $message) { ?>
-                    <li class="message"><?php echo htmlspecialchars($message); ?></li>
+                    <li class="message"><?= htmlspecialchars($message); ?></li>
                 <?php } ?>
             </ul>
         </div>

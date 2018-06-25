@@ -43,7 +43,7 @@ include("layout/header.php");
     <?php } else { ?>
         <div class="alert alert-success" role="alert">
     <?php } ?>
-    <strong><?php echo htmlspecialchars($message[0]); ?></strong>
+    <strong><?= htmlspecialchars($message[0]); ?></strong>
     </div>
 <?php } ?>
 
@@ -58,28 +58,28 @@ include("layout/header.php");
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="login" name="login"
-                           value="<?php echo htmlspecialchars($user->getLogin()); ?>">
+                           value="<?= htmlspecialchars($user->getLogin()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="naam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="naam" name="naam"
-                           value="<?php echo htmlspecialchars($user->getNaam()); ?>">
+                           value="<?= htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
-                           value="<?php echo htmlspecialchars($user->getTussenvoegsels()); ?>">
+                           value="<?= htmlspecialchars($user->getTussenvoegsels()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
                     <input required type="text" class="form-control" id="achternaam" name="achternaam"
-                           value="<?php echo htmlspecialchars($user->getAchternaam()); ?>">
+                           value="<?= htmlspecialchars($user->getAchternaam()); ?>">
                 </div>
             </div>
             <div class="form-group">

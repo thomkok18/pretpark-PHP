@@ -19,17 +19,17 @@ include("layout/header.php");
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="<?php echo htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
+                    <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
                 <div class="col-md-8">
-                    <h3 style="margin-top: 0;"><?php echo htmlspecialchars($attractie->getTitel()); ?></h3>
-                    <p><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></p>
+                    <h3 style="margin-top: 0;"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
+                    <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
                 <div class="offset-md-4 col-md-8">
-                    <i>Door: <?php echo htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
+                    <i>Door: <?= htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
                 <div class="offset-md-4 col-md-8">
-                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
+                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
             </div>
             <div class="row">

@@ -41,7 +41,7 @@ include("layout/header.php");
 
     <div class="row">
         <?php foreach ($geldvoorraad as $key => $geld) { ?>
-        <h3 class="col-xs-11">Saldo: € <?php echo htmlspecialchars($geld->getSaldo()); ?></h3>
+        <h3 class="col-xs-11">Saldo: € <?= htmlspecialchars($geld->getSaldo()); ?></h3>
         <?php } ?>
     </div>
 
@@ -62,15 +62,15 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
-                    <th><a href="beheerder.php?deleteGebruiker=<?php echo htmlspecialchars($geb->getIdgebruiker()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo htmlspecialchars($geb->getIdgebruiker()); ?>"></a></th>
+                    <th><a href="beheerder.php?deleteGebruiker=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a></th>
                     <?php } ?>
                     <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
-                <th><img class="prullenbak" src="img/prullenbakDicht.jpg" value="<?php echo htmlspecialchars($geb->getIdgebruiker()); ?>"></th>
+                <th><img class="prullenbak" src="img/prullenbakDicht.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></th>
                     <?php } ?>
-                <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?php echo htmlspecialchars($geb->getIdgebruiker()); ?>"><?php echo htmlspecialchars($geb->getIdgebruiker()); ?></a></th>
-                <th class="tabelText"><?php echo htmlspecialchars($geb->getVolledigeNaam()); ?></th>
-                <th class="tabelText"><?php echo htmlspecialchars($geb->getLogin()); ?></th>
-                <th class="tabelText"><?php echo htmlspecialchars($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving()); ?></th>
+                <th><a class="btn btn-info" role="button" href="formGebruiker.php?id=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><?= htmlspecialchars($geb->getIdgebruiker()); ?></a></th>
+                <th class="tabelText"><?= htmlspecialchars($geb->getVolledigeNaam()); ?></th>
+                <th class="tabelText"><?= htmlspecialchars($geb->getLogin()); ?></th>
+                <th class="tabelText"><?= htmlspecialchars($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving()); ?></th>
             </tr>
             </tbody>
         <?php } ?>
@@ -92,10 +92,10 @@ include("layout/header.php");
         <?php foreach ($producten as $key => $prod) { ?>
             <tbody>
             <tr>
-                <th><a href="beheerder.php?deleteProduct=<?php echo htmlspecialchars($prod->getIdproduct()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo htmlspecialchars($prod->getIdproduct()); ?>"></a>
-                <th class="tabelText"><a class="btn btn-info" role="button" href="formProduct.php?id=<?php echo htmlspecialchars($prod->getIdproduct()); ?>&productAantal=0"><?php echo htmlspecialchars($prod->getIdproduct()); ?></a></th>
-                <th class="tabelText"><?php echo htmlspecialchars($prod->getTitel()); ?></th>
-                <th class="tabelText"><?php echo htmlspecialchars($prod->getVoorraad()); ?></th>
+                <th><a href="beheerder.php?deleteProduct=<?= htmlspecialchars($prod->getIdproduct()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($prod->getIdproduct()); ?>"></a>
+                <th class="tabelText"><a class="btn btn-info" role="button" href="formProduct.php?id=<?= htmlspecialchars($prod->getIdproduct()); ?>&productAantal=0"><?= htmlspecialchars($prod->getIdproduct()); ?></a></th>
+                <th class="tabelText"><?= htmlspecialchars($prod->getTitel()); ?></th>
+                <th class="tabelText"><?= htmlspecialchars($prod->getVoorraad()); ?></th>
             </tr>
             </tbody>
         <?php } ?>
@@ -117,10 +117,10 @@ include("layout/header.php");
         <?php foreach ($attracties as $key => $attractie) { ?>
             <tbody>
             <tr>
-                <th><a href="beheerder.php?deleteProduct=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?php echo htmlspecialchars($attractie->getIdattractie()); ?>"></a>
-                <th class="tabelText"><a class="btn btn-info" role="button" href="formAttractie.php?id=<?php echo htmlspecialchars($attractie->getIdattractie()); ?>"><?php echo htmlspecialchars($attractie->getIdattractie()); ?></a></th>
-                <th class="tabelText"><?php echo htmlspecialchars($attractie->getTitel()); ?></th>
-                <th class="tabelText"><?php echo htmlspecialchars($attractie->getOmschrijving()); ?></th>
+                <th><a href="beheerder.php?deleteProduct=<?= htmlspecialchars($attractie->getIdattractie()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($attractie->getIdattractie()); ?>"></a>
+                <th class="tabelText"><a class="btn btn-info" role="button" href="formAttractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>"><?= htmlspecialchars($attractie->getIdattractie()); ?></a></th>
+                <th class="tabelText"><?= htmlspecialchars($attractie->getTitel()); ?></th>
+                <th class="tabelText"><?= htmlspecialchars($attractie->getOmschrijving()); ?></th>
             </tr>
             </tbody>
         <?php } ?>

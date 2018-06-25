@@ -36,7 +36,7 @@ include("layout/header.php");
 ?>
     <?php if (isset($_POST['registreren'])) { ?>
     <div class="alert alert-danger" role="alert">
-        <strong><?php echo htmlspecialchars($message[0]); ?></strong>
+        <strong><?= htmlspecialchars($message[0]); ?></strong>
     </div>
     <?php } ?>
 

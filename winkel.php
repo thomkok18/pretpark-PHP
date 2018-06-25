@@ -61,7 +61,7 @@ include("layout/header.php");
     <?php } else { ?>
         <div class="alert alert-success" role="alert">
     <?php } ?>
-    <strong><?php echo htmlspecialchars($message[0]); ?></strong>
+    <strong><?= htmlspecialchars($message[0]); ?></strong>
     </div>
 <?php } ?>
     <div class="container">
@@ -71,23 +71,23 @@ include("layout/header.php");
 
         <?php foreach ($producten as $key => $prod) { ?>
             <form class="form-horizontal" method="post"
-                  action="winkel.php?action=add&id=<?php echo htmlspecialchars($prod->getIdproduct()); ?>">
+                  action="winkel.php?action=add&id=<?= htmlspecialchars($prod->getIdproduct()); ?>">
                 <div class="col-xs-12">
                     <div class="col-xs-3">
-                        <img id="productAfbeelding" class="img-responsive" src="<?php echo htmlspecialchars($prod->getUrlFoto()); ?>"
+                        <img id="productAfbeelding" class="img-responsive" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>"
                              alt="Product">
                     </div>
-                    <h3 class="tabelWinkel col-xs-3"><?php echo htmlspecialchars($prod->getTitel()); ?></h3>
-                    <b id="prijs" class="col-xs-2">€ <?php echo htmlspecialchars($prod->getPrijs()); ?></b>
+                    <h3 class="tabelWinkel col-xs-3"><?= htmlspecialchars($prod->getTitel()); ?></h3>
+                    <b id="prijs" class="col-xs-2">€ <?= htmlspecialchars($prod->getPrijs()); ?></b>
                     <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
                         <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
-                            <option><?php echo htmlspecialchars($i); ?></option>
+                            <option><?= htmlspecialchars($i); ?></option>
                         <?php } ?>
                     </select>
-                    <input hidden name="urlfoto" value="<?php echo htmlspecialchars($prod->getUrlfoto()); ?>">
-                    <input hidden name="titel" value="<?php echo htmlspecialchars($prod->getTitel()); ?>">
-                    <input hidden name="prijs" value="<?php echo htmlspecialchars($prod->getPrijs()); ?>">
-                    <input hidden name="voorraad" value="<?php echo htmlspecialchars($prod->getVoorraad()); ?>">
+                    <input hidden name="urlfoto" value="<?= htmlspecialchars($prod->getUrlfoto()); ?>">
+                    <input hidden name="titel" value="<?= htmlspecialchars($prod->getTitel()); ?>">
+                    <input hidden name="prijs" value="<?= htmlspecialchars($prod->getPrijs()); ?>">
+                    <input hidden name="voorraad" value="<?= htmlspecialchars($prod->getVoorraad()); ?>">
                     <button class="tabelWinkel btn col-xs-2" type="submit" name="winkelwagen">Winkelwagen</button>
                 </div>
             </form>
