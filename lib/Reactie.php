@@ -49,6 +49,20 @@ class Reactie {
     }
 
     /**
+     * @param $idgebruiker
+     * @param $idreactie
+     * @return mixed
+     */
+    public function getIdgebruikerByIdReactie($idreactie) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idgebruiker FROM reactie WHERE idreactie = :idreactie");
+        $stmt->bindParam(':idreactie', $idreactie, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdreactie() {

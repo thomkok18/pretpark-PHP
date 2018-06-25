@@ -1,6 +1,7 @@
 <?php
 include_once('lib/config.php');
 include_once('lib/Attractie.php');
+include_once('lib/Reactie.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -11,6 +12,7 @@ $Attractie = new Attractie();
 $attractie = $Attractie->getAttractieById($id);
 $reacties = $attractie->getReactiesByIdAttractieOrderByDESC();
 $gebruiker = $attractie->getGebruikerById();
+$reactie = new Reactie();
 $pagina = 'attractie';
 
 if (isset($_POST['toevoegen'])) {
@@ -95,7 +97,7 @@ include("layout/header.php");
                         }
                     } ?>
                     <p style="margin-top: 10px;"><b><?= htmlspecialchars($gebruiker->getLogin()); ?></b></p>
-                    <?php if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
+                    <?php if ($reactie->getIdreactie() != $_GET['idreactie'] || $reactie->getIdgebruikerByIdReactie($_GET['idreactie'])[0] != $_SESSION['login']['idgebruiker']) { ?>
                         <p style="white-space: nowrap;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
                     <?php } else { ?>
                         <form class="form-horizontal" method="post">
