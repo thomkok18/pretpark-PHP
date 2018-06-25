@@ -101,7 +101,7 @@ include("layout/header.php");
                 echo htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.');
             } ?>
             <?php if (isset($_POST['betalen'])) {
-                if ($totaal == $subtotaal + $verzendkosten) {
+                if ($totaal === $subtotaal + $verzendkosten) {
                     foreach ($geldvoorraad as $key => $geld) {
                         $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
                     }
