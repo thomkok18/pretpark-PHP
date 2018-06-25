@@ -4,6 +4,11 @@ include_once("lib/Product.php");
 
 $id = $_GET['id'];
 
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    return;
+}
+
 // Settings
 $allowed_mime = array('image/png', 'image/jpeg');
 

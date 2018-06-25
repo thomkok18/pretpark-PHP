@@ -7,6 +7,7 @@ $id = $_GET['id'];
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
+    return;
 }
 
 $gebruiker = new Gebruiker();

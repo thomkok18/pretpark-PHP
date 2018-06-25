@@ -6,6 +6,7 @@ $id = $_GET['id'];
 
 if (!isset($_SESSION['login'])) {
     header('Location: login.php');
+    return;
 }
 
 $attractie = new Attractie();

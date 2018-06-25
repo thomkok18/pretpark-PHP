@@ -4,6 +4,7 @@ include_once('lib/Product.php');
 
 if (!isset($_SESSION['login'])) {
     header('Location: login.php');
+    return;
 }
 
 $product = new Product();

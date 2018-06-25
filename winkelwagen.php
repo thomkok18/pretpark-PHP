@@ -6,6 +6,7 @@ include_once('lib/Winkelwagen.php');
 
 if (!isset($_SESSION['login'])) {
     header('Location: login.php');
+    return;
 }
 
 $product = new Product();

@@ -5,6 +5,7 @@ include_once("lib/Attractie.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
+    return;
 }
 
 $pagina = 'formAttractieToevoegen';

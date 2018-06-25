@@ -5,6 +5,7 @@ include_once("lib/Saldo.php");
 
 if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder' && $_SESSION['login']['idgebruiker'] !== $id) {
     header('Location: login.php');
+    return;
 }
 
 $id = $_GET['id'];
