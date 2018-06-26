@@ -126,7 +126,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div id="uploadButton" class="col-sm-10">
-                    <input type="file" name="profielFoto" id="fileToUpload">
+                    <input type="file" name="fileToUpload" id="profielFoto">
                 </div>
             </div>
             <div class="form-group">
