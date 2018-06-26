@@ -66,6 +66,17 @@ class Winkelwagen {
     }
 
     /**
+     * @return array
+     */
+    public function getWinkelwagens() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT * FROM winkelwagen");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Winkelwagen');
+    }
+
+    /**
      * @return mixed
      */
     public function getIdwinkelwagen() {
