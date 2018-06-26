@@ -31,7 +31,6 @@ class Winkelwagen {
         $stmt = $conn->prepare("SELECT aantal FROM winkelwagen WHERE idgebruiker = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_COLUMN, 'Winkelwagen');
         return $stmt->fetch();
     }
 

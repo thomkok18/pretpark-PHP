@@ -50,7 +50,6 @@ class Product {
         $stmt = $conn->prepare("SELECT titel FROM product WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_COLUMN, 'Product');
         return $stmt->fetch();
     }
 
@@ -64,7 +63,6 @@ class Product {
         $stmt = $conn->prepare("SELECT voorraad FROM product WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_COLUMN, 'Product');
         return $stmt->fetch();
     }
 

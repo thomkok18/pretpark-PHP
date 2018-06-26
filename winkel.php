@@ -64,7 +64,7 @@ if (isset($_POST['winkelwagen'])) {
     }
     foreach ($winkelwagen as $wkey => $winkel) {
         foreach ($producten as $pkey => $prod) {
-            if ($winkel->getAantalById() <= $prod->getVoorraad()) {
+            if ($winkel->getAantalById($_POST['aantal']) <= $prod->getProductVoorraadById($_GET['id'])[0]) {
                 $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
             } else {
                 $error_message[] = 'Er zijn niet genoeg producten op voorraad.';

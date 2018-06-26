@@ -40,6 +40,8 @@ $totaal = 0.00;
 //    }
 //}
 
+var_dump($product->getProductVoorraadById(1)[0]);
+
 include("layout/header.php");
 ?>
 
