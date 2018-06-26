@@ -28,7 +28,7 @@ class Winkelwagen {
     public function getAantalById($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $stmt = $conn->prepare("SELECT aantal FROM winkelwagen WHERE idgebruiker = :id");
+        $stmt = $conn->prepare("SELECT aantal FROM winkelwagen WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
