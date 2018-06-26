@@ -95,22 +95,19 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="wachtwoordHuidig" class="col-sm-2 control-label">Huidige wachtwoord</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord"
-                           value="">
+                    <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="nieuwWachtwoord" class="col-sm-2 control-label">Nieuw wachtwoord</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord"
-                           value="">
+                    <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="wachtwoordHerhalen" class="col-sm-2 control-label">Wachtwoord herhalen</label>
                 <div class="col-sm-10">
-                    <input required type="password" class="form-control" id="herhaalWachtwoord" name="herhaalWachtwoord"
-                           value="">
+                    <input required type="password" class="form-control" id="wachtwoordHerhalen" name="herhaalWachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
@@ -129,7 +126,7 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div id="uploadButton" class="col-sm-10">
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="file" name="profielFoto" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">

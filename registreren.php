@@ -12,12 +12,15 @@ if (isset($_POST['registreren'])) {
     $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
 
     if (ctype_alpha($voornaam) == false) {
-        $error_message[] = 'Alleen letters zijn toegestaan voor de Voornaam.';
+        $error_message[] = 'Alleen letters zijn toegestaan voor de voornaam.';
     }
 
-    // Checkt of de achternaam alleen uit letters bestaat
+    if (ctype_alpha($tussenvoegsels) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de tussenvoegsels.';
+    }
+
     if (ctype_alpha($achternaam) == false) {
-        $error_message[] = 'Alleen letters zijn toegestaan voor de Achternaam.';
+        $error_message[] = 'Alleen letters zijn toegestaan voor de achternaam.';
     }
 
     if ($voornaam != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {

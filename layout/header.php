@@ -88,12 +88,3 @@ $gebruikers = $gebruiker->getGebruikers();
 </nav>
 <img src="img/pretpark_logo.png" id="pretparkLogo" class="img-responsive" alt="logo pretpark">
 <div class="container">
-    <?php if (isset($messages) && count($messages) > 0) { ?>
-        <div class="well">
-            <ul>
-                <?php foreach ($messages as $message) { ?>
-                    <li class="message"><?= htmlspecialchars($message); ?></li>
-                <?php } ?>
-            </ul>
-        </div>
-    <?php } ?>
