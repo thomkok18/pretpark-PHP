@@ -69,7 +69,7 @@ if (isset($_POST['winkelwagen'])) {
             }
         }
     }
-    if (!intval($winkelwagen->getAantalById($_GET['id'])[0]) <= !intval($product->getProductVoorraadById($_GET['id'])[0])) {
+    if (intval($winkelwagen->getAantalById($_GET['id'])[0]) > intval($product->getProductVoorraadById($_GET['id'])[0])) {
         $error_message[] = 'Er zijn niet genoeg producten op voorraad.';
     }
 
