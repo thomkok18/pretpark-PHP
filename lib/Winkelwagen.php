@@ -38,12 +38,26 @@ class Winkelwagen {
      * @param $id
      * @return mixed
      */
-    public function getIdproductByIdgebruiker($id) {
+    public function getIdproductByIdproduct($id) {
         $db = new Db();
         $conn = $db->getConnectie();
         $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getIdproductByIdgebruiker($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idgebruiker = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Winkelwagen');
         return $stmt->fetch();
     }
 

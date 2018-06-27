@@ -23,7 +23,7 @@ if (isset($_POST['winkelwagen'])) {
                 $winkelwagen->setIdproduct($_GET['id']);
                 $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
                 $winkelwagen->setAantal($_POST['aantal']);
-                if ($winkelwagen->getIdproductByIdgebruiker($_GET['id'])[0] != $_GET['id']) {
+                if ($winkelwagen->getIdproductByIdproduct($_GET['id'])[0] != $_GET['id']) {
                     $winkelwagen->insertWinkelwagen();
                 } else {
                     $winkelwagen->updateIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'], $_POST['aantal']);
@@ -35,7 +35,7 @@ if (isset($_POST['winkelwagen'])) {
         $error_message[] = 'Er zijn niet genoeg producten op voorraad.';
     }
 
-    if ($winkelwagen->getIdproductByIdgebruiker($_GET['id'])[0] != $_GET['id']) {
+    if ($winkelwagen->getIdproductByIdproduct($_GET['id'])[0] != $_GET['id']) {
         $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
     } else {
         $messages[] = 'Product is aangepast in het winkelwagentje.';

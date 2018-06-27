@@ -40,7 +40,7 @@ $totaal = 0.00;
 //    }
 //}
 
-var_dump($product->getProductVoorraadById(1)[0]);
+var_dump($winkelwagen->getIdproductByIdgebruiker(1));
 
 include("layout/header.php");
 ?>
@@ -51,6 +51,7 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
+
             <div class="col-xs-12">
                 <div class="col-xs-3">
                     <img id="productAfbeelding" class="img-responsive" src="" alt="Product">
@@ -58,7 +59,11 @@ include("layout/header.php");
                 <h3 class="tabelWinkel col-xs-3"></h3>
                 <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete="><span class="text-danger">Verwijderen</span></a>
                 <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh();">
-                    <?php for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
+                    <?php foreach ($producten as $key => $prod) { ?>
+                        <?php for ($id = 0; $id < $winkelwagen->getAantalById($_GET['id']); $id++) { ?>
+                            <option <?php if ($prod->getProductVoorraadById($id)[0]) { ?> selected <?php } ?> ></option>
+                        <?php } ?>
+
                         <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
                     <?php } ?>
                 </select>

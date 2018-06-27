@@ -2,53 +2,60 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 
-$id = $_GET['id'];
+$upload_folder = '/img/';
+$allowed_mime = ['image/png', 'image/jpeg'];
 
-if (!isset($_SESSION['login']) || $_SESSION['login']['idgebruiker'] !== $id) {
-    header('Location: login.php');
-    return;
-}
-
-$gebruiker = new Gebruiker();
-
-$target_dir = "img/";
-$_FILES["fileToUpload"]["name"] = $_SESSION['login']['login'] . '.png';
-
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if ($check !== false) {
-        echo htmlspecialchars("File is an image - " . $check["mime"] . ".");
-        $uploadOk = 1;
+if (isset($_POST['profielFotoOpslaan']) && isset($_FILES['fileToUpload'])) {
+    $file_mime = mime_content_type($_FILES['fileToUpload']);
+    if (in_array($file_mime, $allowed_mime)) {
+        $file_ext = getExtension($file_mime);
+        $target = getcwd() . $upload_folder . $_SESSION['login']['login'] . "." . $file_ext;
+        if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target)) {
+            $message = 'Profiel foto is geupload!';
+        } else {
+            $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
+        }
     } else {
-        echo htmlspecialchars("File is not an image.");
-        $uploadOk = 0;
+        $message = 'Dit type bestand is verboden!';
     }
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo htmlspecialchars("Sorry, your file is too large.");
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo htmlspecialchars("Sorry, only JPG, JPEG & PNG files are allowed.");
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo htmlspecialchars("Sorry, your file was not uploaded.");
-// if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $gebruiker->updateAvatar($id, 'img/' . $_FILES["fileToUpload"]["name"]);
-        session_destroy();
-        header('Location: login.php');
-    } else {
-        echo htmlspecialchars("Sorry, there was an error uploading your file.");
-    }
+    $message = 'Er is geen bestand geupload of de post variabele is niet gezet!';
 }
+
+function getExtension($file_mime) {
+    $mime = explode('/', $file_mime);
+    $ext = end($mime);
+    if ($ext == 'jpeg') $ext = 'jpg';
+    return $ext;
+}
+
+echo $message;
+
+
+//$upload_folder = '/profilePictureFolder???/';
+//$allowed_mime = ['image/png', 'image/jpeg'];
+//
+//if (isset($_POST['changePicture???']) && isset($_FILES['fileToUpload???'])) {
+//    $file_mime = mime_content_type($_FILES['fileToUpload???']);
+//    if (in_array($file_mime, $allowed_mime)) {
+//        $file_ext = getExtension($file_mime);
+//        $target = getcwd() . $upload_folder . $_SESSION['user???']['name???'] . "." . $file_ext;
+//        if (move_uploaded_file($_FILES['fileToUpload???']['tmp_name'], $target)) {
+//            $message = 'Profiel foto is geupload!';
+//        } else {
+//            $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
+//        }
+//    } else {
+//        $message = 'Dit type bestand is verboden!';
+//    }
+//} else {
+//    $message = 'Er is geen bestand geupload of de post variabele is niet gezet!';
+//}
+//
+//function getExtension($file_mime) {
+//    $mime = explode('/', $file_mime);
+//    $ext = end($mime);
+//    if ($ext == 'jpeg') $ext = 'jpg';
+//    return $ext;
+//}
 ?>
