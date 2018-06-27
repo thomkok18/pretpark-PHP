@@ -54,35 +54,42 @@ $pagina = 'winkel';
 //}
 
 if (isset($_POST['winkelwagen'])) {
-    $winkelwagen->setIdproduct($_GET['id']);
-    $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
-    $winkelwagen->setAantal($_POST['aantal']);
-    if ($winkelwagen->getIdproductByIdgebruiker($_GET['id'])[0] != $_GET['id']) {
-        $winkelwagen->insertWinkelwagen();
-    } else {
-        $winkelwagen->updateIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'], $_POST['aantal']);
-    }
     foreach ($winkelwagen as $wkey => $winkel) {
         foreach ($producten as $pkey => $prod) {
-            if ($winkel->getAantalById($_GET['id'])[0] <= $prod->getProductVoorraadById($_GET['id'])[0]) {
-                $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
-            } else {
-                $error_message[] = 'Er zijn niet genoeg producten op voorraad.';
+            extract($_POST);
+            if (intval($winkelwagen->getAantalById($_GET['id'])[0]) <= intval($product->getProductVoorraadById($_GET['id'])[0])) {
+                $winkelwagen->setIdproduct($_GET['id']);
+                $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
+                $winkelwagen->setAantal($_POST['aantal']);
+                if ($winkelwagen->getIdproductByIdgebruiker($_GET['id'])[0] != $_GET['id']) {
+                    $winkelwagen->insertWinkelwagen();
+                } else {
+                    $winkelwagen->updateIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'], $_POST['aantal']);
+                }
             }
         }
+    }
+    if (!intval($winkelwagen->getAantalById($_GET['id'])[0]) <= !intval($product->getProductVoorraadById($_GET['id'])[0])) {
+        $error_message[] = 'Er zijn niet genoeg producten op voorraad.';
+    }
+
+    if ($winkelwagen->getIdproductByIdgebruiker($_GET['id'])[0] != $_GET['id']) {
+        $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
+    } else {
+        $messages[] = 'Product is aangepast in het winkelwagentje.';
     }
 }
 
 include("layout/header.php");
 ?>
-<?php if (isset($error_message)) {
+<?php if (isset($error_message) && isset($_POST['winkelwagen'])) {
     foreach ($error_message as $key => $error) { ?>
         <div class="alert alert-danger" role="alert">
             <strong><?= htmlspecialchars($error); ?></strong>
         </div>
     <?php }
 } ?>
-<?php if (isset($messages)) { ?>
+<?php if (isset($messages) && isset($_POST['winkelwagen'])) { ?>
     <?php foreach ($messages as $key => $message) { ?>
         <div class="alert alert-success" role="alert">
             <strong><?= htmlspecialchars($message); ?></strong>
