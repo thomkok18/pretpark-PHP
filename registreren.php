@@ -15,7 +15,7 @@ if (isset($_POST['registreren'])) {
         $error_message[] = 'Alleen letters zijn toegestaan voor de voornaam.';
     }
 
-    if (ctype_alpha($tussenvoegsels) == false) {
+    if (ctype_alpha($tussenvoegsels) == false && $tussenvoegsels != '') {
         $error_message[] = 'Alleen letters zijn toegestaan voor de tussenvoegsels.';
     }
 
