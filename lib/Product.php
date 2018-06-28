@@ -57,6 +57,32 @@ class Product {
      * @param $id
      * @return mixed
      */
+    public function getProductUrlfotoById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT urlfoto FROM product WHERE idproduct = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductPrijsById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT prijs FROM product WHERE idproduct = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getProductVoorraadById($id) {
         $db = new Db();
         $conn = $db->getConnectie();

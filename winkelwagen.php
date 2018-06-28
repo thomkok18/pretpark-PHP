@@ -16,6 +16,7 @@ $winkelwagen = new Winkelwagen();
 $winkelwagens = $winkelwagen->getWinkelwagens();
 $saldo = new Saldo();
 $geldvoorraad = $saldo->getSaldoVoorraad();
+$id = $_GET['id'];
 
 $subtotaal = 0;
 $verzendkosten = 0.95;
@@ -40,8 +41,6 @@ $totaal = 0.00;
 //    }
 //}
 
-var_dump($winkelwagen->getIdproductByIdgebruiker(1));
-
 include("layout/header.php");
 ?>
 
@@ -54,25 +53,21 @@ include("layout/header.php");
 
             <div class="col-xs-12">
                 <div class="col-xs-3">
-                    <img id="productAfbeelding" class="img-responsive" src="" alt="Product">
+                    <img id="productAfbeelding" class="img-responsive" src="<?= $product->getProductUrlfotoById(1)[0]; ?>" alt="Product">
                 </div>
-                <h3 class="tabelWinkel col-xs-3"></h3>
+                <h3 class="tabelWinkel col-xs-3"><?= $product->getProductTitelById(1)[0]; ?></h3>
                 <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?delete="><span class="text-danger">Verwijderen</span></a>
                 <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh();">
-                    <?php foreach ($producten as $key => $prod) { ?>
-                        <?php for ($id = 0; $id < $winkelwagen->getAantalById($_GET['id']); $id++) { ?>
-                            <option <?php if ($prod->getProductVoorraadById($id)[0]) { ?> selected <?php } ?> ></option>
+                        <?php for ($prod = 0; $prod <= $product->getProductVoorraadById(1)[0]; $prod++) { ?>
+                            <option <?php if ($prod == $winkelwagen->getAantalById(1)[0]) { ?> selected <?php } ?> ><?= $prod; ?></option>
                         <?php } ?>
-
-                        <option <?php if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
-                    <?php } ?>
                 </select>
-                <b id="prijs" class="col-xs-2"><?= htmlspecialchars('€ ' . number_format($_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'], 2)); ?></b>
+                <b id="prijs" class="col-xs-2"><?= htmlspecialchars('€ ' . number_format($product->getProductPrijsById(1)[0] * $winkelwagen->getAantalById(1)[0], 2)); ?></b>
             </div>
             <?php
             $aantalProducten = 0;
-            $aantalProducten = $aantalProducten + $_SESSION['winkelwagen'][$i]['aantal'];
-            $subtotaal = $subtotaal + $_SESSION['winkelwagen'][$i]['prijs'] * $_SESSION['winkelwagen'][$i]['aantal'];
+            $aantalProducten = $aantalProducten + $winkelwagen->getAantalById(1)[0];
+            $subtotaal = $subtotaal + $product->getProductPrijsById(1)[0] * $winkelwagen->getAantalById(1)[0];
             $totaal = $subtotaal + $verzendkosten;
             ?>
             <div class="col-xs-12">
@@ -98,8 +93,9 @@ include("layout/header.php");
                         $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
                     }
                     for ($i = 0; $i < sizeof($_SESSION['winkelwagen']); $i++) {
-                        $product->updateVoorraad($_SESSION['winkelwagen'][$i]['idproduct'], $_SESSION['winkelwagen'][$i]['voorraad'], $_SESSION['winkelwagen'][$i]['aantal'], 'verkocht');
+                        $product->updateVoorraad(1, $product->getProductVoorraadById(1)[0], $winkelwagen->getAantalById(1)[0], 'verkocht');
                     }
+                    //TODO: Winkelwagens die gelinkt zijn met de gebruiker moeten worden verwijderd.
                     unset($_SESSION['winkelwagen']);
                     $_SESSION['winkelwagen'] = array_values($_SESSION['winkelwagen']);
                     header('Location: winkelwagen.php');

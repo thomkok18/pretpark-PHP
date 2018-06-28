@@ -59,7 +59,6 @@ class Winkelwagen {
         $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idgebruiker = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Winkelwagen');
         return $stmt->fetch();
     }
 
