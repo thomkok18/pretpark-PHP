@@ -31,5 +31,3 @@ function getExtension($file_mime) {
 }
 
 echo $message;
-
-?>
