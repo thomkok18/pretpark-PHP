@@ -71,8 +71,7 @@ include("layout/header.php");
             <form class="form-horizontal" method="post" action="winkel.php?action=add&id=<?= htmlspecialchars($prod->getIdproduct()); ?>">
                 <div class="col-xs-12">
                     <div class="col-xs-3">
-                        <img id="productAfbeelding" class="img-responsive" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>"
-                             alt="Product">
+                        <img id="productAfbeelding" class="img-responsive" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>" alt="Product">
                     </div>
                     <h3 class="tabelWinkel col-xs-3"><?= htmlspecialchars($prod->getTitel()); ?></h3>
                     <b id="prijs" class="col-xs-2">€ <?= htmlspecialchars($prod->getPrijs()); ?></b>

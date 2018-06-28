@@ -66,6 +66,19 @@ class Attractie {
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getAttractieTitelById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT titel FROM attractie WHERE idattractie = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdattractie() {

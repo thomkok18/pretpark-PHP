@@ -74,15 +74,11 @@ include("layout/header.php");
         </form>
 
         <h3>Product foto</h3>
-        <form action="uploadProduct.php?id=<?php foreach ($products as $key => $prod) {
-            if ($_SESSION['login']['idgebruiker'] == $prod->getIdgebruiker()) {
-                echo $prod->getIdproduct();
-            }
-        } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadProduct.php?id=<?php echo $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
                 <div id="uploadButton" class="col-sm-10">
-                    <input type="file" name="file" id="fileToUpload">
+                    <input type="file" name="fileToUpload" id="productFoto">
                 </div>
             </div>
             <div class="form-group">

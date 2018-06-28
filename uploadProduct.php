@@ -2,52 +2,39 @@
 include_once('lib/config.php');
 include_once("lib/Product.php");
 
-$id = $_GET['id'];
-
 if (!isset($_SESSION['login'])) {
     header('Location: login.php');
     return;
 }
 
-// Settings
-$allowed_mime = array('image/png', 'image/jpeg');
+$id = $_GET['id'];
+$product = new Product();
+$upload_folder = '/img/';
+$allowed_mime = ['image/png', 'image/jpeg'];
 
-// If statements with safety checks
-if (isset($_FILES['file'])) {
-    $target_mime = mime_content_type($_FILES['file']['tmp_name']);
-    if (in_array($target_mime, $allowed_mime)) {
-        $real_ext = getExtension($target_mime);
-        $target = getcwd() . '/img/' . createName() . "." . $real_ext;
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-            $target_parts = explode('/file/', $target);
+if (isset($_POST['productFotoOpslaan']) && isset($_FILES['fileToUpload'])) {
+    $file_mime = mime_content_type($_FILES['fileToUpload']['tmp_name']);
+    if (in_array($file_mime, $allowed_mime)) {
+        $file_ext = getExtension($file_mime);
+        $target = getcwd() . $upload_folder . $product->getProductTitelById($id)[0] . "." . $file_ext;
+        if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target)) {
+            $message = 'Profiel foto is geupload!';
+            header('Location:formProduct.php?id='.$id.'&productAantal=0');
         } else {
-            echo 'Sorry, there was a problem uploading your file.';
+            $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
         }
     } else {
-        echo 'That type of file isn\'t allowed by the server.';
+        $message = 'Dit type bestand is verboden!';
     }
 } else {
-    echo 'You didn\'t upload a file.';
+    $message = 'Er is geen bestand geupload of de post variabele is niet gezet!';
 }
 
-// Get the real extension of the file
 function getExtension($file_mime) {
     $mime = explode('/', $file_mime);
     $ext = end($mime);
-    if ($ext == 'jpeg') $ext = 'jpg';
-    else if ($ext == 'png') $ext = 'png';
+    if ($ext == 'jpeg' || $ext == 'jpg') $ext = 'png';
     return $ext;
 }
 
-// Create a random name for the uploaded file
-function createName() {
-    $name = '';
-    $pos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-
-    for ($i = 0; $i < 7; $i++) {
-        $name .= $pos[rand(0, 61)];
-    }
-
-    return $name;
-}
-?>
+echo $message;
