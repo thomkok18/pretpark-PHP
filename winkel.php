@@ -13,37 +13,35 @@ $product = new Product();
 $producten = $product->getProducten();
 $winkelwagen = new Winkelwagen();
 $gebruiker = new Gebruiker();
+$id = $_GET['id'];
 $pagina = 'winkel';
 
 if (isset($_POST['winkelwagen'])) {
-    foreach ($winkelwagen as $wkey => $winkel) {
-        foreach ($producten as $pkey => $prod) {
-            extract($_POST);
-            if (intval($winkelwagen->getAantalById($_GET['id'])[0]) <= intval($product->getProductVoorraadById($_GET['id'])[0])) {
-                $winkelwagen->setIdproduct($_GET['id']);
-                $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
-                $winkelwagen->setAantal($_POST['aantal']);
-                if ($winkelwagen->getIdproductByIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'])[0] == null) {
-                    $winkelwagen->insertWinkelwagen();
-                } else {
-                    $winkelwagen->updateIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'], $_POST['aantal']);
-                }
-            }
-        }
-    }
-    if (intval($winkelwagen->getAantalById($_GET['id'])[0]) > intval($product->getProductVoorraadById($_GET['id'])[0])) {
+    extract($_POST);
+    $winkelwagen = new Winkelwagen();
+    $product = new Product();
+    $aantal = preg_replace('/\s+/', '', $_POST['aantal']);
+    $voorraad = $product->getProductVoorraadById($id)[0];
+
+    if (intval(intval($aantal) > intval($voorraad))) {
         $error_message[] = 'Er zijn niet genoeg producten op voorraad.';
     }
 
-    if ($winkelwagen->getIdproductByIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'])[0] != $_GET['id']) {
-        $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
-    } else {
-        $messages[] = 'Product is aangepast in het winkelwagentje.';
+    if (!isset($error_message)) {
+        if (intval($aantal) <= intval($voorraad)) {
+            $winkelwagen->setIdproduct($id);
+            $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
+            $winkelwagen->setAantal($_POST['aantal']);
+            if ($winkelwagen->getIdproductByIdproduct($id, $_SESSION['login']['idgebruiker'])[0] == null) {
+                $winkelwagen->insertWinkelwagen();
+                $messages[] = 'Product is toegevoegd aan het winkelwagentje.';
+            } else {
+                $winkelwagen->updateIdproduct($id, $_SESSION['login']['idgebruiker'], $_POST['aantal']);
+                $messages[] = 'Product is aangepast in het winkelwagentje.';
+            }
+        }
     }
 }
-
-//TODO: er kunnen nog niet meer mensen winkelwagens maken
-var_dump($winkelwagen->getIdproductByIdproduct($_GET['id'], $_SESSION['login']['idgebruiker'])[0]);
 
 include("layout/header.php");
 ?>
