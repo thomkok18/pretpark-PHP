@@ -122,8 +122,7 @@ include("layout/header.php");
         <? //= $_SESSION['winkelwagen'][$i]['idproduct']; ?><!--"><span class="text-danger">Verwijderen</span></a>-->
         <!--                            <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox-->
         <? //= htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?><!--" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(--><? //= htmlspecialchars($_SESSION['winkelwagen'][$i]['idproduct']); ?>
-        //)">
-        // <?php //for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
+        <?php //for ($voorraad = 0; $voorraad <= $_SESSION['winkelwagen'][$i]['voorraad']; $voorraad++) { ?>
         <!--                                    <option --><?php //if ($voorraad == $_SESSION['winkelwagen'][$i]['aantal']) { ?><!-- selected --><?php //} ?><!-- >-->
         <? //= htmlspecialchars($voorraad); ?><!--</option>-->
         <!--                                --><?php //} ?>

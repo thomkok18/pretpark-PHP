@@ -118,11 +118,7 @@ include("layout/header.php");
         </form>
 
         <h3>Profiel foto</h3>
-        <form action="uploadProfiel.php?id=<?php foreach ($gebruikers as $key => $geb) {
-            if ($_SESSION['login']['idgebruiker'] == $geb->getIdgebruiker()) {
-                echo htmlspecialchars($geb->getIdgebruiker());
-            }
-        } ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadProfiel.php?id=<?php echo $_SESSION['login']['idgebruiker']; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
                 <div id="uploadButton" class="col-sm-10">

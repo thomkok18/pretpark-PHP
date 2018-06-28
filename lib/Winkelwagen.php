@@ -36,13 +36,15 @@ class Winkelwagen {
 
     /**
      * @param $id
+     * @param $idgebruiker
      * @return mixed
      */
-    public function getIdproductByIdproduct($id) {
+    public function getIdproductByIdproduct($id, $idgebruiker) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idproduct = :id");
+        $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idproduct = :id AND idgebruiker = :idgebruiker");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
