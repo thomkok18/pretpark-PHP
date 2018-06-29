@@ -73,15 +73,16 @@ include("layout/header.php");
                     </div>
                     <h3 class="tabelWinkel col-xs-3"><?= htmlspecialchars($prod->getTitel()); ?></h3>
                     <b id="prijs" class="col-xs-2">€ <?= htmlspecialchars($prod->getPrijs()); ?></b>
+                    <?php if ($prod->getVoorraad() != 0) { ?>
                     <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
                         <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
                             <option><?= htmlspecialchars($i); ?></option>
                         <?php } ?>
                     </select>
-                    <?php if ($prod->getVoorraad() != 0) { ?>
+
                     <button class="tabelWinkel btn col-xs-2" type="submit" name="winkelwagen">Winkelwagen</button>
                     <?php } else { ?>
-                        <b class="col-xs-2" style="color:red; margin-top:48px;">Uitverkocht</b>
+                        <b class="col-xs-4" style="color:red; margin-top:50px; padding-left:0;">Uitverkocht</b>
                     <?php } ?>
                 </div>
             </form>
