@@ -13,11 +13,11 @@ $product = new Product();
 $producten = $product->getProducten();
 $winkelwagen = new Winkelwagen();
 $gebruiker = new Gebruiker();
-$id = $_GET['id'];
 $pagina = 'winkel';
 
 if (isset($_POST['winkelwagen'])) {
     extract($_POST);
+    $id = $_GET['id'];
     $winkelwagen = new Winkelwagen();
     $product = new Product();
     $aantal = preg_replace('/\s+/', '', $_POST['aantal']);
@@ -78,7 +78,11 @@ include("layout/header.php");
                             <option><?= htmlspecialchars($i); ?></option>
                         <?php } ?>
                     </select>
+                    <?php if ($prod->getVoorraad() != 0) { ?>
                     <button class="tabelWinkel btn col-xs-2" type="submit" name="winkelwagen">Winkelwagen</button>
+                    <?php } else { ?>
+                        <b class="col-xs-2" style="color:red; margin-top:48px;">Uitverkocht</b>
+                    <?php } ?>
                 </div>
             </form>
         <?php } ?>

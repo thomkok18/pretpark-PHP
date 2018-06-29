@@ -1,8 +1,10 @@
 <?php
 include_once("lib/Gebruiker.php");
+include_once("lib/Winkelwagen.php");
 
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
+$winkelwagen = new Winkelwagen();
 
 ?>
 <!DOCTYPE html>
@@ -61,9 +63,9 @@ $gebruikers = $gebruiker->getGebruikers();
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php?id=<?php echo $_SESSION['login']['idgebruiker']; ?>"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
-                            <?php if (isset($_SESSION['winkelwagen'])) {
-                                echo htmlspecialchars(array_sum(array_column($_SESSION['winkelwagen'], 'aantal')));
+                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php?id=<?= $_SESSION['login']['idgebruiker']; ?>"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
+                            <?php if (isset($winkelwagen->getWinkelwagentjeById($_SESSION['login']['idgebruiker'])[0])) {
+                                echo htmlspecialchars($winkelwagen->getWinkelwagentjeById($_SESSION['login']['idgebruiker'])[0]);
                             } else {
                                 echo htmlspecialchars(0);
                             } ?> </span></a></li>

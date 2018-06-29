@@ -93,6 +93,18 @@ class Product {
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getIdproducten() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct FROM product");
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
      * @param $idproduct
      * @param $titel
      * @param $productomschrijving

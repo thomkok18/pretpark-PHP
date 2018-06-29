@@ -22,16 +22,31 @@ class Winkelwagen {
     }
 
     /**
+     * @param $idproduct
+     * @param $idgebruiker
+     * @return mixed
+     */
+    public function getAantalById($idproduct, $idgebruiker) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT aantal FROM winkelwagen WHERE idproduct = :idproduct AND idgebruiker = :idgebruiker");
+        $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
      * @param $id
      * @return mixed
      */
-    public function getAantalById($id) {
+    public function getProductByIdgebruiker($id) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $stmt = $conn->prepare("SELECT aantal FROM winkelwagen WHERE idproduct = :id");
+        $stmt = $conn->prepare("SELECT * FROM winkelwagen WHERE idgebruiker = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Winkelwagen');
     }
 
     /**
@@ -88,6 +103,47 @@ class Winkelwagen {
         $stmt = $conn->prepare("SELECT * FROM winkelwagen");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'Winkelwagen');
+    }
+
+    /**
+     * @param $idproduct
+     * @param $idgebruiker
+     * @return bool
+     */
+    public function deleteProduct($idproduct, $idgebruiker) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "DELETE FROM winkelwagen WHERE idproduct = :idproduct AND idgebruiker = :idgebruiker";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $idproduct);
+        $stmt->bindParam(':idgebruiker', $idgebruiker);
+        return $stmt->execute();
+    }
+
+    /**
+     * @param $idgebruiker
+     * @return bool
+     */
+    public function deleteWinkelwagen($idgebruiker) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "DELETE FROM winkelwagen WHERE idgebruiker = :idgebruiker";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idgebruiker', $idgebruiker);
+        return $stmt->execute();
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getWinkelwagentjeById($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT SUM(aantal) FROM winkelwagen WHERE idgebruiker = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, 'Winkelwagen');
     }
 
     /**
