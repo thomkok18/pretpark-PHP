@@ -36,7 +36,7 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
-            <?php if ($winkelwagen->getProductByIdgebruiker($id) != null) { //TODO: Juiste overzicht geven in het winkelwagentje. ?>
+            <?php if ($winkelwagen->getProductByIdgebruiker($id) != null) { ?>
                 <?php for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) { ?>
                     <?php
                     $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
@@ -87,7 +87,6 @@ include("layout/header.php");
                             $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
                             $product->updateVoorraad($idproduct, $product->getProductVoorraadById($idproduct)[0], $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 'verkocht');
                         }
-                        //TODO: Winkelwagens die gelinkt zijn met de gebruiker moeten worden verwijderd.
                         $winkelwagen->deleteWinkelwagen($_SESSION['login']['idgebruiker']);
                         header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
                     }
