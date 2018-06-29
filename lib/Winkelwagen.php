@@ -95,6 +95,23 @@ class Winkelwagen {
     }
 
     /**
+     * @param $idproduct
+     * @param $idgebruiker
+     * @param $aantal
+     * @return bool
+     */
+    public function updateAantal($idproduct, $idgebruiker, $aantal) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = 'UPDATE winkelwagen SET aantal = :aantal WHERE idproduct = :idproduct AND idgebruiker = :idgebruiker';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idproduct', $idproduct, PDO::PARAM_INT);
+        $stmt->bindParam(':idgebruiker', $idgebruiker, PDO::PARAM_INT);
+        $stmt->bindParam(':aantal', $aantal, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    /**
      * @return array
      */
     public function getWinkelwagens() {

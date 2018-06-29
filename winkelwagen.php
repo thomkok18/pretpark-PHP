@@ -27,6 +27,14 @@ if (isset($_GET['deleteProduct']) && !empty($_GET['deleteProduct'])) {
     header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
 }
 
+if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['productAantal']) && $_GET['productAantal'] != null) {
+    $winkelwagen->updateAantal($_GET['idproduct'], $_SESSION['login']['idgebruiker'], $_GET['productAantal']);
+    if ($_GET['productAantal'] == 0) {
+        $winkelwagen->deleteProduct($_GET['idproduct'], $_SESSION['login']['idgebruiker']);
+    }
+    header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
+}
+
 include("layout/header.php");
 ?>
 
@@ -47,7 +55,7 @@ include("layout/header.php");
                         </div>
                         <h3 class="tabelWinkel col-xs-3"><?= $product->getProductTitelById($idproduct)[0]; ?></h3>
                         <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?deleteProduct=<?= $idproduct; ?>"><span class="text-danger">Verwijderen</span></a>
-                        <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh();"> <?php //TODO: Aantal refreshen als het word aangepast. ?>
+                        <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?= $idproduct; ?>" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(<?= $_SESSION['login']['idgebruiker']; ?>, <?= $idproduct; ?>);">
                             <?php for ($prod = 0; $prod <= $product->getProductVoorraadById($idproduct)[0]; $prod++) { ?>
                                 <option <?php if ($prod == $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0]) { ?> selected <?php } ?> ><?= $prod; ?></option>
                             <?php } ?>
@@ -99,10 +107,10 @@ include("layout/header.php");
 
     </div>
     <script>
-        function refresh(idproduct) {
+        function refresh(idgebruiker, idproduct) {
             var e = document.getElementById("voorraadSelectbox" + idproduct);
             var productAantal = e.options[e.selectedIndex].value;
-            window.location.href = "winkelwagen.php?id=" + idproduct + "&productAantal=" + productAantal;
+            window.location.href = "winkelwagen.php?id=" + idgebruiker + "&idproduct=" + idproduct + "&productAantal=" + productAantal;
         }
     </script>
 
