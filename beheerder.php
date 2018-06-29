@@ -69,7 +69,7 @@ include("layout/header.php");
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
                     <th><img class="prullenbak" src="img/prullenbakDicht.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></th>
                 <?php } ?>
-                <th><a style="padding-top:3px; padding-bottom:3px;" class="btn btn-info" role="button" href="formGebruiker.php?id=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><?= htmlspecialchars($geb->getIdgebruiker()); ?></a></th>
+                <th><a style="padding: 3px 8px;" class="btn btn-info" role="button" href="formGebruiker.php?id=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><?= htmlspecialchars($geb->getIdgebruiker()); ?></a></th>
                 <th class="tabelText"><?= htmlspecialchars($geb->getVolledigeNaam()); ?></th>
                 <th class="tabelText"><?= htmlspecialchars($geb->getLogin()); ?></th>
                 <th class="tabelText"><?= htmlspecialchars($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving()); ?></th>
@@ -95,7 +95,7 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <th><a href="beheerder.php?deleteProduct=<?= htmlspecialchars($prod->getIdproduct()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($prod->getIdproduct()); ?>"></a>
-                <th class="tabelText"><a style="padding-top:3px; padding-bottom:3px;" class="btn btn-info" role="button" href="formProduct.php?id=<?= htmlspecialchars($prod->getIdproduct()); ?>&productAantal=0"><?= htmlspecialchars($prod->getIdproduct()); ?></a></th>
+                <th class="tabelText"><a style="padding: 3px 8px;" class="btn btn-info" role="button" href="formProduct.php?id=<?= htmlspecialchars($prod->getIdproduct()); ?>&productAantal=0"><?= htmlspecialchars($prod->getIdproduct()); ?></a></th>
                 <th class="tabelText"><?= htmlspecialchars($prod->getTitel()); ?></th>
                 <?php if ($prod->getVoorraad() != 0) { ?>
                     <th class="tabelText"><?= htmlspecialchars($prod->getVoorraad()); ?></th>
@@ -124,7 +124,7 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <th><a href="beheerder.php?deleteProduct=<?= htmlspecialchars($attractie->getIdattractie()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($attractie->getIdattractie()); ?>"></a>
-                <th class="tabelText"><a style="padding-top:3px; padding-bottom:3px;" class="btn btn-info" role="button" href="formAttractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>"><?= htmlspecialchars($attractie->getIdattractie()); ?></a></th>
+                <th class="tabelText"><a style="padding: 3px 8px;" class="btn btn-info" role="button" href="formAttractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>"><?= htmlspecialchars($attractie->getIdattractie()); ?></a></th>
                 <th class="tabelText"><?= htmlspecialchars($attractie->getTitel()); ?></th>
                 <th class="tabelText"><?= htmlspecialchars($attractie->getOmschrijving()); ?></th>
             </tr>
