@@ -16,19 +16,63 @@ $pagina = '';
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
-    $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
-    header('Location: formGebruiker.php?id='. $id);
+    $gebruiker = new Gebruiker();
+    $voornaam = preg_replace('/\s+/', '', $_POST['voornaam']);
+    $tussenvoegsels = $_POST['tussenvoegsels'];
+    $achternaam = preg_replace('/\s+/', '', $_POST['achternaam']);
+    $login = preg_replace('/\s+/', '', $_POST['login']);
+
+    if (ctype_alpha($voornaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de voornaam.';
+    }
+
+    if (ctype_alpha($tussenvoegsels) == false && $tussenvoegsels != '') {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de tussenvoegsels.';
+    }
+
+    if (ctype_alpha($achternaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de achternaam.';
+    }
+
+    if ($voornaam != '' && $achternaam != '' && $login != '') {
+        if (!isset($error_message)) {
+            $gebruiker->updatePersoonsgegevens($id, $login, $voornaam, $tussenvoegsels, $achternaam);
+            $messages[] = 'Uw persoonsgegevens zijn aangepast.';
+            header('Location: formGebruiker.php?id=' . $id);
+        }
+    }
 } else if (isset($_POST['wachtwoordOpslaan'])) {
-    extract($_POST);
-    $gebruiker->updateWachtwoord($id, password_hash($wachtwoord, PASSWORD_DEFAULT));
-    header('Location: formGebruiker.php?id='. $id);
+    $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
+    if (password_verify($_POST['wachtwoord'], $user->getWachtwoord()) && !empty($_POST['nieuwWachtwoord']) && $_POST['nieuwWachtwoord'] == $_POST['herhaalWachtwoord']) {
+        extract($_POST);
+        $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
+        $messages[] = 'Wachtwoord is aangepast.';
+        header('Location: formGebruiker.php?id=' . $id);
+    } else {
+        $error_message[] = 'Het nieuwe wachtwoord komt niet overeen.';
+        header('Location: formGebruiker.php?id=' . $id);
+    }
 } else if (isset($_POST['rechtenOpslaan'])) {
     extract($_POST);
     $gebruiker->updateRechten($id, $idrechten);
-    header('Location: formGebruiker.php?id='. $id);
+    header('Location: formGebruiker.php?id=' . $id);
 }
 include("layout/header.php");
 ?>
+<?php if (isset($error_message) && isset($_POST['persoonsgegevensOpslaan'])) {
+    foreach ($error_message as $key => $error) { ?>
+        <div class="alert alert-danger" role="alert">
+            <strong><?= htmlspecialchars($error); ?></strong>
+        </div>
+    <?php }
+} ?>
+<?php if (isset($messages) && isset($_POST['persoonsgegevensOpslaan'])) { ?>
+    <?php foreach ($messages as $key => $message) { ?>
+        <div class="alert alert-success" role="alert">
+            <strong><?= htmlspecialchars($message); ?></strong>
+        </div>
+    <?php }
+} ?>
 
     <div>
         <div class="page-header">
@@ -50,9 +94,9 @@ include("layout/header.php");
                 </div>
             </div>
             <div class="form-group">
-                <label for="naam" class="col-sm-2 control-label">Voornaam</label>
+                <label for="voornaam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="naam" name="naam" value="<?= htmlspecialchars($user->getNaam()); ?>">
+                    <input required type="text" class="form-control" id="voornaam" name="voornaam" value="<?= htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -108,11 +152,11 @@ include("layout/header.php");
                 <div class="col-sm-10">
                     <select class="form-control" id="rechten" name="idrechten">
                         <?php if ($gebruiker->getRechtomschrijvingByIdGebruiker($id)[0] === "1") { ?>
-                        <option value="1">Beheerder</option>
-                        <option value="2">Bezoeker</option>
+                            <option value="1">Beheerder</option>
+                            <option value="2">Bezoeker</option>
                         <?php } else { ?>
-                        <option value="2">Bezoeker</option>
-                        <option value="1">Beheerder</option>
+                            <option value="2">Bezoeker</option>
+                            <option value="1">Beheerder</option>
                         <?php } ?>
                     </select>
                 </div>

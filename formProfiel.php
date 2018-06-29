@@ -18,18 +18,41 @@ $error = false;
 
 if (isset($_POST['persoonsgegevensOpslaan'])) {
     extract($_POST);
-    $gebruiker->updatePersoonsgegevens($id, $login, $naam, $tussenvoegsels, $achternaam);
-    $message[0] = 'Uw persoonsgegevens zijn aangepast.';
-    $error = false;
+    $gebruiker = new Gebruiker();
+    $voornaam = preg_replace('/\s+/', '', $_POST['voornaam']);
+    $tussenvoegsels = $_POST['tussenvoegsels'];
+    $achternaam = preg_replace('/\s+/', '', $_POST['achternaam']);
+    $login = preg_replace('/\s+/', '', $_POST['login']);
+
+    if (ctype_alpha($voornaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de voornaam.';
+    }
+
+    if (ctype_alpha($tussenvoegsels) == false && $tussenvoegsels != '') {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de tussenvoegsels.';
+    }
+
+    if (ctype_alpha($achternaam) == false) {
+        $error_message[] = 'Alleen letters zijn toegestaan voor de achternaam.';
+    }
+
+    if ($voornaam != '' && $achternaam != '' && $login != '') {
+        if (!isset($error_message)) {
+            $gebruiker->updatePersoonsgegevens($id, $login, $voornaam, $tussenvoegsels, $achternaam);
+            $messages[] = 'Uw persoonsgegevens zijn aangepast.';
+            header('Location: formProfiel.php?id='. $id);
+        }
+    }
 } else if (isset($_POST['wachtwoordOpslaan'])) {
+    $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
     if (password_verify($_POST['wachtwoord'], $user->getWachtwoord()) && !empty($_POST['nieuwWachtwoord']) && $_POST['nieuwWachtwoord'] == $_POST['herhaalWachtwoord']) {
         extract($_POST);
         $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
-        $message[0] = 'Uw wachtwoord is aangepast.';
-        $error = false;
+        $messages[] = 'Wachtwoord is aangepast.';
+        header('Location: formProfiel.php?id=' . $id);
     } else {
-        $error = true;
-        $message[0] = 'Het nieuwe wachtwoord komt niet overeen.';
+        $error_message[] = 'Het nieuwe wachtwoord komt niet overeen.';
+        header('Location: formProfiel.php?id=' . $id);
     }
 } else if (isset($_POST['profielFotoOpslaan'])) {
     extract($_POST);
@@ -38,15 +61,20 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
 
 include("layout/header.php");
 ?>
-<?php if (isset($message)) {
-    if ($error) { ?>
+<?php if (isset($error_message) && isset($_POST['persoonsgegevensOpslaan'])) {
+    foreach ($error_message as $key => $error) { ?>
         <div class="alert alert-danger" role="alert">
-    <?php } else { ?>
+            <strong><?= htmlspecialchars($error); ?></strong>
+        </div>
+    <?php }
+} ?>
+<?php if (isset($messages) && isset($_POST['persoonsgegevensOpslaan'])) { ?>
+    <?php foreach ($messages as $key => $message) { ?>
         <div class="alert alert-success" role="alert">
-    <?php } ?>
-    <strong><?= htmlspecialchars($message[0]); ?></strong>
-    </div>
-<?php } ?>
+            <strong><?= htmlspecialchars($message); ?></strong>
+        </div>
+    <?php }
+} ?>
 
     <div>
         <div class="page-header">
@@ -58,29 +86,25 @@ include("layout/header.php");
             <div class="form-group">
                 <label for="login" class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="login" name="login"
-                           value="<?= htmlspecialchars($user->getLogin()); ?>">
+                    <input required type="text" class="form-control" id="login" name="login" value="<?= htmlspecialchars($user->getLogin()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="naam" class="col-sm-2 control-label">Voornaam</label>
+                <label for="voornaam" class="col-sm-2 control-label">Voornaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="naam" name="naam"
-                           value="<?= htmlspecialchars($user->getNaam()); ?>">
+                    <input required type="text" class="form-control" id="voornaam" name="voornaam" value="<?= htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels"
-                           value="<?= htmlspecialchars($user->getTussenvoegsels()); ?>">
+                    <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?= htmlspecialchars($user->getTussenvoegsels()); ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control" id="achternaam" name="achternaam"
-                           value="<?= htmlspecialchars($user->getAchternaam()); ?>">
+                    <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?= htmlspecialchars($user->getAchternaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
