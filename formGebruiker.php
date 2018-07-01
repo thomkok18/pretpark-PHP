@@ -47,10 +47,8 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
         extract($_POST);
         $gebruiker->updateWachtwoord($id, password_hash($_POST['nieuwWachtwoord'], PASSWORD_DEFAULT));
         $messages[] = 'Wachtwoord is aangepast.';
-        header('Location: formGebruiker.php?id=' . $id);
     } else {
         $error_message[] = 'Het nieuwe wachtwoord komt niet overeen.';
-        header('Location: formGebruiker.php?id=' . $id);
     }
 } else if (isset($_POST['rechtenOpslaan'])) {
     extract($_POST);
@@ -59,14 +57,14 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
 }
 include("layout/header.php");
 ?>
-<?php if (isset($error_message) && isset($_POST['persoonsgegevensOpslaan'])) {
+<?php if (isset($error_message) && (isset($_POST['persoonsgegevensOpslaan']) || isset($_POST['wachtwoordOpslaan']))) {
     foreach ($error_message as $key => $error) { ?>
         <div class="alert alert-danger" role="alert">
             <strong><?= htmlspecialchars($error); ?></strong>
         </div>
     <?php }
 } ?>
-<?php if (isset($messages) && isset($_POST['persoonsgegevensOpslaan'])) { ?>
+<?php if (isset($messages) && (isset($_POST['persoonsgegevensOpslaan']) || isset($_POST['wachtwoordOpslaan']))) { ?>
     <?php foreach ($messages as $key => $message) { ?>
         <div class="alert alert-success" role="alert">
             <strong><?= htmlspecialchars($message); ?></strong>
