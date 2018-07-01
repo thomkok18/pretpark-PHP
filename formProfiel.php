@@ -55,8 +55,8 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
 } else if (isset($_POST['profielFotoOpslaan'])) {
     extract($_POST);
     $gebruiker->updateAvatar($id, $avatar);
+    header('Location: formProfiel.php?id='. $id);
 }
-
 include("layout/header.php");
 ?>
 <?php if (isset($error_message) && (isset($_POST['persoonsgegevensOpslaan']) || isset($_POST['wachtwoordOpslaan']))) {
