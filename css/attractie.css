@@ -8,6 +8,6 @@ textarea {
     resize: none;
 }
 
-#test:nth-child(even) {
+#regel:nth-child(even) {
     background-color: #f3f3f3;
 }

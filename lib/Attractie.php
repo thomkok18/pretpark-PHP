@@ -10,11 +10,6 @@ class Attractie {
     private $omschrijving;
     private $urlfoto;
 
-
-    public function __construct() {
-
-    }
-
     /**
      * @return array
      */

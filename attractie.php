@@ -36,6 +36,8 @@ if (isset($_POST['aanpassen'])) {
     header('Location: attractie.php?id=' . $id . '&idreactie=0');
 }
 
+var_dump(sizeof($reacties) <= 0);
+
 include("layout/header.php");
 ?>
     <div class="container">
@@ -75,45 +77,51 @@ include("layout/header.php");
             </form>
         <?php } ?>
         <hr>
-        <?php foreach ($reacties as $reactie) {
-            $gebruiker = $reactie->getGebruikerById();
-            ?>
-            <div class="row" id="test">
-                <div class="col-md-1">
-                    <img style="margin-top: 15px;" id="reactieProfielfoto" src="<?= htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
-                </div>
-                <div class="col-md-11">
-                    <?php if (isset($_SESSION['login'])) {
-                        if ($_SESSION['login']['login'] == $gebruiker->getLogin()) {
-                            if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
-                                <div style="float:right;">
-                                    <img style="margin-top: 10px; cursor: pointer;" onclick="bewerken(<?= $id; ?>,<?= $reactie->getIdreactie(); ?>)" src="img/bewerk.jpg" height="20" width="20">
-                                </div>
-                            <?php } else { ?>
-                                <div style="float:right;">
-                                    <img style="margin-top: 10px; cursor: pointer;" onclick="cancel(<?= $id; ?>)" src="img/cancel.png" height="20" width="20">
-                                </div>
-                            <?php }
-                        }
-                    } ?>
-                    <p style="margin-top: 10px;"><b><?= htmlspecialchars($gebruiker->getLogin()); ?></b></p>
-                    <?php if ($reactie->getIdreactie() != $_GET['idreactie'] || $reactie->getIdgebruikerByIdReactie($_GET['idreactie'])[0] != $_SESSION['login']['idgebruiker']) { ?>
-                        <p style="white-space: nowrap;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
-                    <?php } else { ?>
-                        <form class="form-horizontal" method="post">
-                            <input hidden name="id" value="<?= $id; ?>">
-                            <input hidden name="idreactie" value="<?= $reactie->getIdreactie(); ?>">
-                            <div style="padding-left: 0;" class="col-xs-10">
-                                <textarea class="form-control" name="reactietekstAanpassen" rows="1"><?= $reactie->getReactietekst(); ?></textarea>
-                            </div>
-                            <div class="col-xs-2">
-                                <button style="margin-top:5px;" type="submit" class="btn btn-default" name="aanpassen">Aanpassen</button>
-                            </div>
-                        </form>
-                    <?php } ?>
-                </div>
+        <?php foreach ($reacties
+
+        as $reactie) {
+        $gebruiker = $reactie->getGebruikerById();
+        ?>
+        <div class="row" id="regel">
+            <div class="col-md-1">
+                <img style="margin-top: 15px;" id="reactieProfielfoto" src="<?= htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
             </div>
-        <?php } ?>
+            <div class="col-md-11">
+                <?php if (isset($_SESSION['login'])) {
+                    if ($_SESSION['login']['login'] == $gebruiker->getLogin()) {
+                        if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
+                            <div style="float:right;">
+                                <img style="margin-top: 10px; cursor: pointer;" onclick="bewerken(<?= $id; ?>,<?= $reactie->getIdreactie(); ?>)" src="img/bewerk.jpg" height="20" width="20">
+                            </div>
+                        <?php } else { ?>
+                            <div style="float:right;">
+                                <img style="margin-top: 10px; cursor: pointer;" onclick="cancel(<?= $id; ?>)" src="img/cancel.png" height="20" width="20">
+                            </div>
+                        <?php }
+                    }
+                } ?>
+                <p style="margin-top: 10px;"><b><?= htmlspecialchars($gebruiker->getLogin()); ?></b></p>
+                <?php if ($reactie->getIdreactie() != $_GET['idreactie'] || $reactie->getIdgebruikerByIdReactie($_GET['idreactie'])[0] != $_SESSION['login']['idgebruiker']) { ?>
+                    <p style="white-space: nowrap;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
+                <?php } else { ?>
+                    <form class="form-horizontal" method="post">
+                        <input hidden name="id" value="<?= $id; ?>">
+                        <input hidden name="idreactie" value="<?= $reactie->getIdreactie(); ?>">
+                        <div style="padding-left: 0;" class="col-xs-10">
+                            <textarea class="form-control" name="reactietekstAanpassen" rows="1"><?= $reactie->getReactietekst(); ?></textarea>
+                        </div>
+                        <div class="col-xs-2">
+                            <button style="margin-top:5px;" type="submit" class="btn btn-default" name="aanpassen">Aanpassen</button>
+                        </div>
+                    </form>
+                <?php } ?>
+            </div>
+            <?php } ?>
+            <?php if (sizeof($reacties) <= 0) { ?>
+                <p><?= 'Er zijn geen reacties geplaatst.'; ?></p>
+            <?php } ?>
+        </div>
+
     </div>
     <script>
         function bewerken(idattractie, idreactie) {

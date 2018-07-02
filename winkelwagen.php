@@ -96,6 +96,7 @@ include("layout/header.php");
                             $product->updateVoorraad($idproduct, $product->getProductVoorraadById($idproduct)[0], $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 'verkocht');
                         }
                         $winkelwagen->deleteWinkelwagen($_SESSION['login']['idgebruiker']);
+                        //TODO: Winkelwagen refreshed niet na betalen.
                         header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
                     }
                 }
