@@ -77,7 +77,7 @@ $winkelwagen = new Winkelwagen();
                             echo htmlspecialchars($geb->getIdgebruiker());
                             }
                             } ?>">
-                            <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
+                            <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($_SESSION['login']['login']); ?>">
                             <p id="profielnaam"><?= htmlspecialchars($_SESSION['login']['login']); ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>

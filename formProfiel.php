@@ -40,6 +40,7 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
         if (!isset($error_message)) {
             $gebruiker->updatePersoonsgegevens($id, $login, $voornaam, $tussenvoegsels, $achternaam);
             $messages[] = 'Uw persoonsgegevens zijn aangepast.';
+            $_SESSION['login']['login'] = $user->getLogin();
             header('Location: formProfiel.php?id='. $id);
         }
     }
@@ -52,10 +53,6 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
     } else {
         $error_message[] = 'Het nieuwe wachtwoord komt niet overeen.';
     }
-} else if (isset($_POST['profielFotoOpslaan'])) {
-    extract($_POST);
-    $gebruiker->updateAvatar($id, $avatar);
-    header('Location: formProfiel.php?id='. $id);
 }
 include("layout/header.php");
 ?>

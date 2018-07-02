@@ -2,6 +2,13 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    return;
+}
+
+$gebruiker = new Gebruiker();
+$user = $gebruiker->getGebruikerById($_SESSION['login']['idgebruiker']);
 $upload_folder = '/img/';
 $allowed_mime = ['image/png', 'image/jpeg'];
 
@@ -12,6 +19,9 @@ if (isset($_POST['profielFotoOpslaan']) && isset($_FILES['fileToUpload'])) {
         $target = getcwd() . $upload_folder . $_SESSION['login']['login'] . "." . $file_ext;
         if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target)) {
             $message = 'Profiel foto is geupload!';
+            extract($_POST);
+            $gebruiker->updateAvatar($_SESSION['login']['idgebruiker'], 'img/'.$_SESSION['login']['login'] . "." . $file_ext);
+            $_SESSION['login']['avatar'] = $user->getAvatar();
             header('Location:formProfiel.php?id='.$_SESSION['login']['idgebruiker']);
         } else {
             $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
