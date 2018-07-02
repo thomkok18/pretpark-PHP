@@ -28,7 +28,7 @@ if (isset($_POST['winkelwagen'])) {
     }
 
     if (!isset($error_message)) {
-        if (intval($aantal) <= intval($voorraad)) {
+        if (intval($aantal) <= intval($voorraad) && intval($aantal) > 0) {
             $winkelwagen->setIdproduct($id);
             $winkelwagen->setIdgebruiker($_SESSION['login']['idgebruiker']);
             $winkelwagen->setAantal($_POST['aantal']);
