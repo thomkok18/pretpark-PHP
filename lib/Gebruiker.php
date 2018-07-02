@@ -13,12 +13,6 @@ class Gebruiker {
     private $avatar;
 
     /**
-     * Beheerder constructor.
-     */
-    public function __construct() {
-    }
-
-    /**
      * @param $idgebruiker
      * @return mixed
      */
