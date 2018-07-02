@@ -38,7 +38,7 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
         if (!isset($error_message)) {
             $gebruiker->updatePersoonsgegevens($id, $login, $voornaam, $tussenvoegsels, $achternaam);
             $messages[] = 'Uw persoonsgegevens zijn aangepast.';
-            $_SESSION['login']['login'] = $user->getLogin();
+            $_SESSION['login']['login'] = $login;
             header('Location: formGebruiker.php?id=' . $id);
         }
     }

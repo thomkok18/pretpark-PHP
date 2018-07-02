@@ -4,6 +4,7 @@ include_once("lib/Winkelwagen.php");
 
 $gebruiker = new Gebruiker();
 $gebruikers = $gebruiker->getGebruikers();
+$user = $gebruiker->getGebruikerById($_SESSION['login']['idgebruiker']);
 $winkelwagen = new Winkelwagen();
 
 ?>
@@ -77,7 +78,7 @@ $winkelwagen = new Winkelwagen();
                             echo htmlspecialchars($geb->getIdgebruiker());
                             }
                             } ?>">
-                            <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($_SESSION['login']['login']); ?>">
+                            <img id="profielAfbeelding" src="<?= htmlspecialchars($user->getAvatar()); ?>" alt="<?= htmlspecialchars($user->getLogin()); ?>">
                             <p id="profielnaam"><?= htmlspecialchars($_SESSION['login']['login']); ?></p></a></li>
                 <?php } else { ?>
                     <li <?php if ($pagina === 'login') { ?> class="active" <?php } ?>><a href="login.php">Inloggen</a>
