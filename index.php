@@ -17,7 +17,7 @@ include("layout/header.php");
         </div>
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
-            <div class="row">
+            <div style="margin-bottom:20px;" class="row">
                 <div class="col-md-4">
                     <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
@@ -31,8 +31,6 @@ include("layout/header.php");
                 <div class="offset-md-4 col-md-8">
                     <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
-            </div>
-            <div class="row">
             </div>
         <?php } ?>
 
