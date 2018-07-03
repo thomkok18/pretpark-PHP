@@ -54,8 +54,6 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
     header('Location: winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
 }
 
-var_dump($winkelwagen->getProductByIdgebruiker($id) != null);
-
 include("layout/header.php");
 ?>
 
