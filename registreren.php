@@ -12,6 +12,8 @@ if (isset($_POST['registreren'])) {
     $achternaam = preg_replace('/\s+/', '', $_POST['achternaam']);
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $wachtwoord = preg_replace('/\s+/', '', $_POST['wachtwoord']);
+    preg_match('!\d+!', $wachtwoord, $wachtwoord1);
+    $numbers = implode($wachtwoord1);
 
     if (ctype_alpha($voornaam) == false) {
         $error_message[] = 'Alleen letters zijn toegestaan voor de voornaam.';
@@ -24,6 +26,19 @@ if (isset($_POST['registreren'])) {
     if (ctype_alpha($achternaam) == false) {
         $error_message[] = 'Alleen letters zijn toegestaan voor de achternaam.';
     }
+
+    if (strlen($login) < 8) {
+        $error_message[] = 'Login moet minimaal 8 tekens bevatten.';
+    }
+
+    if (strlen($wachtwoord) < 8) {
+        $error_message[] = 'Wachtwoord moet minimaal 8 tekens bevatten.';
+    }
+
+    if (!empty(strlen($numbers) < 2)) {
+        $error_message[] = 'Wachtwoord moet minimaal 2 cijfers bevatten.';
+    }
+
 
     if ($voornaam != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
         if (!isset($error_message)) {
@@ -54,19 +69,22 @@ $pagina = 'registreren';
 
 include("layout/header.php");
 ?>
-    <?php if (isset($_POST['registreren']) && isset($error_message)) { ?>
+<?php if (isset($_POST['registreren']) && isset($error_message)) { ?>
     <div class="alert alert-danger" role="alert">
-        <?php foreach ($error_message as $key => $error){ ?>
-        <strong><?= htmlspecialchars($error) . "<br>"; ?></strong>
+        <?php foreach ($error_message as $key => $error) { ?>
+            <strong><?= htmlspecialchars($error) . "<br>"; ?></strong>
         <?php } ?>
     </div>
-    <?php } ?>
+<?php } ?>
 
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-2 col-sm-10">
                 <h1>Registreren</h1>
-                <p>* zijn verplichte velden.</p>
+                <p>Login moet minimaal 8 tekens bevatten.<br>
+                    Wachtwoord moet minimaal 8 tekens bevatten.<br>
+                    Wachtwoord moet minimaal 2 cijfers bevatten.<br>
+                    * zijn verplichte velden.</p>
             </div>
         </div>
         <form class="form-horizontal" method="post">
