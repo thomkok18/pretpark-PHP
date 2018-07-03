@@ -14,17 +14,22 @@ $allowed_mime = ['image/png', 'image/jpeg'];
 
 if (isset($_POST['profielFotoOpslaan']) && isset($_FILES['fileToUpload'])) {
     $file_mime = mime_content_type($_FILES['fileToUpload']['tmp_name']);
+    $corrupt = isCorrupt($_FILES['fileToUpload']['tmp_name']);
     if (in_array($file_mime, $allowed_mime)) {
         $file_ext = getExtension($file_mime);
         $target = getcwd() . $upload_folder . $_SESSION['login']['login'] . "." . $file_ext;
-        if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target)) {
-            $message = 'Profiel foto is geupload!';
-            extract($_POST);
-            $gebruiker->updateAvatar($_SESSION['login']['idgebruiker'], 'img/'.$_SESSION['login']['login'] . "." . $file_ext);
-            $_SESSION['login']['avatar'] = $user->getAvatar();
-            header('Location:formProfiel.php?id='.$_SESSION['login']['idgebruiker']);
+        if (!$corrupt) {
+            if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target)) {
+                $message = 'Profiel foto is geupload!';
+                extract($_POST);
+                $gebruiker->updateAvatar($_SESSION['login']['idgebruiker'], 'img/' . $_SESSION['login']['login'] . "." . $file_ext);
+                $_SESSION['login']['avatar'] = $user->getAvatar();
+                header('Location:formProfiel.php?id=' . $_SESSION['login']['idgebruiker']);
+            } else {
+                $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
+            }
         } else {
-            $message = 'Er is een fout opgetreden bij het verplaatsen van je foto!';
+            $message = 'Dit bestand is beschadigd!';
         }
     } else {
         $message = 'Dit type bestand is verboden!';
@@ -38,6 +43,15 @@ function getExtension($file_mime) {
     $ext = end($mime);
     if ($ext == 'jpeg' || $ext == 'jpg') $ext = 'png';
     return $ext;
+}
+
+function isCorrupt($image) {
+    try {
+        new Imagick($image);
+        return false;
+    } catch (ImagickException $e) {
+        return true;
+    }
 }
 
 echo $message;
