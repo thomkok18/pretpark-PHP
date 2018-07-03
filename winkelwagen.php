@@ -22,9 +22,28 @@ $subtotaal = 0;
 $verzendkosten = 0.95;
 $totaal = 0.00;
 
+$aantalProducten = 0;
+$aantalProducten = $aantalProducten + $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
+$subtotaal = $subtotaal + $product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
+$totaal = $subtotaal + $verzendkosten;
+
+if (isset($_POST['betalen'])) {
+    if ($totaal === $subtotaal + $verzendkosten) {
+        foreach ($geldvoorraad as $key => $geld) {
+            $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
+        }
+        for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
+            $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
+            $product->updateVoorraad($idproduct, $product->getProductVoorraadById($idproduct)[0], $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 'verkocht');
+        }
+        $winkelwagen->deleteWinkelwagen($_SESSION['login']['idgebruiker']);
+        header('Location:winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
+    }
+}
+
 if (isset($_GET['deleteProduct']) && !empty($_GET['deleteProduct'])) {
     $winkelwagen->deleteProduct($_GET['deleteProduct'], $_SESSION['login']['idgebruiker']);
-    header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
+    header('Location: winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
 }
 
 if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['productAantal']) && $_GET['productAantal'] != null) {
@@ -32,8 +51,10 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
     if ($_GET['productAantal'] == 0) {
         $winkelwagen->deleteProduct($_GET['idproduct'], $_SESSION['login']['idgebruiker']);
     }
-    header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
+    header('Location: winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
 }
+
+var_dump($winkelwagen->getProductByIdgebruiker($id) != null);
 
 include("layout/header.php");
 ?>
@@ -44,9 +65,8 @@ include("layout/header.php");
         </div>
 
         <form class="form-horizontal" method="post">
-            <?php if ($winkelwagen->getProductByIdgebruiker($id) != null) { ?>
-                <?php for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) { ?>
-                    <?php
+            <?php if ($winkelwagen->getProductByIdgebruiker($id) != null) {
+                for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
                     $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
                     ?>
                     <div class="col-xs-12">
@@ -55,20 +75,16 @@ include("layout/header.php");
                         </div>
                         <h3 class="tabelWinkel col-xs-3"><?= $product->getProductTitelById($idproduct)[0]; ?></h3>
                         <a id="verwijderen" class="col-xs-2" href="winkelwagen.php?deleteProduct=<?= $idproduct; ?>"><span class="text-danger">Verwijderen</span></a>
-                        <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?= $idproduct; ?>" class="tabelWinkel col-xs-2" name="aantal" onchange="refresh(<?= $_SESSION['login']['idgebruiker']; ?>, <?= $idproduct; ?>);">
+                        <select style="padding: 6px 0 6px 0;" id="voorraadSelectbox<?= $idproduct; ?>" class="tabelWinkel col-xs-2" name="aantal"
+                                onchange="refresh(<?= $_SESSION['login']['idgebruiker']; ?>, <?= $idproduct; ?>);">
                             <?php for ($prod = 0; $prod <= $product->getProductVoorraadById($idproduct)[0]; $prod++) { ?>
                                 <option <?php if ($prod == $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0]) { ?> selected <?php } ?> ><?= $prod; ?></option>
                             <?php } ?>
                         </select>
-                        <b id="prijs" class="col-xs-2"><?= htmlspecialchars('€ ' . number_format($product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 2)); ?></b>
+                        <b id="prijs"
+                           class="col-xs-2"><?= htmlspecialchars('€ ' . number_format($product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 2)); ?></b>
                     </div>
-                    <?php
-                    $aantalProducten = 0;
-                    $aantalProducten = $aantalProducten + $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
-                    $subtotaal = $subtotaal + $product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
-                    $totaal = $subtotaal + $verzendkosten;
-                }
-                ?>
+                <?php } ?>
                 <div class="col-xs-12">
                     <div class="row">
                         <b class="col-xs-2 totaal"><?= htmlspecialchars('€ ' . number_format($subtotaal, 2)); ?></b>
@@ -86,20 +102,7 @@ include("layout/header.php");
                 <div class="col-xs-12">
                     <button id="betalen" class="col-xs-2 tabelWinkel btn" type="submit" name="betalen">Betalen</button>
                 </div>
-                <?php if (isset($_POST['betalen'])) {
-                    if ($totaal === $subtotaal + $verzendkosten) {
-                        foreach ($geldvoorraad as $key => $geld) {
-                            $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
-                        }
-                        for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
-                            $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
-                            $product->updateVoorraad($idproduct, $product->getProductVoorraadById($idproduct)[0], $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 'verkocht');
-                        }
-                        $winkelwagen->deleteWinkelwagen($_SESSION['login']['idgebruiker']);
-                        //TODO: Winkelwagen refreshed niet na betalen.
-                        header('Location: winkelwagen.php?id='.$_SESSION['login']['idgebruiker']);
-                    }
-                }
+                <?php
             } else {
                 echo htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.');
             }
