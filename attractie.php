@@ -36,8 +36,6 @@ if (isset($_POST['aanpassen'])) {
     header('Location: attractie.php?id=' . $id . '&idreactie=0');
 }
 
-var_dump(sizeof($reacties) <= 0);
-
 include("layout/header.php");
 ?>
     <div class="container">
