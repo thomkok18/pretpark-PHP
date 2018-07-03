@@ -2,6 +2,8 @@
 include_once('lib/config.php');
 include_once("lib/Gebruiker.php");
 
+$gebruiker = new Gebruiker();
+
 if (isset($_POST['registreren'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
@@ -36,7 +38,11 @@ if (isset($_POST['registreren'])) {
             if ($gebruiker->insertGebruiker()) {
                 header('Location: login.php');
             } else {
-                $error_message[] = "Gebruiker is niet toegevoegd.";
+                if ($gebruiker->getGebruikerByLogin($login)) {
+                    $error_message[] = "Deze gebruiker bestaat al.";
+                } else {
+                    $error_message[] = "Gebruiker is niet toegevoegd.";
+                }
             }
         }
     } else {

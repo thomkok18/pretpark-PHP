@@ -177,6 +177,20 @@ class Gebruiker {
     }
 
     /**
+     * @param $login
+     * @return mixed
+     */
+    public function getGebruikerByLogin($login) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE login = :login");
+        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Gebruiker');
+        return $stmt->execute();
+    }
+
+    /**
      * @return string
      */
     public function getVolledigeNaam() {
