@@ -41,19 +41,11 @@ class Reactie {
     public function updateReactieById($idreactie, $reactietekst) {
         $db = new Db();
         $conn = $db->getConnectie();
-        $query = 'SELECT idgebruiker FROM reactie WHERE idreactie = :idreactie';
+        $query = 'UPDATE reactie SET reactietekst = :reactietekst WHERE idreactie = :idreactie';
         $stmt = $conn->prepare($query);
-        $stmt->bindParam(':idreactie', $_GET['idreactie']);
-        $results = $stmt->fetch();
-
-        if ($_SESSION['login']['idgebruiker'] === $results['idgebruiker']) {
-            $query = 'UPDATE reactie SET reactietekst = :reactietekst WHERE idreactie = :idreactie';
-            $stmt = $conn->prepare($query);
-            $stmt->bindParam(':idreactie', $idreactie, PDO::PARAM_INT);
-            $stmt->bindParam(':reactietekst', $reactietekst, PDO::PARAM_STR);
-            return $stmt->execute();
-        }
-        return;
+        $stmt->bindParam(':idreactie', $idreactie, PDO::PARAM_INT);
+        $stmt->bindParam(':reactietekst', $reactietekst, PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
     /**

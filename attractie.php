@@ -32,7 +32,7 @@ if (isset($_POST['toevoegen'])) {
 if (isset($_POST['aanpassen'])) {
     extract($_POST);
     $reactie = new Reactie();
-    $reactie->updateReactieById($idreactie, $reactietekstAanpassen);
+    $reactie->updateReactieById($_POST['idreactie'], $_POST['reactietekstAanpassen']);
     header('Location: attractie.php?id=' . $id . '&idreactie=0');
 }
 
