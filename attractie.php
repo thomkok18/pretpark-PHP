@@ -78,7 +78,7 @@ include("layout/header.php");
         as $reactie) {
         $gebruiker = $reactie->getGebruikerById();
         ?>
-        <div class="row" id="regel">
+        <div id="regel">
             <div class="col-md-1">
                 <img style="margin-top: 15px;" id="reactieProfielfoto" src="<?= htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
             </div>
@@ -98,7 +98,7 @@ include("layout/header.php");
                 } ?>
                 <p style="margin-top: 10px;"><b><?= htmlspecialchars($gebruiker->getLogin()); ?></b></p>
                 <?php if ($reactie->getIdreactie() != $_GET['idreactie'] || $reactie->getIdgebruikerByIdReactie($_GET['idreactie'])[0] != $_SESSION['login']['idgebruiker']) { ?>
-                    <p style="white-space: nowrap;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
+                    <p style="white-space: pre-wrap; word-wrap: break-word;"><?= htmlspecialchars($reactie->getReactietekst()); ?></p>
                 <?php } else { ?>
                     <form class="form-horizontal" method="post">
                         <input hidden name="id" value="<?= $id; ?>">
