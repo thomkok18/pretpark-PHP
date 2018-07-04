@@ -29,7 +29,7 @@ if (isset($_POST['toevoegen'])) {
 include("layout/header.php");
 ?>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-offset-2 col-sm-10">
                 <h1>Attractie Toevoegen</h1>

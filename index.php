@@ -8,7 +8,7 @@ $pagina = 'index';
 
 include("layout/header.php");
 ?>
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="page-header">
             <div class="row">
@@ -17,21 +17,27 @@ include("layout/header.php");
         </div>
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
-            <div style="margin-bottom:20px;" class="row">
-                <div class="col-md-4">
+            <div style="margin-bottom:20px; text-align: -webkit-center;" class="col-xs-12 col-sm-6 col-md-4">
+                <div style="max-width: 300px;" class="">
                     <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
-                <div class="col-md-8">
+                <div style="max-width: 300px; text-align: initial;" class="">
                     <h3 style="margin-top: 0;"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
-                    <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
+                    <p style=""><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
-                <div class="offset-md-4 col-md-8">
+                <div style="max-width: 300px;  text-align: initial;" class="">
                     <i>Door: <?= htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
-                <div class="offset-md-4 col-md-8">
-                    <a id="reactieButton" role="button" class="btn btn-default col-xs-2" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
+                <div style="max-width: 300px;  text-align: initial;" class="">
+                    <a id="reactieButton" role="button" class="btn btn-default" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
             </div>
+            <?php if ($key == 1) { ?>
+            <div class="clearfix visible-sm"></div>
+            <?php } ?>
+            <?php if ($key == 2) { ?>
+                <div class="clearfix visible-xs visible-md visible-lg"></div>
+            <?php } ?>
         <?php } ?>
 
     </div>

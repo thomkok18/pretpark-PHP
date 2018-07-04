@@ -35,7 +35,7 @@ if (isset($_GET['deleteGebruiker']) && !empty($_GET['deleteGebruiker'])) {
 
 include("layout/header.php");
 ?>
-<div class="container">
+<div class="container-fluid">
     <div class="page-header">
         <h1>Beheren</h1>
     </div>

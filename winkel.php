@@ -60,7 +60,7 @@ include("layout/header.php");
     <?php }
 } ?>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="page-header">
             <h1>Winkel</h1>
         </div>

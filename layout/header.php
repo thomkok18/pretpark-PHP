@@ -46,7 +46,7 @@ if (isset($_SESSION['login'])) {
 <body>
 <!-- Static navbar -->
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -93,7 +93,7 @@ if (isset($_SESSION['login'])) {
             </ul>
 
         </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+    </div><!--/.container-fluid-fluid -->
 </nav>
 <img src="img/pretpark_logo.png" id="pretparkLogo" class="img-responsive" alt="logo pretpark">
 <div class="container">

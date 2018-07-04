@@ -57,7 +57,7 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
 include("layout/header.php");
 ?>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="page-header">
             <h1>Winkel</h1>
         </div>

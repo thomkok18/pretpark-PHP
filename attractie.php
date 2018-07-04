@@ -38,7 +38,7 @@ if (isset($_POST['aanpassen'])) {
 
 include("layout/header.php");
 ?>
-    <div class="container">
+    <div class="container-fluid">
         <div class="page-header">
             <h1>Attractie</h1>
         </div>
@@ -50,9 +50,7 @@ include("layout/header.php");
 
             <div class="col-md-8">
                 <div class="row">
-                    <?php if (isset($_SESSION['login'])) { ?>
-                        <h3 style="margin-top: 0;" class="col-xs-10"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
-                    <?php } ?>
+                    <h3 style="margin-top: 0;" class="col-xs-10"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                 </div>
                 <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>
