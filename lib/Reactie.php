@@ -62,6 +62,18 @@ class Reactie {
     }
 
     /**
+     * @return bool
+     */
+    public function deleteReactie() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $query = "DELETE FROM reactie WHERE idreactie = :idreactie";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':idreactie', $_GET['deleteReactie']);
+        return $stmt->execute();
+    }
+
+    /**
      * @return mixed
      */
     public function getIdreactie() {

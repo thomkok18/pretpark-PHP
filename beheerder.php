@@ -63,8 +63,7 @@ include("layout/header.php");
             <tbody>
             <tr>
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
-                    <th><a href="beheerder.php?deleteGebruiker=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg"
-                                                                                                                      value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a></th>
+                    <th><a href="beheerder.php?deleteGebruiker=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a></th>
                 <?php } ?>
                 <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
                     <th><img class="prullenbak" src="img/prullenbakDicht.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></th>

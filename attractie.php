@@ -36,6 +36,12 @@ if (isset($_POST['aanpassen'])) {
     header('Location: attractie.php?id=' . $id . '&idreactie=0');
 }
 
+if (isset($_GET['deleteReactie']) && !empty($_GET['deleteReactie'])) {
+    $conn = new Reactie();
+    $conn->deleteReactie();
+    header('Location: attractie.php?id=' . $id . '&idreactie=0');
+}
+
 include("layout/header.php");
 ?>
     <div class="container-fluid">
@@ -88,6 +94,7 @@ include("layout/header.php");
                         if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
                             <div style="float:right;">
                                 <img style="margin-top: 10px; cursor: pointer;" onclick="bewerken(<?= $id; ?>,<?= $reactie->getIdreactie(); ?>)" src="img/bewerk.jpg" height="20" width="20">
+                                <a href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&deleteReactie=<?= htmlspecialchars($reactie->getIdreactie()); ?>"><img style="margin-top: 10px;" height="20" width="20" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a>
                             </div>
                         <?php } else { ?>
                             <div style="float:right;">
