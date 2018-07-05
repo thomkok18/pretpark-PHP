@@ -29,13 +29,14 @@
 }
 
 #betalen {
-    float: right;
+    margin-top:10px;
 }
 
 .totaal {
     float: right;
 }
 
-#verwijderen {
-    margin-top: 48px;
+.voorraad {
+    padding-top: 6px;
+    padding-bottom: 6px;
 }

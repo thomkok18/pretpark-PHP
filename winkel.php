@@ -72,12 +72,12 @@ include("layout/header.php");
                         <div style="text-align: center;" class="col-xs-12 col-sm-6">
                             <img id="productAfbeelding" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>" alt="Product">
                         </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <h3><?= htmlspecialchars($prod->getTitel()); ?></h3>
+                        <div class="col-xs-12 col-sm-6 tabelWinkel">
+                            <h3 style="margin-top: 0;"><?= htmlspecialchars($prod->getTitel()); ?></h3>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="col-xs-12 col-sm-2 col-lg-12" style="margin-top: 25px;">
+                        <div class="col-xs-12 col-sm-2 col-lg-12 tabelWinkel">
                             <b>€ <?= htmlspecialchars($prod->getPrijs()); ?></b>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ include("layout/header.php");
                         </div>
                         <?php } else { ?>
                             <div class="col-xs-12">
-                                <b class="col-xs-12" style="color:red; margin-top:50px; padding-left:0;">Uitverkocht</b>
+                                <b class="col-xs-12 tabelWinkel" style="color:red; padding-left:0;">Uitverkocht</b>
                             </div>
                         <?php } ?>
                     </div>
