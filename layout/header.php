@@ -19,6 +19,7 @@ if (isset($_SESSION['login'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <?php if ($pagina === 'beheerder') { ?>
         <link rel="stylesheet" href="css/beheerder.css">
     <?php } else if ($pagina === 'attractie') { ?>
@@ -46,7 +47,7 @@ if (isset($_SESSION['login'])) {
 <body>
 <!-- Static navbar -->
 <nav class="navbar navbar-default">
-    <div class="container-fluid-fluid">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -93,7 +94,7 @@ if (isset($_SESSION['login'])) {
             </ul>
 
         </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid-fluid -->
+    </div><!--/.container-fluid -->
 </nav>
 <img src="img/pretpark_logo.png" id="pretparkLogo" class="img-responsive" alt="logo pretpark">
-<div class="container">
+<div class="container wrapper">

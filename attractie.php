@@ -49,14 +49,14 @@ include("layout/header.php");
             <h1>Attractie</h1>
         </div>
 
-        <div class="">
+        <div>
             <div class="col-md-4">
                 <img src="<?= htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie" width="300" height="300">
             </div>
 
             <div class="col-md-8">
                 <div>
-                    <h3 style="margin-top: 0;" ><?= htmlspecialchars($attractie->getTitel()); ?></h3>
+                    <h3 style="margin-top: 0;"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                 </div>
                 <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>
@@ -79,8 +79,10 @@ include("layout/header.php");
             </form>
         <?php } ?>
         <hr>
-        <?php foreach ($reacties as $reactie) {
-            $gebruiker = $reactie->getGebruikerById();
+        <?php foreach ($reacties
+
+        as $reactie) {
+        $gebruiker = $reactie->getGebruikerById();
         ?>
         <div id="regel">
             <div class="col-md-1">
@@ -92,7 +94,8 @@ include("layout/header.php");
                         if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
                             <div style="float:right;">
                                 <img style="margin-top: 10px; cursor: pointer;" onclick="bewerken(<?= $id; ?>,<?= $reactie->getIdreactie(); ?>)" src="img/bewerk.jpg" height="20" width="20">
-                                <a href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&deleteReactie=<?= htmlspecialchars($reactie->getIdreactie()); ?>"><img style="margin-top: 10px;" height="20" width="20" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a>
+                                <a href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&deleteReactie=<?= htmlspecialchars($reactie->getIdreactie()); ?>"><img
+                                            style="margin-top: 10px;" height="20" width="20" src="img/prullenbakOpen.jpg" value="<?= htmlspecialchars($geb->getIdgebruiker()); ?>"></a>
                             </div>
                         <?php } else { ?>
                             <div style="float:right;">
@@ -122,6 +125,7 @@ include("layout/header.php");
                 <p><?= 'Er zijn geen reacties geplaatst.'; ?></p>
             <?php } ?>
         </div>
+    </div>
 
     </div>
     <script>
