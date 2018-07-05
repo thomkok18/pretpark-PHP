@@ -67,24 +67,40 @@ include("layout/header.php");
 
         <?php foreach ($producten as $key => $prod) { ?>
             <form class="form-horizontal" method="post" action="winkel.php?action=add&id=<?= htmlspecialchars($prod->getIdproduct()); ?>">
-                <div class="col-xs-12">
-                    <div class="col-xs-3">
-                        <img id="productAfbeelding" class="img-responsive" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>" alt="Product">
+                <div style="margin-bottom: 20px;" class="col-lg-12">
+                    <div class="col-lg-5">
+                        <div style="text-align: center;" class="col-xs-12 col-sm-6">
+                            <img id="productAfbeelding" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>" alt="Product">
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <h3><?= htmlspecialchars($prod->getTitel()); ?></h3>
+                        </div>
                     </div>
-                    <h3 class="tabelWinkel col-xs-3"><?= htmlspecialchars($prod->getTitel()); ?></h3>
-                    <b id="prijs" class="col-xs-2">€ <?= htmlspecialchars($prod->getPrijs()); ?></b>
-                    <?php if ($prod->getVoorraad() != 0) { ?>
-                    <select id="voorraadSelectbox" class="tabelWinkel col-xs-2" name="aantal">
-                        <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
-                            <option><?= htmlspecialchars($i); ?></option>
+                    <div class="col-lg-2">
+                        <div class="col-xs-12 col-sm-2 col-lg-12" style="margin-top: 25px;">
+                            <b>€ <?= htmlspecialchars($prod->getPrijs()); ?></b>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="col-xs-12 col-sm-6">
+                            <?php if ($prod->getVoorraad() != 0) { ?>
+                            <select id="voorraadSelectbox" class="tabelWinkel col-xs-12" name="aantal">
+                                <?php for ($i = 0; $i <= $prod->getVoorraad(); $i++) { ?>
+                                    <option><?= htmlspecialchars($i); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <button style="margin-bottom:20px;" class="tabelWinkel btn col-xs-12" type="submit" name="winkelwagen">Winkelwagen</button>
+                        </div>
+                        <?php } else { ?>
+                            <div class="col-xs-12">
+                                <b class="col-xs-12" style="color:red; margin-top:50px; padding-left:0;">Uitverkocht</b>
+                            </div>
                         <?php } ?>
-                    </select>
-
-                    <button class="tabelWinkel btn col-xs-2" type="submit" name="winkelwagen">Winkelwagen</button>
-                    <?php } else { ?>
-                        <b class="col-xs-4" style="color:red; margin-top:50px; padding-left:0;">Uitverkocht</b>
-                    <?php } ?>
+                    </div>
                 </div>
+
             </form>
         <?php } ?>
 
