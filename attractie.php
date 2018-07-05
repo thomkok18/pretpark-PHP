@@ -50,13 +50,13 @@ include("layout/header.php");
         </div>
 
         <div class="">
-            <div class="">
+            <div class="col-md-4">
                 <img src="<?= htmlspecialchars($attractie->getUrlFoto()); ?>" alt="Attractie" width="300" height="300">
             </div>
 
-            <div class="">
-                <div class="">
-                    <h3 style="margin-top: 0;" class=""><?= htmlspecialchars($attractie->getTitel()); ?></h3>
+            <div class="col-md-8">
+                <div class="row">
+                    <h3 style="margin-top: 0;" class="col-xs-10"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                 </div>
                 <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>
@@ -64,14 +64,14 @@ include("layout/header.php");
         <?php if (isset($_SESSION['login'])) { ?>
             <form class="form-horizontal" action="<?= htmlspecialchars($_SERVER['PHP_SELF'] . "?id=" . $id); ?>" method="post">
                 <div class="form-group">
-                    <div class="" style="margin-top:20px;">
-                        <div class="">
+                    <div class="col-xs-12" style="margin-top:20px;">
+                        <div class="col-xs-1">
                             <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
                         </div>
-                        <div class="">
+                        <div class="col-xs-11 col-sm-10">
                             <textarea style="margin-top:5px;" class="form-control" name="reactietekst" placeholder="Voeg reactie toe" rows="1"></textarea>
                         </div>
-                        <div class="">
+                        <div class="col-xs-1">
                             <button style="margin-top:5px;" type="submit" class="btn btn-default" name="toevoegen">Reageren</button>
                         </div>
                     </div>
@@ -85,10 +85,10 @@ include("layout/header.php");
         $gebruiker = $reactie->getGebruikerById();
         ?>
         <div id="regel">
-            <div class="">
+            <div class="col-md-1">
                 <img style="margin-top: 15px;" id="reactieProfielfoto" src="<?= htmlspecialchars($gebruiker->getAvatar()); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
             </div>
-            <div class="">
+            <div class="col-md-11">
                 <?php if (isset($_SESSION['login'])) {
                     if ($_SESSION['login']['login'] == $gebruiker->getLogin()) {
                         if ($reactie->getIdreactie() != $_GET['idreactie']) { ?>
@@ -110,10 +110,10 @@ include("layout/header.php");
                     <form class="form-horizontal" method="post">
                         <input hidden name="id" value="<?= $id; ?>">
                         <input hidden name="idreactie" value="<?= $reactie->getIdreactie(); ?>">
-                        <div style="padding-left: 0;" class="">
+                        <div style="padding-left: 0;" class="col-xs-10">
                             <textarea class="form-control" name="reactietekstAanpassen" rows="1"><?= $reactie->getReactietekst(); ?></textarea>
                         </div>
-                        <div class="">
+                        <div class="col-xs-2">
                             <button style="margin-top:5px;" type="submit" class="btn btn-default" name="aanpassen">Aanpassen</button>
                         </div>
                     </form>
