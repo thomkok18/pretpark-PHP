@@ -55,8 +55,8 @@ include("layout/header.php");
             </div>
 
             <div class="col-md-8">
-                <div class="row">
-                    <h3 style="margin-top: 0;" class="col-xs-10"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
+                <div>
+                    <h3 style="margin-top: 0;" ><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                 </div>
                 <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
             </div>

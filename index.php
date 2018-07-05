@@ -17,7 +17,7 @@ include("layout/header.php");
         </div>
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
-            <div style="margin-bottom:20px; text-align: -webkit-center;" class="col-xs-12 col-sm-6 col-md-4">
+            <div style="margin-bottom:20px; text-align: -webkit-center;" class="col-xs-12 col-sm-6 col-lg-4">
                 <div style="max-width: 300px;">
                     <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
@@ -33,10 +33,10 @@ include("layout/header.php");
                 </div>
             </div>
             <?php if ($key == 1) { ?>
-            <div class="clearfix visible-sm"></div>
+            <div class="clearfix visible-sm visible-md"></div>
             <?php } ?>
             <?php if ($key == 2) { ?>
-                <div class="clearfix visible-xs visible-md visible-lg"></div>
+                <div class="clearfix visible-xs visible-lg"></div>
             <?php } ?>
         <?php } ?>
 

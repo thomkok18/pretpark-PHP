@@ -29,11 +29,9 @@ if (isset($_POST['toevoegen'])) {
 include("layout/header.php");
 ?>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-offset-2 col-lg-10">
-                <h1>Attractie Toevoegen</h1>
-            </div>
+    <div>
+        <div class="page-header">
+            <h1>Attractie Toevoegen</h1>
         </div>
         <form class="form-horizontal" method="post">
             <div class="form-group">
