@@ -31,31 +31,31 @@ include("layout/header.php");
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-lg-offset-2 col-lg-10">
                 <h1>Attractie Toevoegen</h1>
             </div>
         </div>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="titel" class="col-sm-2 control-label">Titel</label>
-                <div class="col-sm-10">
+                <label for="titel" class="col-lg-2 control-label">Titel</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="titel" name="titel" placeholder="Titel">
                 </div>
             </div>
             <div class="form-group">
-                <label for="omschrijving" class="col-sm-2 control-label">Attractie omschrijving</label>
-                <div class="col-sm-10">
+                <label for="omschrijving" class="col-lg-2 control-label">Attractie omschrijving</label>
+                <div class="col-lg-10">
                     <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="attractieFoto" class="col-sm-2 control-label">Attractie foto</label>
-                <div id="uploadButton" class="col-sm-10">
+                <label for="attractieFoto" class="col-lg-2 control-label">Attractie foto</label>
+                <div id="uploadButton" class="col-lg-10">
                     <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="toevoegen">Toevoegen</button>
                 </div>
             </div>

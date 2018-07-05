@@ -44,31 +44,31 @@ include("layout/header.php");
         <h3>Product gegevens</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="titel" class="col-sm-2 control-label">* Titel</label>
-                <div class="col-sm-10">
+                <label for="titel" class="col-lg-2 control-label">* Titel</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="titel" name="titel" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="productomschrijving" class="col-sm-2 control-label">* Productomschrijving</label>
-                <div class="col-sm-10">
+                <label for="productomschrijving" class="col-lg-2 control-label">* Productomschrijving</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="prijs" class="col-sm-2 control-label">* Prijs</label>
-                <div class="col-sm-10">
+                <label for="prijs" class="col-lg-2 control-label">* Prijs</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="prijs" name="prijs" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
-                <div id="uploadButton" class="col-sm-10">
+                <label for="productFoto" class="col-lg-2 control-label">Product foto</label>
+                <div id="uploadButton" class="col-lg-10">
                     <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="productOpslaan">Opslaan</button>
                 </div>
             </div>

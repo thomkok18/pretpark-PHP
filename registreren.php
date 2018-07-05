@@ -83,7 +83,7 @@ include("layout/header.php");
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-md-offset-2 col-md-10">
                 <h1>Registreren</h1>
                 <p>Login moet minimaal 8 tekens bevatten.<br>
                     Wachtwoord moet minimaal 8 tekens bevatten.<br>
@@ -93,37 +93,37 @@ include("layout/header.php");
         </div>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="voornaam" class="col-sm-2 control-label">* Voornaam</label>
-                <div class="col-sm-10">
+                <label for="voornaam" class="col-md-2 control-label">* Voornaam</label>
+                <div class="col-md-10">
                     <input required type="text" class="form-control" id="voornaam" name="voornaam" placeholder="Voornaam">
                 </div>
             </div>
             <div class="form-group">
-                <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
-                <div class="col-sm-10">
+                <label for="tussenvoegsels" class="col-md-2 control-label">Tussenvoegsels</label>
+                <div class="col-md-10">
                     <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" placeholder="Tussenvoegsels">
                 </div>
             </div>
             <div class="form-group">
-                <label for="achternaam" class="col-sm-2 control-label">* Achternaam</label>
-                <div class="col-sm-10">
+                <label for="achternaam" class="col-md-2 control-label">* Achternaam</label>
+                <div class="col-md-10">
                     <input required type="text" class="form-control" id="achternaam" name="achternaam" placeholder="Achternaam">
                 </div>
             </div>
             <div class="form-group">
-                <label for="login" class="col-sm-2 control-label">* Login</label>
-                <div class="col-sm-10">
+                <label for="login" class="col-md-2 control-label">* Login</label>
+                <div class="col-md-10">
                     <input required type="text" class="form-control" id="login" name="login" placeholder="Login">
                 </div>
             </div>
             <div class="form-group">
-                <label for="wachtwoord" class="col-sm-2 control-label">* Wachtwoord</label>
-                <div class="col-sm-10">
+                <label for="wachtwoord" class="col-md-2 control-label">* Wachtwoord</label>
+                <div class="col-md-10">
                     <input required type="password" class="form-control" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-md-offset-2 col-md-10">
                     <button type="submit" class="btn btn-default" name="registreren">Registreren</button>
                 </div>
             </div>

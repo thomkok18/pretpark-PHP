@@ -20,7 +20,7 @@ $pagina = 'product';
 if (isset($_POST['productOpslaan'])) {
     extract($_POST);
     $product->updateProductgegevens($id, $titel, $productomschrijving, $prijs);
-    header('Location: formProduct.php?id=' . $id. '&productAantal=0');
+    header('Location: formProduct.php?id=' . $id . '&productAantal=0');
 } else if (isset($_POST['productFotoOpslaan'])) {
     extract($_POST);
     $product->updateProductfoto($id, $urlfoto);
@@ -30,7 +30,7 @@ if (isset($_POST['productOpslaan'])) {
         $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'gekocht');
     }
     $product->updateVoorraad($id, $product->getVoorraad(), $_GET['productAantal'], 'gekocht');
-    header('Location: formProduct.php?id=' . $id. '&productAantal=0');
+    header('Location: formProduct.php?id=' . $id . '&productAantal=0');
 }
 include("layout/header.php");
 ?>
@@ -43,31 +43,31 @@ include("layout/header.php");
         <h3>Product gegevens</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="id" class="col-sm-2 control-label">Id</label>
-                <div class="col-sm-10">
+                <label for="id" class="col-lg-2 control-label">Id</label>
+                <div class="col-lg-10">
                     <input required disabled type="text" class="form-control" id="id" name="idproduct" value="<?= htmlspecialchars($id); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="titel" class="col-sm-2 control-label">Titel</label>
-                <div class="col-sm-10">
+                <label for="titel" class="col-lg-2 control-label">Titel</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="titel" name="titel" value="<?= htmlspecialchars($product->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="productomschrijving" class="col-sm-2 control-label">Productomschrijving</label>
-                <div class="col-sm-10">
+                <label for="productomschrijving" class="col-lg-2 control-label">Productomschrijving</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="productomschrijving" name="productomschrijving" value="<?= htmlspecialchars($product->getProductomschrijving()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="prijs" class="col-sm-2 control-label">Prijs</label>
-                <div class="col-sm-10">
+                <label for="prijs" class="col-lg-2 control-label">Prijs</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="prijs" name="prijs" value="<?= htmlspecialchars($product->getPrijs()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="productOpslaan">Opslaan</button>
                 </div>
             </div>
@@ -76,13 +76,13 @@ include("layout/header.php");
         <h3>Product foto</h3>
         <form action="uploadProduct.php?id=<?php echo $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="productFoto" class="col-sm-2 control-label">Product foto</label>
-                <div id="uploadButton" class="col-sm-10">
+                <label for="productFoto" class="col-lg-2 control-label">Product foto</label>
+                <div id="uploadButton" class="col-lg-10">
                     <input type="file" name="fileToUpload" id="productFoto">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="productFotoOpslaan">Opslaan</button>
                 </div>
             </div>
@@ -91,11 +91,20 @@ include("layout/header.php");
         <h3>Product bijvullen</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="voorraad" class="col-sm-2 control-label">Voorraad:  <?php ?></label>
+                <label for="voorraad" class="col-lg-2 control-label">Voorraad</label>
+                <p style="margin-top: 7px;" class="col-lg-10"><?php foreach ($products as $key => $prod) {
+                        if ($_GET['id'] == $prod->getIdproduct()) {
+                            if ($prod->getVoorraad() != 0) { ?>
+                                <?= htmlspecialchars($prod->getVoorraad()); ?>
+                            <?php } else { ?>
+                                <b class="tabelText" style="color:red;">Uitverkocht</b>
+                            <?php }
+                        }
+                    } ?></p>
             </div>
             <div class="form-group">
-                <label for="prijs" class="col-sm-2 control-label">Bijvullen</label>
-                <div class="col-sm-10">
+                <label for="prijs" class="col-lg-2 control-label">Bijvullen</label>
+                <div class="col-lg-10">
                     <select style="padding: 6px 0 6px 0;" id="bijvullenSelectbox<?= htmlspecialchars($id); ?>" name="bijvullen" onchange="refresh(<?= htmlspecialchars($id); ?>)">
                         <?php for ($voorraad = 0; $voorraad <= 1000; $voorraad++) { ?>
                             <option <?php if ($voorraad == $_GET['productAantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
@@ -104,10 +113,11 @@ include("layout/header.php");
                 </div>
             </div>
             <div class="form-group">
-                <label id="prijs<?= $id; ?>" for="prijs" class="col-sm-2 control-label">Prijs: € <?= number_format($totaal,2); ?></label>
+                <label id="prijs<?= $id; ?>" for="prijs" class="col-lg-2 control-label">Prijs</label>
+                <p style="margin-top: 7px;" class="col-lg-10">€ <?= number_format($totaal, 2); ?></p>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="productBijvullen">Bijvullen</button>
                 </div>
             </div>

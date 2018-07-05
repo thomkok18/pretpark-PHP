@@ -33,19 +33,19 @@ include("layout/header.php");
         <h3>Attractie gegevens</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="titel" class="col-sm-2 control-label">Titel</label>
-                <div class="col-sm-10">
+                <label for="titel" class="col-lg-2 control-label">Titel</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="titel" name="titel" value="<?= htmlspecialchars($attracties->getTitel()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="omschrijving" class="col-sm-2 control-label">Attractie omschrijving</label>
-                <div class="col-sm-10">
+                <label for="omschrijving" class="col-lg-2 control-label">Attractie omschrijving</label>
+                <div class="col-lg-10">
                     <textarea required class="form-control" rows="5" id="omschrijving" name="omschrijving"><?= htmlspecialchars($attracties->getOmschrijving()); ?></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="attractiegegevens">Opslaan</button>
                 </div>
             </div>
@@ -54,13 +54,13 @@ include("layout/header.php");
         <h3>Attractie foto</h3>
         <form action="uploadAttractie.php?id=<?php echo $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="attractieFoto" class="col-sm-2 control-label">Attractie foto</label>
-                <div id="uploadButton" class="col-sm-10">
+                <label for="attractieFoto" class="col-lg-2 control-label">Attractie foto</label>
+                <div id="uploadButton" class="col-lg-10">
                     <input type="file" name="fileToUpload" id="attractieFoto">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="attractieFotoOpslaan">Opslaan</button>
                 </div>
             </div>

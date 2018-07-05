@@ -80,31 +80,31 @@ include("layout/header.php");
         <h3>Persoonlijke gegevens</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="login" class="col-sm-2 control-label">Login</label>
-                <div class="col-sm-10">
+                <label for="login" class="col-lg-2 control-label">Login</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="login" name="login" value="<?= htmlspecialchars($user->getLogin()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="voornaam" class="col-sm-2 control-label">Voornaam</label>
-                <div class="col-sm-10">
+                <label for="voornaam" class="col-lg-2 control-label">Voornaam</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="voornaam" name="voornaam" value="<?= htmlspecialchars($user->getNaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="tussenvoegsels" class="col-sm-2 control-label">Tussenvoegsels</label>
-                <div class="col-sm-10">
+                <label for="tussenvoegsels" class="col-lg-2 control-label">Tussenvoegsels</label>
+                <div class="col-lg-10">
                     <input type="text" class="form-control" id="tussenvoegsels" name="tussenvoegsels" value="<?= htmlspecialchars($user->getTussenvoegsels()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="achternaam" class="col-sm-2 control-label">Achternaam</label>
-                <div class="col-sm-10">
+                <label for="achternaam" class="col-lg-2 control-label">Achternaam</label>
+                <div class="col-lg-10">
                     <input required type="text" class="form-control" id="achternaam" name="achternaam" value="<?= htmlspecialchars($user->getAchternaam()); ?>">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="persoonsgegevensOpslaan">Opslaan</button>
                 </div>
             </div>
@@ -113,25 +113,25 @@ include("layout/header.php");
         <h3>Wachtwoord</h3>
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label for="wachtwoordHuidig" class="col-sm-2 control-label">Huidige wachtwoord</label>
-                <div class="col-sm-10">
+                <label for="wachtwoordHuidig" class="col-lg-2 control-label">Huidige wachtwoord</label>
+                <div class="col-lg-10">
                     <input required type="password" class="form-control" id="wachtwoordHuidig" name="wachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="nieuwWachtwoord" class="col-sm-2 control-label">Nieuw wachtwoord</label>
-                <div class="col-sm-10">
+                <label for="nieuwWachtwoord" class="col-lg-2 control-label">Nieuw wachtwoord</label>
+                <div class="col-lg-10">
                     <input required type="password" class="form-control" id="nieuwWachtwoord" name="nieuwWachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="wachtwoordHerhalen" class="col-sm-2 control-label">Wachtwoord herhalen</label>
-                <div class="col-sm-10">
+                <label for="wachtwoordHerhalen" class="col-lg-2 control-label">Wachtwoord herhalen</label>
+                <div class="col-lg-10">
                     <input required type="password" class="form-control" id="wachtwoordHerhalen" name="herhaalWachtwoord" value="">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="wachtwoordOpslaan">Opslaan</button>
                 </div>
             </div>
@@ -140,13 +140,13 @@ include("layout/header.php");
         <h3>Profiel foto</h3>
         <form action="uploadProfiel.php?id=<?php echo $_SESSION['login']['idgebruiker']; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="profielFoto" class="col-sm-2 control-label">Profiel foto</label>
-                <div id="uploadButton" class="col-sm-10">
+                <label for="profielFoto" class="col-lg-2 control-label">Profiel foto</label>
+                <div id="uploadButton" class="col-lg-10">
                     <input type="file" name="fileToUpload" id="profielFoto">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default" name="profielFotoOpslaan">Opslaan</button>
                 </div>
             </div>
