@@ -18,17 +18,17 @@ include("layout/header.php");
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
             <div style="margin-bottom:20px; text-align: -webkit-center;" class="col-xs-12 col-sm-6 col-md-4">
-                <div style="max-width: 300px;" class="">
+                <div style="max-width: 300px;">
                     <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
                 </div>
-                <div style="max-width: 300px; text-align: initial;" class="">
+                <div style="max-width: 300px; text-align: initial;">
                     <h3 style="margin-top: 0;"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
                     <p style=""><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
-                <div style="max-width: 300px;  text-align: initial;" class="">
+                <div style="max-width: 300px;  text-align: initial;">
                     <i>Door: <?= htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
-                <div style="max-width: 300px;  text-align: initial;" class="">
+                <div style="max-width: 300px;  text-align: initial;">
                     <a id="reactieButton" role="button" class="btn btn-default" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
             </div>

@@ -12,7 +12,7 @@ $attractie = new Attractie();
 $upload_folder = '/img/';
 $allowed_mime = ['image/png', 'image/jpeg'];
 
-if (isset($_POST['attractieFotoOpslaan']) && isset($_FILES['fileToUpload'])) {
+if (isset($_POST['attractieFotoOpslaan']) && $_FILES['fileToUpload']['error'] == 0) {
     $file_mime = mime_content_type($_FILES['fileToUpload']['tmp_name']);
     $corrupt = isCorrupt($_FILES['fileToUpload']['tmp_name']);
     if (in_array($file_mime, $allowed_mime)) {

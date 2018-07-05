@@ -21,11 +21,14 @@ $id = $_GET['id'];
 $subtotaal = 0;
 $verzendkosten = 0.95;
 $totaal = 0.00;
-
 $aantalProducten = 0;
-$aantalProducten = $aantalProducten + $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
-$subtotaal = $subtotaal + $product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
-$totaal = $subtotaal + $verzendkosten;
+
+for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
+    $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
+    $aantalProducten = $aantalProducten + $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
+    $subtotaal = $subtotaal + $product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
+    $totaal = $subtotaal + $verzendkosten;
+}
 
 if (isset($_POST['betalen'])) {
     if ($totaal === $subtotaal + $verzendkosten) {
