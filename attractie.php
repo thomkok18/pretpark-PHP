@@ -79,10 +79,8 @@ include("layout/header.php");
             </form>
         <?php } ?>
         <hr>
-        <?php foreach ($reacties
-
-        as $reactie) {
-        $gebruiker = $reactie->getGebruikerById();
+        <?php foreach ($reacties as $reactie) {
+            $gebruiker = $reactie->getGebruikerById();
         ?>
         <div id="regel">
             <div class="col-md-1">
