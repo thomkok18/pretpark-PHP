@@ -65,13 +65,13 @@ include("layout/header.php");
             <form class="form-horizontal" action="<?= htmlspecialchars($_SERVER['PHP_SELF'] . "?id=" . $id); ?>" method="post">
                 <div class="form-group">
                     <div class="col-xs-12" style="margin-top:20px;">
-                        <div class="col-xs-1">
+                        <div class="col-xs-12 col-sm-1">
                             <img id="profielAfbeelding" src="<?= htmlspecialchars($_SESSION['login']['avatar']); ?>" alt="<?= htmlspecialchars($gebruiker->getLogin()); ?>">
                         </div>
-                        <div class="col-xs-11 col-sm-10">
+                        <div class="col-xs-12 col-sm-10">
                             <textarea style="margin-top:5px;" class="form-control" name="reactietekst" placeholder="Voeg reactie toe" rows="1"></textarea>
                         </div>
-                        <div class="col-xs-1">
+                        <div class="col-xs-12 col-sm-1">
                             <button style="margin-top:5px;" type="submit" class="btn btn-default" name="toevoegen">Reageren</button>
                         </div>
                     </div>
