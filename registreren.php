@@ -39,6 +39,10 @@ if (isset($_POST['registreren'])) {
         $error_message[] = 'Wachtwoord moet minimaal 2 cijfers bevatten.';
     }
 
+    if ($login == $wachtwoord) {
+        $error_message[] = 'Login en wachtwoord mogen niet hetzelfde zijn.';
+    }
+
 
     if ($voornaam != '' && $achternaam != '' && $login != '' && $wachtwoord != '') {
         if (!isset($error_message)) {
