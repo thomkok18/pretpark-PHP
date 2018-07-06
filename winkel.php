@@ -60,7 +60,7 @@ include("layout/header.php");
     <?php }
 } ?>
 
-    <div style="margin-bottom: 300px;" class="container-fluid">
+    <div class="container-fluid">
         <div class="page-header">
             <h1>Winkel</h1>
         </div>

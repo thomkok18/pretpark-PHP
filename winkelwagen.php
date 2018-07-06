@@ -21,11 +21,16 @@ $subtotaal = 0;
 $verzendkosten = 0.95;
 $totaal = 0.00;
 $aantalProducten = 0;
+$idproduct = $winkelwagen->getIdproductByIdgebruiker($id);
+$aantal = $winkelwagen->getProductAantal();
+$productPrijs = $product->getProductPrijs();
+$productVoorraad = $product->getProductVoorraad();
+$productTitel = $product->getProductTitel();
+$productUrl = $product->getProductUrl();
 
-for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
-    $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
-    $aantalProducten = $aantalProducten + $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
-    $subtotaal = $subtotaal + $product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0];
+for ($i = 0; $i < sizeof($idproduct); $i++) {
+    $aantalProducten = $aantalProducten + $aantal[$i]->aantal;
+    $subtotaal = $subtotaal + $productPrijs[$i]->prijs * $aantal[$i]->aantal;
     $totaal = $subtotaal + $verzendkosten;
 }
 
@@ -34,9 +39,8 @@ if (isset($_POST['betalen'])) {
         foreach ($geldvoorraad as $key => $geld) {
             $saldo->updateSaldo(1, $geld->getSaldo(), number_format($totaal, 2), 'verkocht');
         }
-        for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
-            $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
-            $product->updateVoorraad($idproduct, $product->getProductVoorraadById($idproduct)[0], $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 'verkocht');
+        for ($i = 0; $i < sizeof($idproduct); $i++) {
+            $product->updateVoorraad($idproduct[$i], $productVoorraad[$i]->voorraad, $aantal[$i]->aantal, 'verkocht');
         }
         $winkelwagen->deleteWinkelwagen($_SESSION['login']['idgebruiker']);
         header('Location:winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
@@ -55,13 +59,6 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
     }
     header('Location: winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
 }
-
-$idproduct = $winkelwagen->getIdproductByIdgebruiker($id);
-$productVoorraad = $product->getProductVoorraad();
-$aantal = $winkelwagen->getProductAantal();
-$productPrijs = $product->getProductPrijs();
-$productTitel = $product->getProductTitel();
-$productUrl = $product->getProductUrl();
 
 include("layout/header.php");
 ?>
@@ -140,11 +137,9 @@ include("layout/header.php");
                         </div>
                     </div>
 
-                    <?php
-                } else {
-                    echo htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.');
-                }
-                ?>
+                    <?php } else { ?>
+                    <p style="margin-bottom:220px;"><?= htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.'); ?></p>
+                <?php } ?>
 
             </div>
         </form>
