@@ -42,6 +42,8 @@ if (isset($_SESSION['login'])) {
         <link rel="stylesheet" href="css/formAttractieToevoegen.css">
     <?php } else if ($pagina === 'voorraad') { ?>
         <link rel="stylesheet" href="css/formWinkel.css">
+    <?php } else if ($pagina === 'login') { ?>
+        <link rel="stylesheet" href="css/login.css">
     <?php } ?>
 </head>
 <body>
@@ -70,8 +72,7 @@ if (isset($_SESSION['login'])) {
                     <li <?php if ($pagina === 'winkel') { ?> class="active" <?php } ?> ><a id="winkel" href="winkel.php">Winkel</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['login'])) { ?>
-                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php?id=<?= $_SESSION['login']['idgebruiker']; ?>"><img
-                                    id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
+                    <li <?php if ($pagina === 'winkelwagen') { ?> class="active" <?php } ?> ><a id="winkelwagenLink" href="winkelwagen.php?id=<?= $_SESSION['login']['idgebruiker']; ?>"><img id="winkelwagen" src="img/shopping_cart.png"><span id="iconCartCount">
                             <?php if (isset($winkelwagen->getWinkelwagentjeById($_SESSION['login']['idgebruiker'])[0])) {
                                 echo htmlspecialchars($winkelwagen->getWinkelwagentjeById($_SESSION['login']['idgebruiker'])[0]);
                             } else {

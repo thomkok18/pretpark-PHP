@@ -5,7 +5,7 @@ include_once("lib/Gebruiker.php");
 if (isset($_POST['login'])) {
     extract($_POST);
     $gebruiker = new Gebruiker();
-    if ($gebruiker->checkLogin($password, $login)) {
+    if ($gebruiker->checkLogin($_POST['password'], $_POST['login'])) {
         session_start();
         header('Location: index.php');
     } else {
@@ -29,7 +29,7 @@ include("layout/header.php");
             <h1>Inloggen</h1>
         </div>
     </div>
-    <form class="form-horizontal" action="#" method="post">
+    <form id="loginForm" class="form-horizontal" action="#" method="post">
         <div class="form-group">
             <label for="login" class="col-sm-2 control-label">Login</label>
             <div class="col-sm-10">
@@ -39,8 +39,7 @@ include("layout/header.php");
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="password" name="password" required
-                       placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
             </div>
         </div>
         <div class="form-group">

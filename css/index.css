@@ -5,3 +5,36 @@
 #reactieButton {
     margin-top: 10px;
 }
+
+#attractieDiv {
+    margin-bottom:20px;
+    text-align: -webkit-center;
+}
+
+#attractieImageDiv {
+    max-width: 300px;
+}
+
+#attractieImage {
+    width: 300px;
+    height: 300px;
+}
+
+#attractieTekstDiv {
+    max-width: 300px;
+    text-align: initial;
+}
+
+#attractieTitel {
+    margin-top: 0;
+}
+
+#gemaaktDoorDiv {
+    max-width: 300px;
+    text-align: initial;
+}
+
+#reactiesButtonDiv {
+    max-width: 300px;
+    text-align: initial;
+}

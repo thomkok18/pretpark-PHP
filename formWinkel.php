@@ -9,14 +9,15 @@ if (!isset($_SESSION['login']) || $_SESSION['login']['rechten'] !== 'Beheerder')
 
 $Product = new Product();
 $pagina = 'voorraad';
+$message = array();
 
 if (isset($_POST['productOpslaan'])) {
     extract($_POST);
     $product = new Product();
-    $product->setTitel($titel);
-    $product->setProductomschrijving($productomschrijving);
+    $product->setTitel($_POST['titel']);
+    $product->setProductomschrijving($_POST['productomschrijving']);
     $product->setVoorraad(0);
-    $product->setPrijs(number_format($prijs,2));
+    $product->setPrijs(number_format($_POST['prijs'],2));
     $product->setUrlfoto('img/product.png');
 
     if ($product->insertProduct()) {

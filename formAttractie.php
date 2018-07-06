@@ -15,11 +15,11 @@ $pagina = 'formAttractie';
 
 if (isset($_POST['attractiegegevens'])) {
     extract($_POST);
-    $attractie->updateAttractiegegevens($id, $titel, $omschrijving);
+    $attractie->updateAttractiegegevens($id, $_POST['titel'], $_POST['omschrijving']);
     header('Location: formAttractie.php?id=' . $id);
 } else if (isset($_POST['attractieFotoOpslaan'])) {
     extract($_POST);
-    $attractie->updateUrlfoto($id, $urlfoto);
+    $attractie->updateUrlfoto($id, $_POST['urlfoto']);
 }
 
 include("layout/header.php");

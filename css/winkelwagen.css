@@ -40,3 +40,53 @@
     padding-top: 6px;
     padding-bottom: 6px;
 }
+
+#productDiv {
+    margin-bottom: 20px;
+}
+
+#winkelwagenContainer {
+    margin-bottom: 60px;
+}
+
+#productAfbeeldingDiv {
+    text-align: center;
+}
+
+#deleteProductDiv {
+    text-align: center;
+    margin-top: 48px;
+}
+
+#prijsDiv {
+    margin-top: 48px;
+    margin-bottom: 20px;
+}
+
+#subtotaalDiv {
+    padding:0;
+}
+
+#verzendskostenDiv {
+    padding:0;
+}
+
+#verzendskosten {
+    margin:0;
+}
+
+#verzending {
+    margin:0;
+}
+
+#totaalDiv {
+    padding:0;
+}
+
+#betalenDiv {
+    padding:0;
+}
+
+#winkelwagenLeeg {
+    margin-bottom:306px;
+}

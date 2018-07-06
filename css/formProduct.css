@@ -1,3 +1,19 @@
 #uploadButton {
     margin-top: 6px;
 }
+
+#uitverkocht {
+    color:red;
+}
+
+#voorraad {
+    margin-top: 7px;
+}
+
+.bijvullen {
+    padding: 6px 0 6px 0;
+}
+
+#prijs {
+    margin-top: 7px;
+}

@@ -53,7 +53,7 @@ if (isset($_POST['persoonsgegevensOpslaan'])) {
     }
 } else if (isset($_POST['rechtenOpslaan'])) {
     extract($_POST);
-    $gebruiker->updateRechten($id, $idrechten);
+    $gebruiker->updateRechten($id, $_POST['idrechten']);
     header('Location: formGebruiker.php?id=' . $id);
 }
 include("layout/header.php");

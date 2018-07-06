@@ -19,11 +19,11 @@ $pagina = 'product';
 
 if (isset($_POST['productOpslaan'])) {
     extract($_POST);
-    $product->updateProductgegevens($id, $titel, $productomschrijving, $prijs);
+    $product->updateProductgegevens($id, $_POST['titel'], $_POST['productomschrijving'], $_POST['prijs']);
     header('Location: formProduct.php?id=' . $id . '&productAantal=0');
 } else if (isset($_POST['productFotoOpslaan'])) {
     extract($_POST);
-    $product->updateProductfoto($id, $urlfoto);
+    $product->updateProductfoto($id, $_POST['urlfoto']);
 } else if (isset($_POST['productBijvullen'])) {
     extract($_POST);
     foreach ($geldvoorraad as $key => $geld) {
@@ -92,20 +92,22 @@ include("layout/header.php");
         <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="voorraad" class="col-lg-2 control-label">Voorraad</label>
-                <p style="margin-top: 7px;" class="col-lg-10"><?php foreach ($products as $key => $prod) {
+                <p id="voorraad" class="col-lg-10">
+                    <?php foreach ($products as $key => $prod) {
                         if ($_GET['id'] == $prod->getIdproduct()) {
                             if ($prod->getVoorraad() != 0) { ?>
                                 <?= htmlspecialchars($prod->getVoorraad()); ?>
                             <?php } else { ?>
-                                <b class="tabelText" style="color:red;">Uitverkocht</b>
+                                <b id="uitverkocht" class="tabelText">Uitverkocht</b>
                             <?php }
                         }
-                    } ?></p>
+                    } ?>
+                </p>
             </div>
             <div class="form-group">
                 <label for="prijs" class="col-lg-2 control-label">Bijvullen</label>
                 <div class="col-lg-10">
-                    <select style="padding: 6px 0 6px 0;" id="bijvullenSelectbox<?= htmlspecialchars($id); ?>" name="bijvullen" onchange="refresh(<?= htmlspecialchars($id); ?>)">
+                    <select id="bijvullenSelectbox<?= htmlspecialchars($id); ?>" class="bijvullen" name="bijvullen" onchange="refresh(<?= htmlspecialchars($id); ?>)">
                         <?php for ($voorraad = 0; $voorraad <= 1000; $voorraad++) { ?>
                             <option <?php if ($voorraad == $_GET['productAantal']) { ?> selected <?php } ?> ><?= htmlspecialchars($voorraad); ?></option>
                         <?php } ?>
@@ -114,7 +116,7 @@ include("layout/header.php");
             </div>
             <div class="form-group">
                 <label id="prijs<?= $id; ?>" for="prijs" class="col-lg-2 control-label">Prijs</label>
-                <p style="margin-top: 7px;" class="col-lg-10">€ <?= number_format($totaal, 2); ?></p>
+                <p id="prijs" class="col-lg-10">€ <?= number_format($totaal, 2); ?></p>
             </div>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">

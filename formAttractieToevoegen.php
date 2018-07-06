@@ -13,9 +13,9 @@ $pagina = 'formAttractieToevoegen';
 if (isset($_POST['toevoegen'])) {
     extract($_POST);
     $attractie = new Attractie();
-    $attractie->setTitel($titel);
-    $attractie->setOmschrijving($omschrijving);
-    $attractie->setUrlfoto($urlfoto);
+    $attractie->setTitel($_POST['titel']);
+    $attractie->setOmschrijving($_POST['omschrijving']);
+    $attractie->setUrlfoto($_POST['urlfoto']);
     $attractie->setIdgebruiker($_SESSION['login']['idgebruiker']);
     header('Location: index.php');
 

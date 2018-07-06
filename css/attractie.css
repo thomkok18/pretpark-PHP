@@ -1,7 +1,7 @@
 #reactieProfielfoto {
     width: 42px;
     height: 42px;
-    margin-top:8px;
+    margin-top: 8px;
 }
 
 textarea {
@@ -10,4 +10,71 @@ textarea {
 
 #regel:nth-child(even) {
     background-color: #f3f3f3;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+#attractieImage {
+    width: 300px;
+    height: 300px;
+}
+
+#reactieBalk {
+    margin-top:20px;
+}
+
+#tekstvak {
+    margin-top:5px;
+}
+
+#reageerButton {
+    margin-top:5px;
+}
+
+#bewerkButton {
+    float:right;
+}
+
+#bewerkImage {
+    margin-top: 10px;
+    cursor: pointer;
+    height:20px;
+    width:20px;
+}
+
+#prullenbakImage {
+    margin-top: 10px;
+    height: 20px;
+    width:20px;
+}
+
+#cancelButton {
+    float:right;
+}
+
+#cancelImage {
+    margin-top: 10px;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+#gebruikersnaam {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#reactieTekst{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#reactieAanpassen {
+    padding-left: 0;
+}
+
+#aanpassenButton {
+    margin-top:5px;
 }

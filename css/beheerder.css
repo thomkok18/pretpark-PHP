@@ -7,3 +7,27 @@
     width: 19px;
     height: 19px;
 }
+
+#formGebruikerButton {
+    padding: 4px 10px;
+}
+
+#formWinkelButton {
+    margin-top: 16px;
+}
+
+#formProductButton {
+    padding: 4px 10px;
+}
+
+#uitverkocht {
+    color:red;
+}
+
+#formAttractieToevoegenButton {
+    margin-top: 16px;
+}
+
+#formAttractieButton {
+    padding: 4px 10px;
+}

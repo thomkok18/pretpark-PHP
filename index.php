@@ -9,26 +9,23 @@ $pagina = 'index';
 include("layout/header.php");
 ?>
     <div class="container-fluid">
-
         <div class="page-header">
-            <div class="row">
-                <h1 class="col-xs-10">Attractie overzicht</h1>
-            </div>
+            <h1>Attractie overzicht</h1>
         </div>
 
         <?php foreach ($attractieLijst->getAttracties() as $key => $attractie) { ?>
-            <div style="margin-bottom:20px; text-align: -webkit-center;" class="col-xs-12 col-sm-6 col-lg-4">
-                <div style="max-width: 300px;">
-                    <img src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie" width="300" height="300">
+            <div id="attractieDiv" class="col-xs-12 col-sm-6 col-lg-4">
+                <div id="attractieImageDiv">
+                    <img id="attractieImage" src="<?= htmlspecialchars($attractie->getUrlfoto()); ?>" alt="Attractie">
                 </div>
-                <div style="max-width: 300px; text-align: initial;">
-                    <h3 style="margin-top: 0;"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
-                    <p style=""><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
+                <div id="attractieTekstDiv">
+                    <h3 id="attractieTitel"><?= htmlspecialchars($attractie->getTitel()); ?></h3>
+                    <p><?= htmlspecialchars($attractie->getOmschrijving()); ?></p>
                 </div>
-                <div style="max-width: 300px;  text-align: initial;">
+                <div id="gemaaktDoorDiv">
                     <i>Door: <?= htmlspecialchars($attractie->getGebruikerById()->getLogin()); ?></i>
                 </div>
-                <div style="max-width: 300px;  text-align: initial;">
+                <div id="reactiesButtonDiv">
                     <a id="reactieButton" role="button" class="btn btn-default" href="attractie.php?id=<?= htmlspecialchars($attractie->getIdattractie()); ?>&idreactie=0">Reacties</a>
                 </div>
             </div>

@@ -60,20 +60,20 @@ include("layout/header.php");
     <?php }
 } ?>
 
-    <div class="container-fluid">
+    <div id="winkelContainer" class="container-fluid">
         <div class="page-header">
             <h1>Winkel</h1>
         </div>
 
         <?php foreach ($producten as $key => $prod) { ?>
             <form class="form-horizontal" method="post" action="winkel.php?action=add&id=<?= htmlspecialchars($prod->getIdproduct()); ?>">
-                <div style="margin-bottom: 20px;" class="col-lg-12">
+                <div id="winkelDiv" class="col-lg-12">
                     <div class="col-lg-5">
-                        <div style="text-align: center;" class="col-xs-12 col-sm-6">
+                        <div id="productAfbeeldingDiv" class="col-xs-12 col-sm-6">
                             <img id="productAfbeelding" src="<?= htmlspecialchars($prod->getUrlFoto()); ?>" alt="Product">
                         </div>
                         <div class="col-xs-12 col-sm-6 tabelWinkel">
-                            <h3 style="margin-top: 0;"><?= htmlspecialchars($prod->getTitel()); ?></h3>
+                            <h3 id="productTitel"><?= htmlspecialchars($prod->getTitel()); ?></h3>
                         </div>
                     </div>
                     <div class="col-lg-2">
@@ -91,11 +91,11 @@ include("layout/header.php");
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-                            <button style="margin-bottom:20px;" class="tabelWinkel btn col-xs-12" type="submit" name="winkelwagen">Winkelwagen</button>
+                            <button id="winkelwagenButton" class="tabelWinkel btn col-xs-12" type="submit" name="winkelwagen">Winkelwagen</button>
                         </div>
                         <?php } else { ?>
                             <div class="col-xs-12">
-                                <b class="col-xs-12 tabelWinkel" style="color:red; padding-left:0;">Uitverkocht</b>
+                                <b id="uitverkocht" class="col-xs-12 tabelWinkel">Uitverkocht</b>
                             </div>
                         <?php } ?>
                     </div>

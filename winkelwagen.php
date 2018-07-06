@@ -63,7 +63,7 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
 include("layout/header.php");
 ?>
 
-    <div class="container-fluid">
+    <div id="winkelwagenContainer" class="container-fluid">
         <div class="page-header">
             <h1>Winkel</h1>
         </div>
@@ -79,9 +79,9 @@ include("layout/header.php");
                         $titel = $productTitel[$i]->titel;
                         $url = $productUrl[$i]->urlfoto;
                         ?>
-                        <div style="margin-bottom: 20px;" class="col-lg-12">
+                        <div id="productDiv" class="col-lg-12">
                             <div class="col-lg-5">
-                                <div style="text-align: center;" class="col-xs-12 col-sm-6">
+                                <div id="productAfbeeldingDiv" class="col-xs-12 col-sm-6">
                                     <img id="productAfbeelding" src="<?= $url; ?>" alt="Product">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
@@ -89,7 +89,7 @@ include("layout/header.php");
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                                <div class="col-xs-12 col-sm-2 col-md-1" style="text-align: center; margin-top: 48px;">
+                                <div id="deleteProductDiv" class="col-xs-12 col-sm-2 col-md-1">
                                     <a class="text-danger" href="winkelwagen.php?deleteProduct=<?= $item; ?>">Verwijderen</a>
                                 </div>
                             </div>
@@ -101,35 +101,35 @@ include("layout/header.php");
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div style="margin-top: 48px; margin-bottom: 20px;" class="col-xs-12 col-sm-6">
+                                <div id="prijsDiv" class="col-xs-12 col-sm-6">
                                     <b id="prijs"><?= htmlspecialchars('€ ' . number_format($prijs * $aantalProd, 2)); ?></b>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                     <div class="col-lg-12">
-                        <div style="padding:0;" class="col-xs-12">
+                        <div id="subtotaalDiv" class="col-xs-12">
                             <div class="col-lg-7"></div>
                             <div class="col-lg-5">
                                 <b class="col-xs-12 col-sm-6">Subtotaal</b>
                                 <b class="col-xs-12 col-sm-6"><?= htmlspecialchars('€ ' . number_format($subtotaal, 2)); ?></b>
                             </div>
                         </div>
-                        <div style="padding:0;" class="col-xs-12">
+                        <div id="verzendskostenDiv" class="col-xs-12">
                             <div class="col-lg-7"></div>
                             <div class="col-lg-5">
-                                <p style="margin:0;" class="col-xs-12 col-sm-6">Verzendskosten</p>
-                                <p style="margin:0;" class="col-xs-12 col-sm-6"><?= htmlspecialchars('€ ' . number_format($verzendkosten, 2)); ?></p>
+                                <p id="verzendskosten" class="col-xs-12 col-sm-6">Verzendskosten</p>
+                                <p id="verzending" class="col-xs-12 col-sm-6"><?= htmlspecialchars('€ ' . number_format($verzendkosten, 2)); ?></p>
                             </div>
                         </div>
-                        <div style="padding:0;" class="col-xs-12">
+                        <div id="totaalDiv" class="col-xs-12">
                             <div class="col-lg-7"></div>
                             <div class="col-lg-5">
                                 <b class="col-xs-12 col-sm-6">Totaal</b>
                                 <b class="col-xs-12 col-sm-6"><?= htmlspecialchars('€ ' . number_format($totaal, 2)); ?></b>
                             </div>
                         </div>
-                        <div style="padding:0;" class="col-xs-12">
+                        <div id="betalenDiv" class="col-xs-12">
                             <div class="col-lg-7"></div>
                             <div class="col-lg-5">
                                 <button id="betalen" class="col-xs-12 btn" type="submit" name="betalen">Betalen</button>
@@ -138,7 +138,7 @@ include("layout/header.php");
                     </div>
 
                     <?php } else { ?>
-                    <p style="margin-bottom:220px;"><?= htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.'); ?></p>
+                    <p id="winkelwagenLeeg"><?= htmlspecialchars('Er zijn nog geen producten in het winkelwagentje.'); ?></p>
                 <?php } ?>
 
             </div>
