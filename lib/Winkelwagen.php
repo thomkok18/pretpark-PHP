@@ -50,6 +50,30 @@ class Winkelwagen {
     }
 
     /**
+     * @return mixed
+     */
+    public function getProductAantal() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct, aantal FROM winkelwagen");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getIdgebruikerByIdgebruiker($id) {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idgebruiker FROM winkelwagen WHERE idgebruiker = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Winkelwagen');
+    }
+
+    /**
      * @param $id
      * @param $idgebruiker
      * @return mixed
@@ -74,7 +98,7 @@ class Winkelwagen {
         $stmt = $conn->prepare("SELECT idproduct FROM winkelwagen WHERE idgebruiker = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, 'Winkelwagen');
     }
 
     /**

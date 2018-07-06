@@ -74,7 +74,7 @@ include("layout/header.php");
         </form>
 
         <h3>Product foto</h3>
-        <form action="uploadProduct.php?id=<?php echo $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadProduct.php?id=<?= $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="productFoto" class="col-lg-2 control-label">Product foto</label>
                 <div id="uploadButton" class="col-lg-10">

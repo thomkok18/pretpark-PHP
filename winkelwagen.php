@@ -17,7 +17,6 @@ $winkelwagens = $winkelwagen->getWinkelwagens();
 $saldo = new Saldo();
 $geldvoorraad = $saldo->getSaldoVoorraad();
 $id = $_GET['id'];
-
 $subtotaal = 0;
 $verzendkosten = 0.95;
 $totaal = 0.00;
@@ -57,6 +56,13 @@ if (isset($_GET['idproduct']) && !empty($_GET['idproduct']) && isset($_GET['prod
     header('Location: winkelwagen.php?id=' . $_SESSION['login']['idgebruiker']);
 }
 
+$idproduct = $winkelwagen->getIdproductByIdgebruiker($id);
+$productVoorraad = $product->getProductVoorraad();
+$aantal = $winkelwagen->getProductAantal();
+$productPrijs = $product->getProductPrijs();
+$productTitel = $product->getProductTitel();
+$productUrl = $product->getProductUrl();
+
 include("layout/header.php");
 ?>
 
@@ -68,34 +74,38 @@ include("layout/header.php");
         <form class="form-horizontal" method="post">
             <div>
                 <?php if ($winkelwagen->getProductByIdgebruiker($id) != null) {
-                    for ($i = 0; $i < sizeof($winkelwagen->getProductByIdgebruiker($id)); $i++) {
-                        $idproduct = $winkelwagen->getProductByIdgebruiker($id)[$i]->getIdproduct();
+                    for ($i = 0; $i < sizeof($idproduct); $i++) {
+                        $item = $idproduct[$i];
+                        $voorraad = $productVoorraad[$i]->voorraad;
+                        $aantalProd = $aantal[$i]->aantal;
+                        $prijs = $productPrijs[$i]->prijs;
+                        $titel = $productTitel[$i]->titel;
+                        $url = $productUrl[$i]->urlfoto;
                         ?>
                         <div style="margin-bottom: 20px;" class="col-lg-12">
                             <div class="col-lg-5">
                                 <div style="text-align: center;" class="col-xs-12 col-sm-6">
-                                    <img id="productAfbeelding" src="<?= $product->getProductUrlfotoById($idproduct)[0]; ?>" alt="Product">
+                                    <img id="productAfbeelding" src="<?= $url; ?>" alt="Product">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
-                                    <h3 class="tabelWinkel"><?= $product->getProductTitelById($idproduct)[0]; ?></h3>
+                                    <h3 class="tabelWinkel"><?= $titel; ?></h3>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="col-xs-12 col-sm-2 col-md-1" style="text-align: center; margin-top: 48px;">
-                                    <a class="text-danger" href="winkelwagen.php?deleteProduct=<?= $idproduct; ?>">Verwijderen</a>
+                                    <a class="text-danger" href="winkelwagen.php?deleteProduct=<?= $item; ?>">Verwijderen</a>
                                 </div>
                             </div>
                             <div class="col-lg-5">
                                 <div class="col-xs-12 col-sm-6">
-                                    <select id="voorraadSelectbox<?= $idproduct; ?>" class="tabelWinkel voorraad col-xs-12" name="aantal"
-                                            onchange="refresh(<?= $_SESSION['login']['idgebruiker']; ?>, <?= $idproduct; ?>);">
-                                        <?php for ($prod = 0; $prod <= $product->getProductVoorraadById($idproduct)[0]; $prod++) { ?>
-                                            <option <?php if ($prod == $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0]) { ?> selected <?php } ?> ><?= $prod; ?></option>
+                                    <select id="voorraadSelectbox<?= $item; ?>" class="tabelWinkel voorraad col-xs-12" name="aantal" onchange="refresh(<?= $_SESSION['login']['idgebruiker']; ?>, <?= $item; ?>);">
+                                        <?php for ($prod = 0; $prod <= $voorraad; $prod++) { ?>
+                                            <option <?php if ($prod == $aantalProd) { ?> selected <?php } ?> ><?= $prod; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                                 <div style="margin-top: 48px; margin-bottom: 20px;" class="col-xs-12 col-sm-6">
-                                    <b id="prijs"><?= htmlspecialchars('€ ' . number_format($product->getProductPrijsById($idproduct)[0] * $winkelwagen->getAantalById($idproduct, $_SESSION['login']['idgebruiker'])[0], 2)); ?></b>
+                                    <b id="prijs"><?= htmlspecialchars('€ ' . number_format($prijs * $aantalProd, 2)); ?></b>
                                 </div>
                             </div>
                         </div>

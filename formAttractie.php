@@ -52,7 +52,7 @@ include("layout/header.php");
         </form>
 
         <h3>Attractie foto</h3>
-        <form action="uploadAttractie.php?id=<?php echo $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form action="uploadAttractie.php?id=<?= $id; ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="attractieFoto" class="col-lg-2 control-label">Attractie foto</label>
                 <div id="uploadButton" class="col-lg-10">

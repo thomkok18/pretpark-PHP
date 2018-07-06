@@ -63,7 +63,7 @@ class Product {
         $stmt = $conn->prepare("SELECT urlfoto FROM product WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, 'Product');
     }
 
     /**
@@ -89,11 +89,55 @@ class Product {
         $stmt = $conn->prepare("SELECT voorraad FROM product WHERE idproduct = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN, 'Product');
     }
 
     /**
-     * @param $id
+     * @return mixed
+     */
+    public function getProductPrijs() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct, prijs FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductTitel() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct, titel FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductUrl() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct, urlfoto FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getProductVoorraad() {
+        $db = new Db();
+        $conn = $db->getConnectie();
+        $stmt = $conn->prepare("SELECT idproduct, voorraad FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
      * @return mixed
      */
     public function getIdproducten() {
