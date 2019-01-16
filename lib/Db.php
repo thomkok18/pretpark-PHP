@@ -14,8 +14,8 @@ class Db {
             $host = '127.0.0.1';
             $port = 3306;
             $db = 'pretpark';
-            $user = 'thomkok';
-            $password = 'tki43kok';
+            $user = 'root';
+            $password = 'root';
         }
 
         try {
