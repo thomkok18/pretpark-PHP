@@ -7,13 +7,13 @@ class Db {
         if ($_SERVER['SERVER_NAME'] == "localhost") {
             $host = 'localhost';
             $port = 8889;
-            $db = 'pretpark';
+            $db = 'pretpark-php';
             $user = 'root';
             $password = 'root';
         } else {
             $host = '127.0.0.1';
             $port = 3306;
-            $db = 'pretpark';
+            $db = 'pretpark-php';
             $user = 'root';
             $password = 'root';
         }
