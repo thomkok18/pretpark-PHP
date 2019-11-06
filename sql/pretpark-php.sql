@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `pretpark-php`.`gebruiker` (
   `tussenvoegsels` VARCHAR(45) NULL,
   `achternaam` VARCHAR(45) NOT NULL,
   `login` VARCHAR(45) NOT NULL,
-  `wachtwoord` VARCHAR(45) NOT NULL,
+  `wachtwoord` VARCHAR(200) NOT NULL,
   `avatar` LONGTEXT NULL,
   PRIMARY KEY (`idgebruiker`, `idrechten`),
   INDEX `gebruiker_rechten_idx` (`idrechten` ASC),
@@ -179,7 +179,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pretpark-php`;
-INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$Aayb/2AAMEpjAwVRZvlxm.jwddLaZHeObbMMfN', 'thomkok21.png');
+INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$M0eNMJVqd0vrd9WDfnRRB.mG485vy6A..Q545jgPgyzCIqFMyycLm', 'thomkok21.png');
 
 COMMIT;
 
