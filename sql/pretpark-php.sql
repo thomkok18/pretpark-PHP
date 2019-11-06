@@ -179,7 +179,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pretpark-php`;
-INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$z5y85DeakwItk7enN57ysOWz93j8vGkeKBbHlGnU242iRCJ7fMNk.', 'thomkok21.png');
+INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$Aayb/2AAMEpjAwVRZvlxm.jwddLaZHeObbMMfN', 'thomkok21.png');
 
 COMMIT;
 
