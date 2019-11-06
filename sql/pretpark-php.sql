@@ -179,7 +179,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pretpark-php`;
-INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$M0eNMJVqd0vrd9WDfnRRB.mG485vy6A..Q545jgPgyzCIqFMyycLm', 'thomkok21.png');
+INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$M0eNMJVqd0vrd9WDfnRRB.mG485vy6A..Q545jgPgyzCIqFMyycLm', 'img/thomkok21.png');
 
 COMMIT;
 
@@ -203,8 +203,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pretpark-php`;
-INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (1, 1, 'Ticket', 'Hiermee krijg je toegang tot het pretpark.', 50, 5.50, 'Ticket.png');
-INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (2, 1, 'VIP-Ticket', 'Hiermee krijg je voorrang in de rijen in het pretpark.', 50, 12.50, 'VIP-Ticket.png');
+INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (1, 1, 'Ticket', 'Hiermee krijg je toegang tot het pretpark.', 50, 5.50, 'img/Ticket.png');
+INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (2, 1, 'VIP-Ticket', 'Hiermee krijg je voorrang in de rijen in het pretpark.', 50, 12.50, 'img/VIP-Ticket.png');
 
 COMMIT;
 
