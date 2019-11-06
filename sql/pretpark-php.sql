@@ -162,3 +162,59 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `pretpark-php`.`rechten`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pretpark-php`;
+INSERT INTO `pretpark-php`.`rechten` (`idrechten`, `rechtenomschrijving`) VALUES (1, 'Beheerder');
+INSERT INTO `pretpark-php`.`rechten` (`idrechten`, `rechtenomschrijving`) VALUES (2, 'Gebruiker');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pretpark-php`.`gebruiker`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pretpark-php`;
+INSERT INTO `pretpark-php`.`gebruiker` (`idgebruiker`, `idrechten`, `naam`, `tussenvoegsels`, `achternaam`, `login`, `wachtwoord`, `avatar`) VALUES (1, 1, 'Thom', NULL, 'Kok', 'thomkok13@hotmail.com', '$2y$10$z5y85DeakwItk7enN57ysOWz93j8vGkeKBbHlGnU242iRCJ7fMNk.', 'thomkok21.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pretpark-php`.`attractie`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pretpark-php`;
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (1, 1, 'Achtbaan', 'Dit is een achtbaan!', 'Achtbaan.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (2, 1, 'Ghostship', 'Dit is een schip!', 'Ghostship.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (3, 1, 'Locomotief', 'Dit is een locomotief!', 'Locomotief.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (4, 1, 'Reuzenrad', 'Dit is een reuzenrad!', 'Reuzenrad.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (5, 1, 'Zweefmolen', 'Dit is een zweefmolen!', 'Zweefmolen.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pretpark-php`.`product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pretpark-php`;
+INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (1, 1, 'Ticket', 'Hiermee krijg je toegang tot het pretpark.', 50, 5.50, 'Ticket.png');
+INSERT INTO `pretpark-php`.`product` (`idproduct`, `idgebruiker`, `titel`, `productomschrijving`, `voorraad`, `prijs`, `urlfoto`) VALUES (2, 1, 'VIP-Ticket', 'Hiermee krijg je voorrang in de rijen in het pretpark.', 50, 12.50, 'VIP-Ticket.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pretpark-php`.`saldo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pretpark-php`;
+INSERT INTO `pretpark-php`.`saldo` (`idsaldo`, `saldo`) VALUES (1, 50000);
+
+COMMIT;
+
