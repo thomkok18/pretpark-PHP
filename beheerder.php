@@ -63,16 +63,16 @@ include("layout/header.php");
         <?php foreach ($gebruikers as $key => $geb) { ?>
             <tbody>
             <tr>
-                <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Bezoeker") { ?>
+                <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->rechtenomschrijving == "Bezoeker") { ?>
                     <th><a href="beheerder.php?deleteGebruiker=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><img class="prullenbak" src="img/prullenbakOpen.jpg"></a></th>
                 <?php } ?>
-                <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving() == "Beheerder") { ?>
+                <?php if ($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->rechtenomschrijving == "Beheerder") { ?>
                     <th><img class="prullenbak" src="img/prullenbakDicht.jpg"></th>
                 <?php } ?>
                 <th><a id="formGebruikerButton" class="btn btn-info" role="button" href="formGebruiker.php?id=<?= htmlspecialchars($geb->getIdgebruiker()); ?>"><?= htmlspecialchars($geb->getIdgebruiker()); ?></a></th>
                 <th class="tabelText"><?= htmlspecialchars($geb->getVolledigeNaam()); ?></th>
                 <th class="tabelText"><?= htmlspecialchars($geb->getLogin()); ?></th>
-                <th class="tabelText"><?= htmlspecialchars($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->getRechtomschrijving()); ?></th>
+                <th class="tabelText"><?= htmlspecialchars($rechten->getRechtenByIdGebruiker($geb->getIdrechten())->rechtenomschrijving); ?></th>
             </tr>
             </tbody>
         <?php } ?>

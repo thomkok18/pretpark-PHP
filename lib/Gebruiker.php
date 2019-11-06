@@ -46,7 +46,7 @@ class Gebruiker {
                 "volledige naam" => $gebruiker->getVolledigeNaam(),
                 "idgebruiker" => $gebruiker->getIdgebruiker(),
                 "login" => $gebruiker->getLogin(),
-                "rechten" => $rechten->getRechtenByIdGebruiker($gebruiker->getIdrechten())->getRechtomschrijving(),
+                "rechten" => $rechten->getRechtenByIdGebruiker($gebruiker->idrechten)->rechtenomschrijving,
                 "avatar" => $gebruiker->getAvatar()
             );
             return $gebruiker;
@@ -207,7 +207,7 @@ class Gebruiker {
     /**
      * @param mixed $idgebruiker
      */
-    public function setIdgebruiker($idgebruiker): void {
+    public function setIdgebruiker($idgebruiker) {
         $this->idgebruiker = $idgebruiker;
     }
 
@@ -221,7 +221,7 @@ class Gebruiker {
     /**
      * @param mixed $naam
      */
-    public function setNaam($naam): void {
+    public function setNaam($naam) {
         $this->naam = $naam;
     }
 
@@ -235,7 +235,7 @@ class Gebruiker {
     /**
      * @param mixed $tussenvoegsels
      */
-    public function setTussenvoegsels($tussenvoegsels): void {
+    public function setTussenvoegsels($tussenvoegsels) {
         $this->tussenvoegsels = $tussenvoegsels;
     }
 
@@ -249,7 +249,7 @@ class Gebruiker {
     /**
      * @param mixed $achternaam
      */
-    public function setAchternaam($achternaam): void {
+    public function setAchternaam($achternaam) {
         $this->achternaam = $achternaam;
     }
 
@@ -263,7 +263,7 @@ class Gebruiker {
     /**
      * @param mixed $login
      */
-    public function setLogin($login): void {
+    public function setLogin($login) {
         $this->login = $login;
     }
 
@@ -277,7 +277,7 @@ class Gebruiker {
     /**
      * @param mixed $wachtwoord
      */
-    public function setWachtwoord($wachtwoord): void {
+    public function setWachtwoord($wachtwoord) {
         $this->wachtwoord = $wachtwoord;
     }
 
@@ -291,7 +291,7 @@ class Gebruiker {
     /**
      * @param $idrechten
      */
-    public function setIdRechten($idrechten): void {
+    public function setIdRechten($idrechten) {
         $this->idrechten = $idrechten;
     }
 
@@ -305,7 +305,7 @@ class Gebruiker {
     /**
      * @param mixed $avatar
      */
-    public function setAvatar($avatar): void {
+    public function setAvatar($avatar) {
         $this->avatar = $avatar;
     }
 }

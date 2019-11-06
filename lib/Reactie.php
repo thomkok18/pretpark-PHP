@@ -83,7 +83,7 @@ class Reactie {
     /**
      * @param mixed $idreactie
      */
-    public function setIdreactie($idreactie): void {
+    public function setIdreactie($idreactie) {
         $this->idreactie = $idreactie;
     }
 
@@ -97,7 +97,7 @@ class Reactie {
     /**
      * @param mixed $idattractie
      */
-    public function setIdattractie($idattractie): void {
+    public function setIdattractie($idattractie) {
         $this->idattractie = $idattractie;
     }
 
@@ -111,7 +111,7 @@ class Reactie {
     /**
      * @param mixed $idgebruiker
      */
-    public function setIdgebruiker($idgebruiker): void {
+    public function setIdgebruiker($idgebruiker) {
         $this->idgebruiker = $idgebruiker;
     }
 
@@ -125,7 +125,7 @@ class Reactie {
     /**
      * @param mixed $reactietekst
      */
-    public function setReactietekst($reactietekst): void {
+    public function setReactietekst($reactietekst) {
         $this->reactietekst = $reactietekst;
     }
 }

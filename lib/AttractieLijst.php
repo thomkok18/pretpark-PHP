@@ -22,7 +22,7 @@ class AttractieLijst {
     /**
      * @param array $attracties
      */
-    public function setAttracties(array $attracties): void {
+    public function setAttracties(array $attracties) {
         $this->attracties($attracties);
     }
 

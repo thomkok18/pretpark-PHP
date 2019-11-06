@@ -211,7 +211,7 @@ class Product {
     /**
      * @param mixed $idgebruiker
      */
-    public function setIdgebruiker($idgebruiker): void {
+    public function setIdgebruiker($idgebruiker) {
         $this->idgebruiker = $idgebruiker;
     }
 
@@ -225,7 +225,7 @@ class Product {
     /**
      * @param mixed $prijs
      */
-    public function setPrijs($prijs): void {
+    public function setPrijs($prijs) {
         $this->prijs = $prijs;
     }
 
@@ -265,7 +265,7 @@ class Product {
     /**
      * @param mixed $idproduct
      */
-    public function setIdproduct($idproduct): void {
+    public function setIdproduct($idproduct) {
         $this->idproduct = $idproduct;
     }
 
@@ -279,7 +279,7 @@ class Product {
     /**
      * @param mixed $titel
      */
-    public function setTitel($titel): void {
+    public function setTitel($titel) {
         $this->titel = $titel;
     }
 
@@ -293,7 +293,7 @@ class Product {
     /**
      * @param mixed $productomschrijving
      */
-    public function setProductomschrijving($productomschrijving): void {
+    public function setProductomschrijving($productomschrijving) {
         $this->productomschrijving = $productomschrijving;
     }
 
@@ -307,7 +307,7 @@ class Product {
     /**
      * @param mixed $urlfoto
      */
-    public function setUrlfoto($urlfoto): void {
+    public function setUrlfoto($urlfoto) {
         $this->urlfoto = $urlfoto;
     }
 
@@ -321,7 +321,7 @@ class Product {
     /**
      * @param mixed $voorraad
      */
-    public function setVoorraad($voorraad): void {
+    public function setVoorraad($voorraad) {
         $this->voorraad = $voorraad;
     }
 }

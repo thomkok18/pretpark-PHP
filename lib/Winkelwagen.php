@@ -197,7 +197,7 @@ class Winkelwagen {
     /**
      * @param mixed $idwinkelwagen
      */
-    public function setIdwinkelwagen($idwinkelwagen): void {
+    public function setIdwinkelwagen($idwinkelwagen) {
         $this->idwinkelwagen = $idwinkelwagen;
     }
 
@@ -211,7 +211,7 @@ class Winkelwagen {
     /**
      * @param mixed $idgebruiker
      */
-    public function setIdgebruiker($idgebruiker): void {
+    public function setIdgebruiker($idgebruiker) {
         $this->idgebruiker = $idgebruiker;
     }
 
@@ -225,7 +225,7 @@ class Winkelwagen {
     /**
      * @param mixed $idproduct
      */
-    public function setIdproduct($idproduct): void {
+    public function setIdproduct($idproduct) {
         $this->idproduct = $idproduct;
     }
 
@@ -239,7 +239,7 @@ class Winkelwagen {
     /**
      * @param mixed $aantal
      */
-    public function setAantal($aantal): void {
+    public function setAantal($aantal) {
         $this->aantal = $aantal;
     }
 

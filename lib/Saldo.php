@@ -48,7 +48,7 @@ class Saldo {
     /**
      * @param mixed $idsaldo
      */
-    public function setIdsaldo($idsaldo): void {
+    public function setIdsaldo($idsaldo) {
         $this->idsaldo = $idsaldo;
     }
 
@@ -62,7 +62,7 @@ class Saldo {
     /**
      * @param mixed $saldo
      */
-    public function setSaldo($saldo): void {
+    public function setSaldo($saldo) {
         $this->saldo = $saldo;
     }
 }

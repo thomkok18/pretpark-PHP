@@ -83,7 +83,7 @@ class Attractie {
     /**
      * @param mixed $idattractie
      */
-    public function setIdattractie($idattractie): void {
+    public function setIdattractie($idattractie) {
         $this->idattractie = $idattractie;
     }
 
@@ -141,7 +141,7 @@ class Attractie {
     /**
      * @param mixed $idgebruiker
      */
-    public function setIdgebruiker($idgebruiker): void {
+    public function setIdgebruiker($idgebruiker) {
         $this->idgebruiker = $idgebruiker;
     }
 
@@ -155,7 +155,7 @@ class Attractie {
     /**
      * @param mixed $titel
      */
-    public function setTitel($titel): void {
+    public function setTitel($titel) {
         $this->titel = $titel;
     }
 
@@ -169,7 +169,7 @@ class Attractie {
     /**
      * @param mixed $omschrijving
      */
-    public function setOmschrijving($omschrijving): void {
+    public function setOmschrijving($omschrijving) {
         $this->omschrijving = $omschrijving;
     }
 
@@ -183,7 +183,7 @@ class Attractie {
     /**
      * @param mixed $urlfoto
      */
-    public function setUrlfoto($urlfoto): void {
+    public function setUrlfoto($urlfoto) {
         $this->urlfoto = $urlfoto;
     }
 }
