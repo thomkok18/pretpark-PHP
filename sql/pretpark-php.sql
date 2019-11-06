@@ -189,11 +189,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pretpark-php`;
-INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (1, 1, 'Achtbaan', 'Dit is een achtbaan!', 'Achtbaan.png');
-INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (2, 1, 'Ghostship', 'Dit is een schip!', 'Ghostship.png');
-INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (3, 1, 'Locomotief', 'Dit is een locomotief!', 'Locomotief.png');
-INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (4, 1, 'Reuzenrad', 'Dit is een reuzenrad!', 'Reuzenrad.png');
-INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (5, 1, 'Zweefmolen', 'Dit is een zweefmolen!', 'Zweefmolen.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (1, 1, 'Achtbaan', 'Dit is een achtbaan!', 'img/Achtbaan.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (2, 1, 'Ghostship', 'Dit is een schip!', 'img/Ghostship.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (3, 1, 'Locomotief', 'Dit is een locomotief!', 'img/Locomotief.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (4, 1, 'Reuzenrad', 'Dit is een reuzenrad!', 'img/Reuzenrad.png');
+INSERT INTO `pretpark-php`.`attractie` (`idattractie`, `idgebruiker`, `titel`, `omschrijving`, `urlfoto`) VALUES (5, 1, 'Zweefmolen', 'Dit is een zweefmolen!', 'img/Zweefmolen.png');
 
 COMMIT;
 
